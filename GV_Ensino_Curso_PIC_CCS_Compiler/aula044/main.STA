@@ -1,0 +1,65 @@
+
+ROM used:   868/2048 (42%)
+            868/2048 (42%) including unused fragments
+
+            0.8 Average locations per line
+            6.4 Average locations per statement
+
+RAM used:   5/224 (2%) at main() level
+            23/224 (10%) worst case
+
+Stack used: 0 worst case (0 in main + 0 for interrupts)
+Stack size: 8
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+  111    51  38  main.c
+   10     0   0  main.h
+  508     0   0  ..\..\..\..\..\Program Files (x86)\PICC\Devices\16F628A.h
+  456    84  62  ..\..\..\..\..\Program Files (x86)\PICC\Drivers\lcd.c
+----- -----
+ 1085   135 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     21   2    1             @delay_ms1
+0      8   1    0             @const557
+ Inline         3   596  5.9  lcd_read_byte
+0      6   1    0    59  4.2  lcd_read_nibble
+0     12   1    1   179  3.3  lcd_send_nibble
+0     64   7    3   460  4.7  lcd_send_byte
+0     49   6    2   667  5.9  lcd_init
+0     18   2    4   208  6.3  lcd_gotoxy
+0     44   5    1   354  4.7  lcd_putc
+0     59   7    0   570  5.0  MAIN
+0    379  44    4  1326  4.0  imprime
+0     17   2    0             @const598
+0     20   2    0             @const599
+0     21   2    3             @DIV88
+0     53   6    2             @PRINTF_U_575
+0     19   2    0   675  4.9  @const606
+0     19   2    0             @const607
+0     19   2    0             @const609
+0     18   2    0             @const610
+0     18   2    0             @const611
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               10
+    Statements              135
+    Comments                196
+    Volume (V)              7843
+    Difficulty (D)          46.0
+    Effort to implement (E) 360817
+    Time to implement (T)   5 hours, 34 minutes
+    Est Delivered Bugs (B)  2
+    Cyclomatic Complexity   20
+    Maintainability (MI)    121
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-007FF   864  1180  
+
+
+

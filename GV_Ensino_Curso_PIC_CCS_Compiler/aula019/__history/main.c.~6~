@@ -1,0 +1,17 @@
+#include <main.h>
+
+void main()
+{
+   port_b_pullups(true);
+   while(true)
+   {
+      if(input(pin_b0) == 0){
+         output_high(pin_a7);
+      }
+      else
+      {
+         output_low(pin_a7);
+      }
+   }
+
+}

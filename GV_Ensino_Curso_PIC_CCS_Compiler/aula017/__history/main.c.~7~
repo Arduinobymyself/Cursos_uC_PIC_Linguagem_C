@@ -1,0 +1,19 @@
+#include <main.h>
+
+
+void main()
+{
+
+   while(TRUE)
+   {
+      if(input(pin_a0) == 1)
+      {
+         output_high(pin_b0);
+      }
+      if(input(pin_a0) == 0)
+      {
+         output_low(pin_b0);
+      }
+   }
+
+}

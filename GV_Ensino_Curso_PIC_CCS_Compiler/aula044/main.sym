@@ -1,0 +1,100 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+006     lcdlat
+006     lcd
+015     CCP_1_LOW
+015     CCP_1
+016     CCP_1_HIGH
+01F.6   C1OUT
+01F.7   C2OUT
+021     MAIN.segundos
+022     MAIN.minutos
+023     MAIN.horas
+024     lcd_init.i
+024     imprime.h
+025     imprime.m
+025     lcd_init.@SCRATCH1
+026     imprime.s
+027     @PRINTF_U_575.P1
+027     imprime.@SCRATCH1
+028     @PRINTF_U_575.P1
+029     lcd_putc.c
+029     @DIV88.P1
+02A     @delay_ms1.P1
+02A     lcd_gotoxy.x
+02A     @DIV88.P1
+02B     lcd_gotoxy.y
+02B     @DIV88.@SCRATCH1
+02C     lcd_gotoxy.address
+02D     lcd_gotoxy.@SCRATCH1
+02E     lcd_send_byte.address
+02F     lcd_send_byte.n
+030     lcd_read_byte.low
+030     lcd_send_byte.@SCRATCH1
+031     lcd_send_nibble.n
+031     lcd_read_byte.high
+032     lcd_read_byte.@SCRATCH1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+086     lcdtris
+09B-09C @READ_PROGRAM_MEMORY8.P1
+
+ROM Allocation:
+000004  LCD_INIT_STRING.call
+000008  LCD_INIT_STRING.data
+00000C  @const598.call
+00001D  @const599.call
+000031  @const606.call
+000044  @const607.call
+000057  @const609.call
+00006A  @const610.call
+00007C  @const611.call
+00008E  @delay_ms1
+0000A3  lcd_send_nibble
+0000AF  lcd_read_nibble
+0000B5  lcd_send_byte
+0000BB  lcd_read_byte
+0000F5  lcd_init
+000126  lcd_gotoxy
+000138  lcd_putc
+000164  @DIV88
+000179  @PRINTF_U_575
+0001AE  imprime
+000329  @cinit1
+000329  MAIN
+00032E  @cinit2
+
+Project Directory:
+    C:\Users\ABMS-Telecom\Documents\CCS C Projects\aula044\
+
+Project Files:
+    main.c                                                  [05-jan-23 15:31  CRC=A8C7E6E8]
+    main.h                                                  [05-jan-23 12:51  CRC=FE2EABFC]
+    ..\..\..\..\..\Program Files (x86)\PICC\Devices\16F628A.h [21-jun-13 16:04  CRC=FEBF88CA]
+    ..\..\..\..\..\Program Files (x86)\PICC\Drivers\lcd.c   [23-ago-12 09:01  CRC=D28E8746]
+
+Source signature=4AD32A3A
+
+Units:
+    main (main)
+
+Compiler Settings:
+    Processor:      PIC16F628A
+    Pointer Size:   16
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   main.xsym
+    Errors:      main.err
+    Ext Symbols: main.esym
+    INHX8:       main.hex
+    Symbols:     main.sym
+    List:        main.lst
+    Debug/COFF:  main.cof
+    Project:     main.ccspjt
+    Call Tree:   main.tre
+    Statistics:  main.STA

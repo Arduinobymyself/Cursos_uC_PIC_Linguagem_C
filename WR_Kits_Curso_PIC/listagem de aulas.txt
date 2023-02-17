@@ -1,0 +1,66 @@
+
+
+VÍDEO AULAS DO CANAL WR KITs
+
+001 - introdução PIC16F84A
+002 - fusíveis, datasheet, software de simulação
+003 - gravando o primeiro PIC12F675
+004 - entradas digitais
+005 - cristal oscilador externo, polling
+006 - diretiva define, registrador CMCON
+007 - PIC16F628A, shift left
+008 - sistema paradoxus 9
+009 - jogo com PIC
+010 - controle de servo motores
+011 - conversão A/D
+012 - ADC com PIC12F675
+013 - display 7 segmentos
+014 - contador 00 a 99
+015 - multiplexação
+016 - displays multiplexados
+017 - debug no MikroC e no proteus
+018 - tipos de clock
+019 - PIC16F877A e registradores
+020 - USART com MAX232 e PIC
+021 - termômetro via serial
+022 - assembly e ciclo de máquina
+023 - interrupções, TIMER 0 e prescaler
+024 - interrupção x polling
+025 - EEPROM - leitura e escrita
+026 - como aumentar a vida útil da EEPROM
+027 - varredura de botões com TIMER 0
+028 - teclado matricial
+029 - TIMER 2 e postscaler
+030 - PWM com TIMER 2
+031 - PWM com PIC16F877A
+032 - PWM para motores com PIC16F877A
+033 - gerador PWM programável
+034 - interrupção externa
+035 - contador de passagem
+036 - watchdog timer
+037 - modo sleep
+038 - PIC16F876A, comparadores e interrupções
+039 - interrupção por mudança no PORT B
+040 - TIMER 1
+041 - interrupção do TIMER 1
+042 - contador de pulsos com TIMER 1 e LCD
+043 - CCP modo comparação
+044 - controle de servo motores com TIMER 0
+045 - controle suave de servo motores
+046 - como saber se o PIC é protegido
+047 - saída analógica VRCON
+048 - modo de captura
+049 - medidnod um pulso com CCP
+050 - sensor de ultrassom com PIC e LCD
+051 - frequencímetro com PIC e LCD
+052 - interrupções do TIMER 0 e TIMER 1 juntas
+053 - incremento do TIMER 0 com evento externo
+054 - CCS vs MikroC
+055 - sensor modulador de passagem
+056 - controle de motor de passo bipolar com TIMER 0
+057 - tensão de referência interna para comparadores
+058 - gerador de PWM ajustável
+059 - gerador de PWM por software
+060 - multiplexação de display 7 segmentos por interrupção
+061 - o kit PIC mais barato do mercado
+062 - sirene programável

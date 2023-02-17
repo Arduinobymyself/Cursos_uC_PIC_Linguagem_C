@@ -1,0 +1,17 @@
+#include <main.h>
+
+#include <lcd.c>
+
+void main()
+{
+
+   lcd_init();
+
+   while(TRUE)
+   {
+      printf(lcd_putc, "\f   Ola Mundo!   \n  ABMS Telecom  ");
+      delay_ms(50);
+
+   }
+
+}

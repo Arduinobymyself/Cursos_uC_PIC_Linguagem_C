@@ -1,0 +1,28 @@
+#include <main.h>
+
+void main()
+{
+
+   while(TRUE)
+   {
+      output_b(0b11111111);
+      delay_ms(300);
+      output_b(0b01111111);
+      delay_ms(300);
+      output_b(0b10111111);
+      delay_ms(300);
+      output_b(0b11011111);
+      delay_ms(300);
+      output_b(0b11101111);
+      delay_ms(300);
+      output_b(0b11110111);
+      delay_ms(300);
+      output_b(0b11111011);
+      delay_ms(300);
+      output_b(0b11111101);
+      delay_ms(300);
+      output_b(0b11111110);
+      delay_ms(300);
+   }
+
+}

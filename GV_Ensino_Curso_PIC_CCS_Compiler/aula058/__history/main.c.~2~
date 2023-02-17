@@ -1,0 +1,23 @@
+#include <main.h>
+
+#define use_portb_kbd TRUE
+#include <KBD.C>
+
+#include <lcd.c>
+
+char tecla;
+
+void main()
+{
+   kbd_init();
+
+   lcd_init();
+
+   while(TRUE)
+   {
+      tecla = kbd_getc();
+      delay_ms(2);
+      
+   }
+
+}

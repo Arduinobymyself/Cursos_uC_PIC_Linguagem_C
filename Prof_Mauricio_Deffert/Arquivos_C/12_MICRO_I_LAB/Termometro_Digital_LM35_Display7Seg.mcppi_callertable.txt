@@ -1,0 +1,21 @@
+main
+	__CC2DW
+		____DoICP
+	ADC_Init
+	ADC_Read
+		Delay_22us
+	Word2Double
+		NRM3232
+			RES032
+			SETFUN32
+			FIXSIGN32
+	Mul_32x32_FP
+		RES032
+		SETFOV32
+		SETFUN32
+	Double2Byte
+		SETIOV3224
+	display
+		Div_8x8_U
+	Button
+		Delay_500us

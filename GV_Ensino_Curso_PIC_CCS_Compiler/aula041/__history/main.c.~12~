@@ -1,0 +1,105 @@
+#include <main.h>
+
+#include <lcd.c>
+
+
+
+
+
+void main()
+{
+   char battery0[7] = {
+      0b01110,
+      0b10001,
+      0b10001,
+      0b10001,
+      0b10001,
+      0b10001,
+      0b11111
+   };
+   
+   char battery1[7] = {
+      0b01110,
+      0b10001,
+      0b10001,
+      0b10001,
+      0b10001,
+      0b11111,
+      0b11111
+   };
+   
+   char battery2[7] = {
+      0b01110,
+      0b10001,
+      0b10001,
+      0b10001,
+      0b11111,
+      0b11111,
+      0b11111
+   };
+   
+   char battery3[7] = {
+      0b01110,
+      0b10001,
+      0b10001,
+      0b11111,
+      0b11111,
+      0b11111,
+      0b11111
+   };
+   
+   char battery4[7] = {
+      0b01110,
+      0b10001,
+      0b11111,
+      0b11111,
+      0b11111,
+      0b11111,
+      0b11111
+   };
+   
+   char battery5[7] = {
+      0b01110,
+      0b11111,
+      0b11111,
+      0b11111,
+      0b11111,
+      0b11111,
+      0b11111
+   };
+
+
+   lcd_init();
+   lcd_set_cgram_char(0, battery0);
+   lcd_set_cgram_char(1, battery1);
+   lcd_set_cgram_char(2, battery2);
+   lcd_set_cgram_char(3, battery3);
+   lcd_set_cgram_char(4, battery4);
+   lcd_set_cgram_char(5, battery5);
+   
+   int i;
+
+   while(TRUE)
+   {
+
+      // animação de bateria carga e descarga de bateria
+      
+      
+      for(i = 0; i < 6; i++)
+      {
+         printf(lcd_putc, "\f%c", i);
+         delay_ms(300);
+      }
+      
+      for(i = 5; i >= 0; i--)
+      {
+         printf(lcd_putc, "\f%c", i);
+         delay_ms(300);
+      }
+      
+      printf(lcd_putc, "\f");
+      
+       
+   }
+
+}

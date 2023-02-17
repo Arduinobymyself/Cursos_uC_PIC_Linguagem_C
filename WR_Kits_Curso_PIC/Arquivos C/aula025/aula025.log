@@ -1,0 +1,14 @@
+0	1	mikroCPIC1618.exe -MSF -DBG -pP16F628A -GC -DL -O11111114 -fo4 -N"C:\Users\ABMS-Telecom\Documents\PROTEUS\WR_Kits_Curso_PIC\Arquivos C\aula025.mcppi" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Defs\" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Uses\P16\" -SP"C:\Users\ABMS-Telecom\Documents\PROTEUS\WR_Kits_Curso_PIC\Arquivos C\" -IP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Uses\P16\" "aula025.c" "__Lib_Math.mcl" "__Lib_MathDouble.mcl" "__Lib_System.mcl" "__Lib_Delays.mcl" "__Lib_CType.mcl" "__Lib_CString.mcl" "__Lib_CStdlib.mcl" "__Lib_CMath.mcl" "__Lib_Conversions.mcl" "__Lib_Sprinti.mcl" "__Lib_Sprintl.mcl" "__Lib_Time.mcl" "__Lib_Trigonometry.mcl" "__Lib_Button.mcl" "__Lib_Keypad4x4.mcl" "__Lib_Manchester.mcl" "__Lib_OneWire.mcl" "__Lib_PS2.mcl" "__Lib_Sound.mcl" "__Lib_SoftI2C.mcl" "__Lib_SoftSPI.mcl" "__Lib_SoftUART.mcl" "__Lib_EEPROM.mcl" "__Lib_PWM_b3.mcl" "__Lib_UART_b21.mcl" "__Lib_CF.mcl" "__Lib_GlcdFonts.mcl" "__Lib_Glcd.mcl" "__Lib_LcdConsts.mcl" "__Lib_Lcd.mcl" "__Lib_RS485.mcl" "__Lib_T6963C.mcl"	 
+hint: 0	1139	Available RAM: 208 [bytes], Available ROM: 2048 [bytes]	 
+diagnostics: 0	122	Compilation Started	aula025.c
+diagnostics: 96	123	Compiled Successfully	aula025.c
+hint: 68	1164	Variable 'aux1' has been eliminated by optimizer	aula025.c
+hint: 93	1164	Variable 'anchor' has been eliminated by optimizer	aula025.c
+diagnostics: 0	127	All files Compiled in 31 ms	 
+hint: 0	1144	Used RAM (bytes): 21 (10%)  Free RAM (bytes): 187 (90%)	Used RAM (bytes): 21 (10%)  Free RAM (bytes): 187 (90%)
+hint: 0	1144	Used ROM (program words): 260 (13%)  Free ROM (program words): 1788 (87%)	Used ROM (program words): 260 (13%)  Free ROM (program words): 1788 (87%)
+diagnostics: 0	125	Project Linked Successfully	aula025.mcppi
+hint: 0	1004	COFF file successfully generated	COFF file successfully generated
+diagnostics: 0	128	Linked in 187 ms	 
+diagnostics: 0	129	Project 'aula025.mcppi' completed: 375 ms	 
+diagnostics: 0	103	Finished successfully: 19 jan 2023, 19:29:00	aula025.mcppi

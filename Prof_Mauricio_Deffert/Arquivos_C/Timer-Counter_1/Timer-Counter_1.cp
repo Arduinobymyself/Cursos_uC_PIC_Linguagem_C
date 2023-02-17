@@ -1,0 +1,18 @@
+#line 1 "C:/Users/ABMS-Telecom/Documents/PROTEUS/Prof_Mauricio_Deffert/Timer-Counter_1.c"
+#line 20 "C:/Users/ABMS-Telecom/Documents/PROTEUS/Prof_Mauricio_Deffert/Timer-Counter_1.c"
+void main() {
+ TRISD = 0;
+ PORTD = 0;
+
+ OPTION_REG = 0b10000111;
+ TMR0 = 0;
+ INTCON.TMR0IF = 0;
+
+ while(1){
+ if(INTCON.TMR0IF == 1){
+ PORTD.RD0 = ~PORTD.RD0;
+ TMR0 = 0;
+ INTCON.TMR0IF = 0;
+ }
+ }
+}

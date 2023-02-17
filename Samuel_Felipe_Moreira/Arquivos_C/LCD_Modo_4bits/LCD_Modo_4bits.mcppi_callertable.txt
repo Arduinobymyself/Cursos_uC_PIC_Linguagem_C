@@ -1,0 +1,18 @@
+main
+	__CC2DW
+		____DoICP
+	config_mcu
+	inicializa_lcd
+		output
+			pulse_en
+		pulse_en
+	lcd_comando
+		lcd_nibble
+			pulse_en
+	print
+		lcd_texto
+			lcd_nibble
+				pulse_en
+	IntToChar
+		Div_16x16_S
+			Div_16x16_S_L

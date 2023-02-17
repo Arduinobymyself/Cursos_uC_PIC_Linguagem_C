@@ -1,0 +1,25 @@
+#include <main.h>
+
+void main()
+{
+
+   while(TRUE)
+   {
+      /*
+      // transmissão serial   
+      printf("Hello World!\r\n");
+      delay_ms(1000);
+      */
+      
+      if(kbhit()){
+      
+      }
+      
+      
+      
+      
+      
+      
+   }
+
+}

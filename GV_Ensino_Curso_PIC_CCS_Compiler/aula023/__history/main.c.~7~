@@ -1,0 +1,22 @@
+#include <main.h>
+
+void main()
+{
+   boolean flag = false;
+   
+   while(true)
+   {
+      if(input(pin_a0) && !flag){
+         flag = true;
+         output_high(pin_b0);
+         delay_ms(100);
+      }
+      else if(input(pin_a0) && flag)
+      {
+         flag = false;
+         output_low(pin_b0);
+         delay_ms(100);
+      }
+   }
+
+}

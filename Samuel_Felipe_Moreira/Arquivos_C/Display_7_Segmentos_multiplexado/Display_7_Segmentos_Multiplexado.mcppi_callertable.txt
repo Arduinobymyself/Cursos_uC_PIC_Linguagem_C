@@ -1,0 +1,10 @@
+main
+	__CC2DW
+		____DoICP
+	buzzer
+		muxDisplay
+			Div_16x16_S
+				Div_16x16_S_L
+	muxDisplay
+		Div_16x16_S
+			Div_16x16_S_L

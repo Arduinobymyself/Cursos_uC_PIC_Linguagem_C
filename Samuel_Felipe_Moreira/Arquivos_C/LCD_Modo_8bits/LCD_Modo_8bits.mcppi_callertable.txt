@@ -1,0 +1,11 @@
+main
+	__CC2DW
+		____DoICP
+	config_mcu
+	inicializa_lcd
+		pulse_en
+	lcd_comando
+		pulse_en
+	print
+		lcd_texto
+			pulse_en

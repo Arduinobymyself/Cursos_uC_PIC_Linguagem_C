@@ -1,0 +1,29 @@
+main
+	__CC2DW
+		____DoICP
+	config_mcu
+	config_interrupt
+	config_timer
+	clear
+		display_unidade
+			Div_8x8_U
+		display_dezena
+			Div_8x8_U
+	start
+		display_unidade
+			Div_8x8_U
+		display_dezena
+			Div_8x8_U
+	pause
+		display_unidade
+			Div_8x8_U
+		display_dezena
+			Div_8x8_U
+	Button
+		Delay_500us
+interrupt
+	blink
+		display_unidade
+			Div_8x8_U
+		display_dezena
+			Div_8x8_U

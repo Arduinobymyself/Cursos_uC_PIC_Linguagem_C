@@ -1,0 +1,14 @@
+main
+	__CC2DW
+		____DoICP
+	I2C1_Init
+	I2C1_Start
+		I2C1_Is_Idle
+	I2C1_Wr
+	Dec2Bcd
+		Div_8x8_U
+	I2C1_Stop
+	I2C1_Repeated_Start
+	I2C1_Rd
+	Bcd2Dec
+		Mul_8x8_U

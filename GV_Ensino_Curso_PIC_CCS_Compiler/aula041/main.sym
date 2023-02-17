@@ -1,0 +1,91 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+006     lcdlat
+006     lcd
+015     CCP_1_LOW
+015     CCP_1
+016     CCP_1_HIGH
+01F.6   C1OUT
+01F.7   C2OUT
+020-026 battery0
+027-02D battery1
+02E-034 battery2
+035-03B battery3
+03C-042 battery4
+043-049 battery5
+04A     i
+04B     lcd_set_cgram_char.which
+04B     lcd_putc.c
+04B     lcd_init.i
+04B     MAIN.@SCRATCH1
+04C     lcd_gotoxy.x
+04C     @delay_ms1.P1
+04C-04D lcd_set_cgram_char.ptr
+04C     lcd_init.@SCRATCH1
+04D     lcd_gotoxy.y
+04E     lcd_set_cgram_char.i
+04E     lcd_gotoxy.address
+04F     lcd_gotoxy.@SCRATCH1
+04F     lcd_set_cgram_char.@SCRATCH1
+050     lcd_send_byte.address
+051     lcd_send_byte.n
+052     lcd_read_byte.low
+052     lcd_send_byte.@SCRATCH1
+053     lcd_read_byte.high
+053     lcd_send_nibble.n
+054     lcd_read_byte.@SCRATCH1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+086     lcdtris
+09B-09C @READ_PROGRAM_MEMORY8.P1
+
+ROM Allocation:
+000004  LCD_INIT_STRING.call
+000008  LCD_INIT_STRING.data
+00000C  @delay_ms1
+000021  lcd_send_nibble
+00002D  lcd_read_nibble
+000033  lcd_send_byte
+000039  lcd_read_byte
+000073  lcd_init
+0000A4  lcd_set_cgram_char
+0000CB  lcd_gotoxy
+0000DD  lcd_putc
+000109  MAIN
+000109  @cinit1
+00010E  @cinit2
+
+Project Directory:
+    C:\Users\ABMS-Telecom\Documents\CCS C Projects\aula041\
+
+Project Files:
+    main.c                                                  [05-jan-23 12:33  CRC=EAE256A1]
+    main.h                                                  [05-jan-23 11:09  CRC=FE2EABFC]
+    ..\..\..\..\..\Program Files (x86)\PICC\Devices\16F628A.h [21-jun-13 16:04  CRC=FEBF88CA]
+    ..\..\..\..\..\Program Files (x86)\PICC\Drivers\lcd.c   [23-ago-12 09:01  CRC=D28E8746]
+
+Source signature=8CED99F3
+
+Units:
+    main (main)
+
+Compiler Settings:
+    Processor:      PIC16F628A
+    Pointer Size:   16
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   main.xsym
+    Errors:      main.err
+    Ext Symbols: main.esym
+    INHX8:       main.hex
+    Symbols:     main.sym
+    List:        main.lst
+    Debug/COFF:  main.cof
+    Project:     main.ccspjt
+    Call Tree:   main.tre
+    Statistics:  main.STA

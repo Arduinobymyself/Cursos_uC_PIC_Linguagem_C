@@ -1,0 +1,30 @@
+#include <main.h>
+
+#include <lcd.c>
+
+void main()
+{
+
+   lcd_init();
+   
+   int contador = 0;
+   int contador5 = 0;
+   
+   while(TRUE)
+   {
+      output_high(pin_b3);
+      delay_ms(300);
+      output_low(pin_b3);
+      delay_ms(300);
+      contador++;
+      if(contador == 5)
+      {
+         contador5++;
+      }
+      lcd_gotoxy(1,1);
+      printf(lcd_putc, "\fPiscou = %d", contador);
+      lcd_gotoxy(1,2);
+      printf(lcd_putc, "\fPiscou 5 = %d", contador5); 
+   }
+
+}

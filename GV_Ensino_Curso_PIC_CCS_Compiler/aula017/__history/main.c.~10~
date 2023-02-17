@@ -1,0 +1,18 @@
+#include <main.h>
+
+
+void main()
+{
+
+   while(TRUE){
+   
+      if(input(pin_a0)){
+         output_high(pin_a7);
+      } 
+      else {
+         output_low(pin_a7);
+      }
+      
+   }
+
+}

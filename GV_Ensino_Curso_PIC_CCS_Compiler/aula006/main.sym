@@ -1,0 +1,34 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+009-00A @READ_PROGRAM_MEMORY8.P1
+00C     @SCRATCH
+00D     @SCRATCH
+00E     @SCRATCH
+00F     @SCRATCH
+
+ROM Allocation:
+
+Project Directory:
+    C:\Users\ABMS-Telecom\Documents\CCS C Projects\aula006\
+
+Project Files:
+    main.c                                                  [03-jan-23 09:58  CRC=D872A938]
+    main.h                                                  [03-jan-23 09:59  CRC=00000000]
+    ..\..\..\..\..\Program Files (x86)\PICC\Devices\16F84A.h [21-jun-13 16:04  CRC=F158D6EC]
+
+Source signature=BB245710
+
+Units:
+    main (main)
+
+Compiler Settings:
+    Processor:      PIC16F84A
+    Pointer Size:   8
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   main.xsym
+    Errors:      main.err
+    Ext Symbols: main.esym
+    Symbols:     main.sym

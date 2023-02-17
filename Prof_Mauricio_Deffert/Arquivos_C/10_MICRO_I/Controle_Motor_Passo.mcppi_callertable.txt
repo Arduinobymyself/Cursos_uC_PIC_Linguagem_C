@@ -1,0 +1,14 @@
+main
+	__CC2DW
+		____DoICP
+	speed
+		Button
+			Delay_500us
+	Button
+		Delay_500us
+	CCW
+		VDelay_ms
+			Mul_32x32_U
+	CW
+		VDelay_ms
+			Mul_32x32_U

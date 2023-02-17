@@ -1,0 +1,9 @@
+main
+	__CC2DW
+		____DoICP
+	readEEPROM
+		EEPROM_Read
+	changeCont
+	writeEEPROM
+		EEPROM_Read
+		EEPROM_Write

@@ -1,0 +1,67 @@
+
+ROM used:   651/4096 (16%)
+            651/4096 (16%) including unused fragments
+
+            0.5 Average locations per line
+            4.1 Average locations per statement
+
+RAM used:   20/368 (5%) at main() level
+            33/368 (9%) worst case
+
+Stack used: 0 worst case (0 in main + 0 for interrupts)
+Stack size: 8
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   65    33  21  main.c
+   13     0   0  main.h
+  632     0   0  ..\..\..\..\..\Program Files (x86)\PICC\Devices\16F88.h
+  135    40  25  ..\..\..\..\..\Program Files (x86)\PICC\Drivers\KBD.C
+  456    84  54  ..\..\..\..\..\Program Files (x86)\PICC\Drivers\lcd.c
+----- -----
+ 1301   157 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     21   3    1             @delay_ms1
+0     16   2    0             @const591
+0      2   0    0     3  0.0  kbd_init
+0    137  21    3  4544 10.1  kbd_getc
+ Inline         2             @MUL88
+0      8   1    0             @const616
+ Inline         3   596  5.9  lcd_read_byte
+0      6   1    0    59  4.2  lcd_read_nibble
+0     12   2    1   179  3.3  lcd_send_nibble
+0     64  10    3   460  4.7  lcd_send_byte
+0     50   8    2   667  5.9  lcd_init
+0     18   3    4   208  6.3  lcd_gotoxy
+0     44   7    1   354  4.7  lcd_putc
+0    148  23    1   899  5.7  MAIN
+0     10   2    0             @const654
+0     75  12    4             @PSTRINGC7_634
+0      8   1    0             @const657
+0     10   2    0             @const658
+0      8   1    0             @const659
+0     10   2    0             @const660
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               10
+    Statements              157
+    Comments                248
+    Volume (V)              10928
+    Difficulty (D)          49.0
+    Effort to implement (E) 535086
+    Time to implement (T)   8 hours, 15 minutes
+    Est Delivered Bugs (B)  2
+    Cyclomatic Complexity   24
+    Maintainability (MI)    139
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-007FF   647  1397  
+00800-00FFF     0  2048  
+
+
+

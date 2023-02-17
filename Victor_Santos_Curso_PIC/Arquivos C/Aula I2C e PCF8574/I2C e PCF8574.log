@@ -1,0 +1,12 @@
+0	1	mikroCPIC1618.exe -MSF -DBG -pP16F877A -C -Y -DL -O11111104 -fo8 -N"C:\Documents and Settings\Usuario\Desktop\Aula PIC16F877A em C\Aula I2C e PCF8574\I2C e PCF8574.mcppi" -SP"C:\Arquivos de programas\Mikroelektronika\mikroC PRO for PIC\defs\" -SP"C:\Arquivos de programas\Mikroelektronika\mikroC PRO for PIC\Uses\P16\" -SP"C:\Documents and Settings\Usuario\Desktop\Aula PIC16F877A em C\Aula I2C e PCF8574\" "I2C e PCF8574.c" "__Lib_Math.mcl" "__Lib_MathDouble.mcl" "__Lib_System.mcl" "__Lib_Delays.mcl" "__Lib_I2C_c34.mcl"	 
+hint: 0	1139	Available RAM: 352 [bytes], Available ROM: 8192 [bytes]	 
+diagnostics: 0	126	All files Preprocessed in 10 ms	 
+diagnostics: 0	122	Compilation Started	I2C e PCF8574.c
+diagnostics: 59	123	Compiled Successfully	I2C e PCF8574.c
+diagnostics: 0	127	All files Compiled in 40 ms	 
+hint: 0	1144	Used RAM (bytes): 9 (3%)  Free RAM (bytes): 343 (97%)	Used RAM (bytes): 9 (3%)  Free RAM (bytes): 343 (97%)
+hint: 0	1144	Used ROM (program words): 169 (2%)  Free ROM (program words): 8023 (98%)	Used ROM (program words): 169 (2%)  Free ROM (program words): 8023 (98%)
+diagnostics: 0	125	Project Linked Successfully	I2C e PCF8574.mcppi
+diagnostics: 0	128	Linked in 60 ms	 
+diagnostics: 0	129	Project 'I2C e PCF8574.mcppi' completed: 200 ms	 
+diagnostics: 0	103	Finished successfully: 17 jul 2015, 11:00:58	I2C e PCF8574.mcppi

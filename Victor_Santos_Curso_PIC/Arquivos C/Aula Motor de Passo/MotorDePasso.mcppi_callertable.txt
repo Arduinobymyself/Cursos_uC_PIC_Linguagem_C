@@ -1,0 +1,10 @@
+main
+	__CC2DW
+	Stepper_Init
+		Div_16X16_U
+	Stepper_Step
+		Stepper_One_Step
+			Div_8X8_U
+			VDelay_ms
+				Mul_32x32_U
+		Mul_16X16_U

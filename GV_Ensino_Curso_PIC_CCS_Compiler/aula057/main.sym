@@ -1,0 +1,105 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+004-005 @WRITE_PROGRAM_MEMORY8.P2
+006     kbd
+006     lcd
+006     lcdlat
+015     CCP_1
+015     CCP_1_LOW
+016     CCP_1_HIGH
+020     kbd_getc.kbd_call_count
+021.0   kbd_getc.kbd_down
+022     kbd_getc.last_key
+023     kbd_getc.col
+024     tecla
+025     lcd_init.i
+025     kbd_getc.kchar
+025     MAIN.@SCRATCH1
+025     @PSTRINGC7_634.@SCRATCH1
+026     kbd_getc.row
+026     lcd_init.@SCRATCH1
+026     @PSTRINGC7_634.@SCRATCH2
+027     @MUL88.P1
+027     kbd_getc.@SCRATCH1
+027     @PSTRINGC7_634.@SCRATCH3
+028     @MUL88.P1
+028     @PSTRINGC7_634.@SCRATCH4
+029     lcd_putc.c
+02A     @delay_ms1.P1
+02A     lcd_gotoxy.x
+02B     lcd_gotoxy.y
+02C     lcd_gotoxy.address
+02D     lcd_gotoxy.@SCRATCH1
+02E     lcd_send_byte.address
+02F     lcd_send_byte.n
+030     lcd_read_byte.low
+030     lcd_send_byte.@SCRATCH1
+031     lcd_read_byte.high
+031     lcd_send_nibble.n
+032     lcd_read_byte.@SCRATCH1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+086     lcdtris
+09C.6   C1OUT
+09C.7   C2OUT
+10D-10E @READ_PROGRAM_MEMORY8.P1
+10D-10E @WRITE_PROGRAM_MEMORY8.P2
+
+ROM Allocation:
+000004  KEYS.call
+000008  KEYS.data
+000014  LCD_INIT_STRING.call
+000018  LCD_INIT_STRING.data
+00001C  @const650.call
+000021  kbd_init
+000023  @delay_ms1
+000038  lcd_send_nibble
+000044  lcd_read_nibble
+00004A  lcd_send_byte
+000050  lcd_read_byte
+00008A  lcd_init
+0000BC  lcd_gotoxy
+0000CE  lcd_putc
+0000FA  @PSTRINGC7_634
+000146  kbd_getc
+000196  @MUL88
+0001CF  MAIN
+0001CF  @cinit1
+0001DA  @cinit2
+
+Project Directory:
+    C:\Users\ABMS-Telecom\Documents\CCS C Projects\aula057\
+
+Project Files:
+    main.c                                                  [05-jan-23 21:16  CRC=8A14F7E2]
+    main.h                                                  [05-jan-23 21:12  CRC=0DDA9E8E]
+    ..\..\..\..\..\Program Files (x86)\PICC\Devices\16F88.h [21-jun-13 16:04  CRC=E99925E9]
+    ..\..\..\..\..\Program Files (x86)\PICC\Drivers\KBD.C   [23-set-10 09:09  CRC=8814BCFC]
+    ..\..\..\..\..\Program Files (x86)\PICC\Drivers\lcd.c   [23-ago-12 09:01  CRC=D28E8746]
+
+Source signature=AEBA87E1
+
+Units:
+    main (main)
+
+Compiler Settings:
+    Processor:      PIC16F88
+    Pointer Size:   16
+    ADC Range:      0-65535
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   main.xsym
+    Errors:      main.err
+    Ext Symbols: main.esym
+    INHX8:       main.hex
+    Symbols:     main.sym
+    List:        main.lst
+    Debug/COFF:  main.cof
+    Project:     main.ccspjt
+    Call Tree:   main.tre
+    Statistics:  main.STA

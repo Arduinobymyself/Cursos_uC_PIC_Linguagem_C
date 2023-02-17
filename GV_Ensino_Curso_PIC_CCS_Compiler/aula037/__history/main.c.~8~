@@ -1,0 +1,18 @@
+#include <main.h>
+
+#include <lcd.c>
+
+void main()
+{
+
+   lcd_init();
+
+   while(TRUE)
+   {
+      printf(lcd_putc, "\fHello world!");
+      delay_ms(50);
+      printf(lcd_putc, "\f");
+      delay_ms(50);
+   }
+
+}

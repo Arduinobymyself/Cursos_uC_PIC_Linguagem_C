@@ -1,0 +1,20 @@
+#include <main.h>
+
+void main()
+{
+
+   while(TRUE)
+   {
+      if(input(pin_a7))
+      {
+         printf("a");
+         delay_ms(400);
+      }
+      if(input(pin_a6))
+      {
+         printf("b");
+         delay_ms(400);
+      }
+   }
+
+}

@@ -1,0 +1,15 @@
+#include <main.h>
+
+void main()
+{
+   boolean flag = false;
+   
+   while(TRUE)
+   {
+      if(input(pin_a0) && !flag){
+         flag = true;
+         output_high(pin_b0);
+      }
+   }
+
+}

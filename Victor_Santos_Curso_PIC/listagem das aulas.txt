@@ -1,0 +1,66 @@
+
+
+VÍDEO AULAS DO CANAL VITOR SANTOS
+
+001 - introdução PIC TRIS e PORT
+002 - saídas digitais 1
+003 - saídas digitais 2
+004 - saídas digitais 3
+005 - Variáveis e botões
+006 - leitura de botões 1
+007 - leitura de botões 2 
+008 - leitura de botões 3
+009 - leitura de botões 4
+010 - leitura de botões 5
+011 - leitura de botões 6
+012 - leitura de botões 7
+013 - inicialização do LCD 16x2
+014 - configuração do LCD MikroC
+015 - funções do LCD no MikroC
+016 - sinalização de comandos
+017 - sinalização com botões
+018 - matrizes, vetores e arrays
+019 - caracteres especiais
+020 - funções
+021 - funções de conversão
+022 - laço de repetição FOR
+023 - laço WHILE e DO-WHILE
+024 - conversor AD configuração
+025 - configuração e leitura ADC
+026 - entrada analógica e LCD
+027 - referência externa A/D
+028 - biblioteca ADC
+029 - conversão para mV
+030 - conversão para V
+031 - LDR + LCD
+032 - LM35 + LCD parte 1
+033 - LM35 + LCD parte 2
+034 - interupção externa
+035 - TIMER 0 temporizador p1
+036 - TIMER 0 contador p2
+037 - TIMER 1 temporizador p1
+038 - TIMER 0  e TIMER 1 p2
+039 - TIMER 1 contador p3
+040 - TIMER 1 com cristal p4
+041 - TIMER 2
+042 - display 7 segmentos p1
+043 - display 7 segmentos com CD4511 p2
+044 - criando bibliotecas p3
+045 - multiplos displays 7 segmentos p4
+046 - depuração no proteus
+047 - comparadores
+048 - módulo CCP capture
+049 - módulo CCP compare
+050 - módulo CCP PWM
+051 - PWM biblioteca
+052 - configuração USART
+053 - biblioteca USART
+054 - USART recepção por interupção
+055 - USART leitura e escrita
+056 - I2C e DS1307
+057 - I2C e memória 24C32A
+058 - I2C e PCF8574-IO
+059 - LCD-I2C com PCF8574-IO
+060 - teclado matricial 4x4
+061 - motores de passos
+062 - memória EEPROM

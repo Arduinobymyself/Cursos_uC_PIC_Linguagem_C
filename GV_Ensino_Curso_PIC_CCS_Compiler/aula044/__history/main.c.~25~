@@ -1,0 +1,57 @@
+#include <main.h>
+
+#include <lcd.c>
+
+void imprime(int s, int m, int h);
+
+void main()
+{
+
+   lcd_init();
+   
+   int segundos = 0;
+   int minutos = 0;
+   int horas = 12;
+   
+   while(TRUE)
+   {
+      output_high(pin_b3);
+      delay_ms(300);
+      output_low(pin_b3);
+      delay_ms(300);
+      
+      segundos++;
+      
+      imprime(horas, minutos, segundos);
+      
+      
+      if(segundos > 59)
+      {
+         minutos++;
+         segundos = 0;
+      }
+      if(minutos > 59)
+      {
+         horas++;
+         minutos = 0;
+         segundos = 0;
+      }
+      
+
+      
+
+      
+
+   }
+
+}
+
+void imprime(int h, int m, int s)
+{
+      printf(lcd_putc, "\f");
+      lcd_gotoxy(1,1);
+      printf(lcd_putc, "HH : MM : SS");
+      lcd_gotoxy(1,2);
+      printf(lcd_putc, "%d : %d : %d", h, m, s);
+
+}

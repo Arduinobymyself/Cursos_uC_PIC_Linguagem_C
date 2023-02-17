@@ -1,0 +1,22 @@
+#include <main.h>
+
+#include <lcd.c>
+
+void main()
+{
+
+   lcd_init();
+
+   while(TRUE)
+   {
+      // printf(lcd_putc, "\f     Ola Mundo!\n    ABMS Telecom");
+      printf(lcd_putc, "\f"); // limpa a tela
+      lcd_gotoxy(0,1);
+      printf(lcd_putc, "     ABMS Telecom     \n");
+      lcd_gotoxy(0,1);
+      printf(lcd_putc, "   Seja bem vindo!   ");
+      delay_ms(50);
+
+   }
+
+}

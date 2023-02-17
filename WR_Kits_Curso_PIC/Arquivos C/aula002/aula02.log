@@ -1,0 +1,12 @@
+Line	MessageNo	File Name
+0	1	mikroCPIC1618.exe -MSF -DBG -pP16F84A -DL -O11111114 -fo8 -N"C:\Users\ABMS-Telecom\Documents\PROTEUS\aula02.mcppi" -SP"C:\Program Files (x86)\Mikroelektronika\mikroC PRO for PIC\defs\" -SP"C:\Program Files (x86)\Mikroelektronika\mikroC PRO for PIC\Uses\P16\" -SP"C:\Users\ABMS-Telecom\Documents\PROTEUS\" "aula02.c" "__Lib_Math.mcl" "__Lib_MathDouble.mcl" "__Lib_System.mcl" "__Lib_Delays.mcl" "__Lib_CType.mcl" "__Lib_CString.mcl" "__Lib_CStdlib.mcl" "__Lib_CMath.mcl" "__Lib_Conversions.mcl" "__Lib_Sprinti.mcl" "__Lib_Sprintl.mcl" "__Lib_Time.mcl" "__Lib_Trigonometry.mcl" "__Lib_Button.mcl" "__Lib_Keypad4x4.mcl" "__Lib_Manchester.mcl" "__Lib_OneWire.mcl" "__Lib_PS2.mcl" "__Lib_Sound.mcl" "__Lib_SoftI2C.mcl" "__Lib_SoftSPI.mcl" "__Lib_SoftUART.mcl" "__Lib_EEPROM.mcl" "__Lib_LcdConsts.mcl" "__Lib_Lcd.mcl"	 
+diagnostics: 0	125	All files Preprocessed in 78 ms	 
+diagnostics: 0	121	Compilation Started	aula02.c
+diagnostics: 10	122	Compiled Successfully	aula02.c
+diagnostics: 0	126	All files Compiled in 78 ms	 
+hint: 0	1141	Used RAM (bytes): 3 (3%)  Free RAM (bytes): 101 (97%)	Used RAM (bytes): 3 (3%)  Free RAM (bytes): 101 (97%)
+hint: 0	1141	Used ROM (program words): 40 (4%)  Free ROM (program words): 984 (96%)	Used ROM (program words): 40 (4%)  Free ROM (program words): 984 (96%)
+diagnostics: 0	124	Project Linked Successfully	aula02.mcppi
+diagnostics: 0	127	Linked in 391 ms	 
+diagnostics: 0	128	Project 'aula02.mcppi' completed: 875 ms	 
+diagnostics: 0	103	Finished successfully: 26 dez 2022, 07:23:55	aula02.mcppi

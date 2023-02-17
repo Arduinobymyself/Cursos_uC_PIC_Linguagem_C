@@ -1,0 +1,12 @@
+0	1	mikroCPIC1618.exe -MSF -DBG -pP16F877A -GC -DL -O11111114 -fo16 -N"C:\Users\ABMS-Telecom\Documents\PROTEUS\WR_Kits_Curso_PIC\Arquivos C\aula031.mcppi" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Defs\" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Uses\P16\" -SP"C:\Users\ABMS-Telecom\Documents\PROTEUS\WR_Kits_Curso_PIC\Arquivos C\" -IP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Uses\P16\" "aula031.c" "__Lib_Math.mcl" "__Lib_MathDouble.mcl" "__Lib_System.mcl" "__Lib_Delays.mcl" "__Lib_PWM_c21.mcl"	 
+hint: 0	1139	Available RAM: 352 [bytes], Available ROM: 8192 [bytes]	 
+diagnostics: 0	122	Compilation Started	aula031.c
+diagnostics: 77	123	Compiled Successfully	aula031.c
+diagnostics: 0	127	All files Compiled in 203 ms	 
+hint: 0	1144	Used RAM (bytes): 8 (2%)  Free RAM (bytes): 344 (98%)	Used RAM (bytes): 8 (2%)  Free RAM (bytes): 344 (98%)
+hint: 0	1144	Used ROM (program words): 300 (4%)  Free ROM (program words): 7892 (96%)	Used ROM (program words): 300 (4%)  Free ROM (program words): 7892 (96%)
+diagnostics: 0	125	Project Linked Successfully	aula031.mcppi
+hint: 0	1004	COFF file successfully generated	COFF file successfully generated
+diagnostics: 0	128	Linked in 172 ms	 
+diagnostics: 0	129	Project 'aula031.mcppi' completed: 516 ms	 
+diagnostics: 0	103	Finished successfully: 20 jan 2023, 13:36:46	aula031.mcppi

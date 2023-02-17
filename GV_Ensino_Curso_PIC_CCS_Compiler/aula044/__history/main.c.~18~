@@ -1,0 +1,44 @@
+#include <main.h>
+
+#include <lcd.c>
+
+void main()
+{
+
+   lcd_init();
+   
+   int segundos = 0;
+   int minutos = 0;
+   int horas = 0;
+   
+   while(TRUE)
+   {
+      output_high(pin_b3);
+      delay_ms(500);
+      output_low(pin_b3);
+      delay_ms(500);
+      
+      
+      if(segundos % 60 == 0)
+      {
+         minutos++;
+      }
+      if(minutos % 60 == 0)
+      {
+         horas++;
+      }
+      
+      segundos++;
+      
+      printf(lcd_putc, "\f");
+      lcd_gotoxy(1,1);
+      printf(lcd_putc, "Segundos: %d", segundos);
+      lcd_gotoxy(2,1);
+      printf(lcd_putc, "Minutos: %d", minutos);
+      lcd_gotoxy(21,1);
+      printf(lcd_putc, "Horas: %d", horas);
+      
+
+   }
+
+}

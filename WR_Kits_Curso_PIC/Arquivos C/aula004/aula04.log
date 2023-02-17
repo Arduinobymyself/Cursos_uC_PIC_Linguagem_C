@@ -1,0 +1,16 @@
+0	1	mikroCPIC1618.exe -MSF -DBG -pP12F675 -DL -O11111114 -fo4 -N"C:\Users\ABMS-Telecom\Documents\PROTEUS\WR_Kits_Curso_PIC\Arquivos C\aula04.mcppi" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\defs\" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Uses\P16\" -SP"C:\Users\ABMS-Telecom\Documents\PROTEUS\WR_Kits_Curso_PIC\Arquivos C\" -SP"C:\Program Files (x86)\Mikroelektronika\mikroC PRO for PIC\defs\" -SP"C:\Program Files (x86)\Mikroelektronika\mikroC PRO for PIC\Uses\P16\" -SP"C:\Users\ABMS-Telecom\Documents\PROTEUS\" "aula04.c" "__Lib_Math.mcl" "__Lib_MathDouble.mcl" "__Lib_System.mcl" "__Lib_Delays.mcl" "__Lib_CType.mcl" "__Lib_CString.mcl" "__Lib_CStdlib.mcl" "__Lib_CMath.mcl" "__Lib_Conversions.mcl" "__Lib_Sprinti.mcl" "__Lib_Sprintl.mcl" "__Lib_Time.mcl" "__Lib_Trigonometry.mcl" "__Lib_Button.mcl" "__Lib_Manchester.mcl" "__Lib_OneWire.mcl" "__Lib_PS2.mcl" "__Lib_Sound.mcl" "__Lib_SoftI2C.mcl" "__Lib_SoftSPI.mcl" "__Lib_SoftUART.mcl" "__Lib_ADC_A_E.mcl" "__Lib_EEPROM.mcl" "__Lib_LcdConsts.mcl" "__Lib_Lcd.mcl"	 
+hint: 0	1139	Available RAM: 48 [bytes], Available ROM: 1024 [bytes]	 
+diagnostics: 0	122	Compilation Started	P12F675.c
+diagnostics: 304	123	Compiled Successfully	P12F675.c
+diagnostics: 0	122	Compilation Started	__Lib_Delays.c
+diagnostics: 119	123	Compiled Successfully	__Lib_Delays.c
+diagnostics: 0	126	All files Preprocessed in 62 ms	 
+diagnostics: 0	122	Compilation Started	aula04.c
+diagnostics: 20	123	Compiled Successfully	aula04.c
+diagnostics: 0	127	All files Compiled in 63 ms	 
+hint: 0	1144	Used RAM (bytes): 3 (6%)  Free RAM (bytes): 45 (94%)	Used RAM (bytes): 3 (6%)  Free RAM (bytes): 45 (94%)
+hint: 0	1144	Used ROM (program words): 49 (5%)  Free ROM (program words): 975 (95%)	Used ROM (program words): 49 (5%)  Free ROM (program words): 975 (95%)
+diagnostics: 0	125	Project Linked Successfully	aula04.mcppi
+diagnostics: 0	128	Linked in 47 ms	 
+diagnostics: 0	129	Project 'aula04.mcppi' completed: 438 ms	 
+diagnostics: 0	103	Finished successfully: 07 fev 2023, 18:43:39	aula04.mcppi

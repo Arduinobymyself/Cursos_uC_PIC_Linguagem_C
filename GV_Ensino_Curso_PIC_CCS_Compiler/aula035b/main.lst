@@ -1,0 +1,99 @@
+CCS PCM C Compiler, Version 5.007, 61971               04-jan-23 13:21
+
+               Filename:   C:\Users\ABMS-Telecom\Documents\CCS C Projects\aula035b\main.lst
+
+               ROM used:   44 words (2%)
+                           Largest free fragment is 2004
+               RAM used:   6 (3%) at main() level
+                           6 (3%) worst case
+               Stack used: 0 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   004
+0003:  NOP
+.................... #include <main.h> 
+.................... #include <16F628A.h> 
+.................... //////// Standard Header file for the PIC16F628A device //////////////// 
+.................... #device PIC16F628A 
+....................  
+.................... #list 
+....................  
+....................  
+.................... #FUSES NOWDT                 	//No Watch Dog Timer 
+.................... #FUSES NOMCLR                	//Master Clear pin used for I/O 
+.................... #FUSES NOBROWNOUT            	//No brownout reset 
+.................... #FUSES NOLVP                 	//No low voltage prgming, B3(PIC16) or B5(PIC18) used for I/O 
+....................  
+.................... #use delay(internal=4MHz) 
+.................... #use rs232(baud=9600,parity=N,xmit=PIN_B2,rcv=PIN_B1,bits=8,stream=PORT1) 
+....................  
+....................  
+....................  
+.................... char letra; 
+....................  
+.................... void main() 
+0004:  BSF    03.5
+0005:  BSF    0E.3
+0006:  MOVLW  19
+0007:  MOVWF  19
+0008:  MOVLW  A6
+0009:  MOVWF  18
+000A:  MOVLW  90
+000B:  BCF    03.5
+000C:  MOVWF  18
+000D:  MOVLW  07
+000E:  MOVWF  1F
+000F:  BCF    03.7
+0010:  MOVLW  1F
+0011:  ANDWF  03,F
+.................... { 
+....................  
+....................    while(TRUE) 
+....................    { 
+....................       if(kbhit()) 
+0012:  BTFSS  0C.5
+0013:  GOTO   02A
+....................       { 
+....................          letra = getc(); 
+0014:  BTFSS  0C.5
+0015:  GOTO   014
+0016:  MOVF   1A,W
+0017:  MOVWF  20
+....................          if(letra == 'a') 
+0018:  MOVF   20,W
+0019:  SUBLW  61
+001A:  BTFSS  03.2
+001B:  GOTO   021
+....................          { 
+....................             output_toggle(pin_a0); 
+001C:  BSF    03.5
+001D:  BCF    05.0
+001E:  MOVLW  01
+001F:  BCF    03.5
+0020:  XORWF  05,F
+....................          } 
+....................          if(letra == 'b') 
+0021:  MOVF   20,W
+0022:  SUBLW  62
+0023:  BTFSS  03.2
+0024:  GOTO   02A
+....................          { 
+....................             output_toggle(pin_a1); 
+0025:  BSF    03.5
+0026:  BCF    05.1
+0027:  MOVLW  02
+0028:  BCF    03.5
+0029:  XORWF  05,F
+....................          } 
+....................       } 
+002A:  GOTO   012
+....................    } 
+....................  
+.................... } 
+002B:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F10   NOWDT PUT INTRC_IO NOMCLR NOBROWNOUT NOLVP NOCPD NOPROTECT

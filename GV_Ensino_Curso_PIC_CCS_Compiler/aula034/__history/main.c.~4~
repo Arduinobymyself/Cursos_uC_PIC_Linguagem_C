@@ -1,0 +1,12 @@
+#include <main.h>
+
+void main()
+{
+
+   while(TRUE)
+   {
+      printf("Hello World!\n\n");
+      delay_ms(1000);
+   }
+
+}

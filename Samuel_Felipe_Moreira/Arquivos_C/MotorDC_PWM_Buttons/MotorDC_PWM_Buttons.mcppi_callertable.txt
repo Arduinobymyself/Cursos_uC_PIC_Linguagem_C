@@ -1,0 +1,12 @@
+main
+	__CC2DW
+		____DoICP
+	PWM1_Init
+	PWM1_Start
+	PWM1_Set_Duty
+		Mul_16x16_U
+	Button
+		Delay_500us
+	Mul_16x16_U
+	Div_16x16_S
+		Div_16x16_S_L

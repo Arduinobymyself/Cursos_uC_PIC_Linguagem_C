@@ -1,0 +1,36 @@
+#include <main.h>
+
+/***********************************************************************
+PORTÃO AUTOMÁTICO
+
+Fim de curso superior - FS - RA0
+Fim de curso inferior - FI - RB7 
+Botão abrir  - BOpen  - RA7
+Botão fechar - BClose - RA6
+
+Motor in1 - RB0 - direita
+      in2 - RB1 - esquerda
+
+***********************************************************************/
+#define BOpen     pin_a7
+#define BClose    pin_a6
+#define FS        pin_a0
+#define FI        pin_b7
+
+void main()
+{
+
+   while(TRUE)
+   {
+      if(input(BOpen)){
+         output_high(pin_b0);
+         output_low(pin_b1);
+      }
+      
+      if(input(BClose){
+         output_high(pin_b1);
+         output_low(pin_b0);
+      }
+   }
+
+}

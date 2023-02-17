@@ -1,0 +1,11 @@
+main
+	__CC2DW
+		____DoICP
+	config_mcu
+	config_interrupt
+	config_timer
+	display_unidade
+		Div_16x16_U
+	display_dezena
+		Div_16x16_U
+interrupt

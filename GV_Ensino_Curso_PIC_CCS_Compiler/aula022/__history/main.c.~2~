@@ -1,0 +1,23 @@
+#include <main.h>
+
+/********************** ENUNCIADO ********************** 
+Faça um programa que utilize dois botões.
+Um botão terá a função de ligar um LED.
+O outro botão, quando pressionado, irá desligar o LED.
+
+********************************************************/
+
+void main()
+{
+
+   while(TRUE)
+   {
+      if(input(bit_a0)){
+      
+      }
+      else if(input(bit_a1)){
+      
+      }
+   }
+
+}

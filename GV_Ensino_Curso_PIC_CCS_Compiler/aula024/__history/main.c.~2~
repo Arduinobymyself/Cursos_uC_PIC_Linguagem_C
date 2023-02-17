@@ -1,0 +1,24 @@
+#include <main.h>
+
+void main()
+{
+
+   while(TRUE)
+   {
+      /*
+      //Lógica AND (E)
+      if(input(pin_a0) && input(pin_a1)){
+         output_toggle(pin_b0;
+         delay_ms(300);
+      }
+      */
+      
+      // Lógica OR (OU)
+      if(input(pin_a0) || input(pin_a1)){
+         output_toggle(pin_b0);
+         delayMs(300);
+      }
+      
+   }
+
+}

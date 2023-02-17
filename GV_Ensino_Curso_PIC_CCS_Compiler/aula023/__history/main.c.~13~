@@ -1,0 +1,16 @@
+#include <main.h>
+
+void main()
+{
+   
+   boolean flag = false;
+   
+   while(true)
+   {
+      if(input(pin_a0)){
+         output_toggle(pin_b0);
+         delay_ms(300);
+      }
+   }
+
+}

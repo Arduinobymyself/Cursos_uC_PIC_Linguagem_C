@@ -1,0 +1,15 @@
+#include <main.h>
+#include <botoes.h>
+
+void main()
+{
+
+   while(TRUE)
+   {
+      if(input(pin_a0))
+      {
+         output(pin_a7);
+      }
+   }
+
+}

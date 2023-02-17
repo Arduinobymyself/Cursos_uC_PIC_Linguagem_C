@@ -1,0 +1,20 @@
+#include <main.h>
+
+#include <KBD.C>
+
+#define LCD_DATA_PORT getenv("SFR:PORTB")
+#include <lcd.c>
+
+void main()
+{
+   kbd_init();
+
+   lcd_init();
+
+   while(TRUE)
+   {
+      printf(lcd_putc, "\fDigite: ");
+      delay_ms(300);
+   }
+
+}

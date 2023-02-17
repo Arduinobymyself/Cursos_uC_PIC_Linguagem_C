@@ -1,0 +1,12 @@
+0	1	mikroCPIC1618.exe -MSF -DBG -pP16F877A -GC -DL -O11111114 -fo8 -N"C:\Users\ABMS-Telecom\Documents\PROTEUS\Victor_Santos_Curso_PIC\Arquivos C\VSaula020.mcppi" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Defs\" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Uses\P16\" -SP"C:\Users\ABMS-Telecom\Documents\PROTEUS\Victor_Santos_Curso_PIC\Arquivos C\" -IP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Uses\P16\" "VSaula020.c" "__Lib_Math.mcl" "__Lib_MathDouble.mcl" "__Lib_System.mcl" "__Lib_Delays.mcl" "__Lib_CString.mcl" "__Lib_Conversions.mcl" "__Lib_Button.mcl" "__Lib_LcdConsts.mcl" "__Lib_Lcd.mcl"	 
+hint: 0	1139	Available RAM: 352 [bytes], Available ROM: 8192 [bytes]	 
+diagnostics: 0	122	Compilation Started	VSaula020.c
+diagnostics: 99	123	Compiled Successfully	VSaula020.c
+diagnostics: 0	127	All files Compiled in 62 ms	 
+hint: 0	1144	Used RAM (bytes): 59 (17%)  Free RAM (bytes): 293 (83%)	Used RAM (bytes): 59 (17%)  Free RAM (bytes): 293 (83%)
+hint: 0	1144	Used ROM (program words): 555 (7%)  Free ROM (program words): 7637 (93%)	Used ROM (program words): 555 (7%)  Free ROM (program words): 7637 (93%)
+diagnostics: 0	125	Project Linked Successfully	VSaula020.mcppi
+hint: 0	1004	COFF file successfully generated	COFF file successfully generated
+diagnostics: 0	128	Linked in 94 ms	 
+diagnostics: 0	129	Project 'VSaula020.mcppi' completed: 313 ms	 
+diagnostics: 0	103	Finished successfully: 23 jan 2023, 09:53:40	VSaula020.mcppi

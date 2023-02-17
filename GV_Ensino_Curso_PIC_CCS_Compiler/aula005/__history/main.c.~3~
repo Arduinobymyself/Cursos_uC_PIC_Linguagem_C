@@ -1,0 +1,7 @@
+#include <main.h>
+
+void main()
+{
+   output_high(pin_b0);
+   output_low(pin_b1);
+}
