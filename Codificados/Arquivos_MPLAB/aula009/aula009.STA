@@ -1,0 +1,65 @@
+
+ROM used:   1488/2048 (73%)
+            1488/2048 (73%) including unused fragments
+
+            2.1 Average locations per line
+            11.6 Average locations per statement
+
+RAM used:   25/224 (11%) at main() level
+            47/224 (21%) worst case
+
+Stack used: 0 worst case (0 in main + 0 for interrupts)
+Stack size: 8
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   52    35  27  aula009.c
+  508     0   0  ..\..\..\..\..\..\Program Files (x86)\PICC\devices\16F628A.h
+   17     0   0  configPIC.h
+  122    93  73  LCDteste.c
+----- -----
+  699   128 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     21   1    1             @delay_ms1
+0     32   2    1   228  1.8  LCD_nibble
+0     32   2    0   202  1.4  inicia_lcd
+0     23   2    2   123  2.2  LCD_texto
+0     23   2    2   123  2.2  LCD_comando
+ Inline         0    54  1.2  toggle_enable
+0    180  12    0  1864  1.5  characteres
+0    304  20    4  1093  3.4  MAIN
+0     19   1    0             @const563
+0     18   1    0             @const564
+0     19   1    0             @const565
+0     17   1    0             @const566
+0     18   1    0             @const567
+0    321  22   16             @ADDFF
+0     19   1    0             @const572
+0     20   1    0             @const573
+ Inline        13             @MULFF
+ Inline         5             @FTOSD
+0     79   5   13             @DIV3232
+0    339  23   13             @PRINTF_L32D_548FPFPF
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               7
+    Statements              128
+    Comments                92
+    Volume (V)              5003
+    Difficulty (D)          13.6
+    Effort to implement (E) 68246
+    Time to implement (T)   1 hours, 3 minutes
+    Est Delivered Bugs (B)  1
+    Cyclomatic Complexity   1
+    Maintainability (MI)    59
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-007FF  1484  560  
+
+
+

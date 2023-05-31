@@ -11,9 +11,10 @@
 
 
 void config_mcu(){
-  ADCON1 = 7;
-  TRISD = 0;
-  TRISE = 0;
+  ADCON0 = 0; // desaativa o conversor AD
+  ADCON1 = 7; // todas as entradas como digital
+  TRISD = 0;  // barramento de dados PORTD como saída
+  TRISE = 0;  // barramento de controle PORT B como saída
 }
 
 void pulse_en(){

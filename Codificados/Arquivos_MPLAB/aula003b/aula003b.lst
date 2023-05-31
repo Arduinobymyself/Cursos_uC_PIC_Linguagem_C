@@ -1,0 +1,108 @@
+CCS PCM C Compiler, Version 5.007, 61971               11-jan-23 10:48
+
+               Filename:   C:\Users\ABMS-Telecom\Documents\PIC MP LAB\CODIFICADOS\aula003b\aula003b.lst
+
+               ROM used:   65 words (3%)
+                           Largest free fragment is 1983
+               RAM used:   9 (4%) at main() level
+                           10 (4%) worst case
+               Stack used: 0 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   019
+0003:  NOP
+.................... #include <16f628a.h> 
+.................... //////// Standard Header file for the PIC16F628A device //////////////// 
+.................... #device PIC16F628A 
+....................  
+.................... #list 
+....................  
+.................... #fuses XT, NOLVP, NOWDT 
+.................... #use delay(clock=4000000) 
+0004:  MOVLW  24
+0005:  MOVWF  04
+0006:  BCF    03.7
+0007:  MOVF   00,W
+0008:  BTFSC  03.2
+0009:  GOTO   018
+000A:  MOVLW  01
+000B:  MOVWF  78
+000C:  CLRF   77
+000D:  DECFSZ 77,F
+000E:  GOTO   00D
+000F:  DECFSZ 78,F
+0010:  GOTO   00C
+0011:  MOVLW  4A
+0012:  MOVWF  77
+0013:  DECFSZ 77,F
+0014:  GOTO   013
+0015:  GOTO   016
+0016:  DECFSZ 00,F
+0017:  GOTO   00A
+0018:  GOTO   02B (RETURN)
+....................  
+.................... int dado = 0; 
+.................... int dadoLSB = 0; 
+.................... int dadoMSB = 0; 
+....................  
+.................... void main(){ 
+0019:  CLRF   20
+001A:  CLRF   21
+001B:  CLRF   22
+001C:  MOVLW  07
+001D:  MOVWF  1F
+001E:  BCF    03.7
+001F:  MOVLW  1F
+0020:  ANDWF  03,F
+.................... 	while(true){ 
+.................... 		if(!input(pin_a0)){ 
+0021:  BSF    03.5
+0022:  BSF    05.0
+0023:  BCF    03.5
+0024:  BTFSC  05.0
+0025:  GOTO   03A
+.................... 			delay_ms(300); 
+0026:  MOVLW  02
+0027:  MOVWF  23
+0028:  MOVLW  96
+0029:  MOVWF  24
+002A:  GOTO   004
+002B:  DECFSZ 23,F
+002C:  GOTO   028
+.................... 			dadoLSB++; 
+002D:  INCF   21,F
+.................... 			dado = dadoMSB + dadoLSB; 
+002E:  MOVF   21,W
+002F:  ADDWF  22,W
+0030:  MOVWF  20
+.................... 			if(dadoLSB > 9){ 
+0031:  MOVF   21,W
+0032:  SUBLW  09
+0033:  BTFSC  03.0
+0034:  GOTO   03A
+.................... 				dadoLSB = 0; 
+0035:  CLRF   21
+.................... 				dadoMSB++; 
+0036:  INCF   22,F
+.................... 				dado = dadoMSB + dadoLSB; 
+0037:  MOVF   21,W
+0038:  ADDWF  22,W
+0039:  MOVWF  20
+.................... 			} 
+.................... 		} 
+.................... 		output_b(dado); 
+003A:  BSF    03.5
+003B:  CLRF   06
+003C:  BCF    03.5
+003D:  MOVF   20,W
+003E:  MOVWF  06
+003F:  GOTO   021
+.................... 	} 
+.................... } 
+0040:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F61   NOWDT PUT XT MCLR BROWNOUT NOLVP NOCPD NOPROTECT

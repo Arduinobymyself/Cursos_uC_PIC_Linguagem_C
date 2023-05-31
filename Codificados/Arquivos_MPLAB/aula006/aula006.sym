@@ -1,0 +1,59 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+015     CCP_1_LOW
+015     CCP_1
+016     CCP_1_HIGH
+01F.6   C1OUT
+01F.7   C2OUT
+021     LCD_comando.comando
+021     main.@SCRATCH1
+022     @delay_ms1.P1
+022     LCD_texto.letra
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+09B-09C @READ_PROGRAM_MEMORY8.P1
+
+ROM Allocation:
+000004  @const556.call
+000017  @const557.call
+000029  @const558.call
+00003C  @const559.call
+00004D  toggle_enable
+00005B  @delay_ms1
+000070  inicia_lcd
+000087  LCD_comando
+00008F  LCD_texto
+000097  @cinit1
+000097  main
+000099  @cinit2
+
+Project Directory:
+    C:\Users\ABMS-Telecom\Documents\PIC MP LAB\CODIFICADOS\aula006\
+
+Project Files:
+    aula006.c                                               [28-mai-23 10:48  CRC=C6756C5D]
+    ..\..\..\..\..\..\Program Files (x86)\PICC\devices\16F628A.h [21-jun-13 16:04  CRC=FEBF88CA]
+
+Source signature=C3F47DF1
+
+Units:
+    aula006 (main)
+
+Compiler Settings:
+    Processor:      PIC16F628A
+    Pointer Size:   16
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      aula006.err
+    INHX8:       aula006.hex
+    Symbols:     aula006.sym
+    List:        aula006.lst
+    Debug/COFF:  aula006.cof
+    Project:     aula006.ccspjt
+    Call Tree:   aula006.tre
+    Statistics:  aula006.STA

@@ -1,0 +1,51 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+015     CCP_1
+015     CCP_1_LOW
+016     CCP_1_HIGH
+01F.6   C1OUT
+01F.7   C2OUT
+020     dado
+021     main.@SCRATCH1
+022     @delay_ms1.P1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+09B-09C @READ_PROGRAM_MEMORY8.P1
+
+ROM Allocation:
+000004  @delay_ms1
+000019  piscaLed
+000025  main
+000025  @cinit1
+000028  @cinit2
+
+Project Directory:
+    C:\Users\ABMS-Telecom\Documents\PIC MP LAB\CODIFICADOS\aula004\
+
+Project Files:
+    aula004.c                                               [11-jan-23 11:04  CRC=14333B21]
+    ..\..\..\..\..\..\Program Files (x86)\PICC\devices\16f628a.h [21-jun-13 16:04  CRC=FEBF88CA]
+
+Source signature=11B24CB5
+
+Units:
+    aula004 (main)
+
+Compiler Settings:
+    Processor:      PIC16F628A
+    Pointer Size:   16
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      aula004.err
+    INHX8:       aula004.hex
+    Symbols:     aula004.sym
+    List:        aula004.lst
+    Debug/COFF:  aula004.cof
+    Project:     aula004.ccspjt
+    Call Tree:   aula004.tre
+    Statistics:  aula004.STA

@@ -1,0 +1,53 @@
+
+ROM used:   243/2048 (12%)
+            243/2048 (12%) including unused fragments
+
+            0.4 Average locations per line
+            6.4 Average locations per statement
+
+RAM used:   6/224 (3%) at main() level
+            7/224 (3%) worst case
+
+Stack used: 0 worst case (0 in main + 0 for interrupts)
+Stack size: 8
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   72    38 100  aula006.c
+  508     0   0  ..\..\..\..\..\..\Program Files (x86)\PICC\devices\16F628A.h
+----- -----
+  580    38 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     21   9    1             @delay_ms1
+0     92  38    1   394  2.3  main
+0     19   8    0             @const556
+0     18   7    0             @const557
+0     19   8    0             @const558
+0     17   7    0             @const559
+0     23   9    0   197  1.4  inicia_lcd
+0      8   3    1    54  1.2  LCD_texto
+0      8   3    1    54  1.2  LCD_comando
+0     14   6    0    54  1.2  toggle_enable
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               5
+    Statements              38
+    Comments                92
+    Volume (V)              1088
+    Difficulty (D)          6.9
+    Effort to implement (E) 7517
+    Time to implement (T)   7 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   1
+    Maintainability (MI)    128
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-007FF   239  1805  
+
+
+

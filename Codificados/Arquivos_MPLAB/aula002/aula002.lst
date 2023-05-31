@@ -1,0 +1,110 @@
+CCS PCM C Compiler, Version 5.007, 61971               27-mai-23 14:24
+
+               Filename:   C:\Users\ABMS-Telecom\Documents\PIC MP LAB\CODIFICADOS\aula002\aula002.lst
+
+               ROM used:   65 words (3%)
+                           Largest free fragment is 1983
+               RAM used:   7 (3%) at main() level
+                           8 (4%) worst case
+               Stack used: 0 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   019
+0003:  NOP
+.................... /* 
+.................... Programa simples para demostrar o uso de botões para 
+.................... incrementar/decrementar uma variável, e jogar o resultado no PORT B 
+.................... sendo o resultado visualizado através de LEDs 
+.................... */ 
+....................  
+....................  
+.................... #include <16f628a.h> 
+.................... //////// Standard Header file for the PIC16F628A device //////////////// 
+.................... #device PIC16F628A 
+....................  
+.................... #list 
+....................  
+.................... #fuses XT, NOLVP, NOWDT 
+.................... #use delay(clock=4000000) 
+0004:  MOVLW  22
+0005:  MOVWF  04
+0006:  BCF    03.7
+0007:  MOVF   00,W
+0008:  BTFSC  03.2
+0009:  GOTO   018
+000A:  MOVLW  01
+000B:  MOVWF  78
+000C:  CLRF   77
+000D:  DECFSZ 77,F
+000E:  GOTO   00D
+000F:  DECFSZ 78,F
+0010:  GOTO   00C
+0011:  MOVLW  4A
+0012:  MOVWF  77
+0013:  DECFSZ 77,F
+0014:  GOTO   013
+0015:  GOTO   016
+0016:  DECFSZ 00,F
+0017:  GOTO   00A
+0018:  RETURN
+....................  
+.................... int dado = 0; 
+....................  
+.................... void main(){ 
+0019:  CLRF   20
+001A:  MOVLW  07
+001B:  MOVWF  1F
+001C:  BCF    03.7
+001D:  MOVLW  1F
+001E:  ANDWF  03,F
+.................... 	while(true){ 
+.................... 		if(!input(pin_a0)){ // botão MAIS (incremento) 
+001F:  BSF    03.5
+0020:  BSF    05.0
+0021:  BCF    03.5
+0022:  BTFSC  05.0
+0023:  GOTO   02D
+.................... 			delay_ms(300); 
+0024:  MOVLW  02
+0025:  MOVWF  21
+0026:  MOVLW  96
+0027:  MOVWF  22
+0028:  CALL   004
+0029:  DECFSZ 21,F
+002A:  GOTO   026
+.................... 			dado++; 
+002B:  INCF   20,F
+.................... 		} else if(!input(pin_a1)){ // botão MENOS (decremento) 
+002C:  GOTO   03A
+002D:  BSF    03.5
+002E:  BSF    05.1
+002F:  BCF    03.5
+0030:  BTFSC  05.1
+0031:  GOTO   03A
+.................... 			delay_ms(300); 
+0032:  MOVLW  02
+0033:  MOVWF  21
+0034:  MOVLW  96
+0035:  MOVWF  22
+0036:  CALL   004
+0037:  DECFSZ 21,F
+0038:  GOTO   034
+.................... 			dado--; 
+0039:  DECF   20,F
+.................... 		} 
+.................... 		output_b(dado); // enviando a informação ao PORT B	 
+003A:  BSF    03.5
+003B:  CLRF   06
+003C:  BCF    03.5
+003D:  MOVF   20,W
+003E:  MOVWF  06
+003F:  GOTO   01F
+.................... 	} 
+.................... } 
+0040:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F61   NOWDT PUT XT MCLR BROWNOUT NOLVP NOCPD NOPROTECT

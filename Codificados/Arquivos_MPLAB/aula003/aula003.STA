@@ -1,0 +1,45 @@
+
+ROM used:   55/2048 (3%)
+            55/2048 (3%) including unused fragments
+
+            0.1 Average locations per line
+            5.5 Average locations per statement
+
+RAM used:   7/224 (3%) at main() level
+            8/224 (4%) worst case
+
+Stack used: 0 worst case (0 in main + 0 for interrupts)
+Stack size: 8
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   19    10 100  aula003.c
+  508     0   0  ..\..\..\..\..\..\Program Files (x86)\PICC\devices\16f628a.h
+----- -----
+  527    10 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     21  38    1             @delay_ms1
+0     30  55    1   154  3.9  main
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               1
+    Statements              10
+    Comments                92
+    Volume (V)              158
+    Difficulty (D)          3.4
+    Effort to implement (E) 533
+    Time to implement (T)   0 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   2
+    Maintainability (MI)    144
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-007FF    51  1993  
+
+
+

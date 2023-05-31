@@ -1,0 +1,91 @@
+CCS PCM C Compiler, Version 5.007, 61971               11-jan-23 12:51
+
+               Filename:   C:\Users\ABMS-Telecom\Documents\PIC MP LAB\CODIFICADOS\aula005\aula005.lst
+
+               ROM used:   22 words (1%)
+                           Largest free fragment is 2026
+               RAM used:   11 (5%) at main() level
+                           11 (5%) worst case
+               Stack used: 0 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   005
+0003:  NOP
+.................... /* 
+.................... 	Canal CODIFICADOS 
+.................... 	Usando Bibliotecas criadas pelo usuário 
+....................  
+.................... 	Observar que a ordem dos arquivos é importante 
+.................... 	O arquivo de configuração do sistema e do PIC deve ser o primeiro 
+.................... 	Depois o de definições e variáveis 
+.................... 	Só então o de protótipo de funções e funções 
+.................... */ 
+....................  
+.................... #include "config.h" 	// configurações do sistema 
+.................... #include <16f628.h> 
+.................... //////// Standard Header file for the PIC16F628 device //////////////// 
+.................... #device PIC16F628 
+....................  
+.................... #list 
+....................  
+.................... #fuses XT, NOWDT, NOLVP 
+.................... #use delay(clock=4000000) 
+....................  
+.................... #include "definicoes.h"	// definições do sistema 
+.................... #define S0 pin_a0 
+.................... #define S1 pin_a1 
+.................... #define L0 pin_b0 
+.................... #define L1 pin_b1 
+....................  
+.................... #include "variaveis.h"	// variáveis do sistema 
+.................... int x = 0; 
+.................... char letra = 'A'; 
+.................... float money = 50.0; 
+....................  
+.................... #include "prototipos.h"	//	protótipos de funções do sistema 
+.................... void piscaLed(void); 
+....................  
+.................... #include "funcao.c"		// funções do sistema 
+....................  
+.................... void piscaLed(){ 
+.................... 	if(!S0){ 
+.................... 		output_high(L0); 
+.................... 		delay_ms(500); 
+.................... 		output_low(L0); 
+.................... 		delay_ms(300); 
+.................... 	} 
+0004:  GOTO   014 (RETURN)
+.................... } 
+....................  
+....................  
+.................... // arquivo principal extremamente enxuto 
+.................... // reutillização de códigos e coparticipação no desenvolvimento 
+....................  
+.................... void main(){ 
+0005:  CLRF   20
+0006:  MOVLW  41
+0007:  MOVWF  21
+0008:  CLRF   25
+0009:  CLRF   24
+000A:  MOVLW  48
+000B:  MOVWF  23
+000C:  MOVLW  84
+000D:  MOVWF  22
+000E:  MOVLW  07
+000F:  MOVWF  1F
+0010:  BCF    03.7
+0011:  MOVLW  1F
+0012:  ANDWF  03,F
+.................... 	while(true){ 
+.................... 		piscaLed(); 
+0013:  GOTO   004
+0014:  GOTO   013
+.................... 	} 
+.................... } 
+0015:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F61   NOWDT PUT XT MCLR BROWNOUT NOLVP NOCPD NOPROTECT

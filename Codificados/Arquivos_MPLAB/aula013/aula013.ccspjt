@@ -1,0 +1,16 @@
+[PROJECT]
+Target=aula013.hex
+Processor_Text=PIC16F628A
+CCSVersion=5.007
+Compiler=PCM
+[Target Data]
+FileList=aula013.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\devices\;C:\Program Files (x86)\PICC\drivers\
+[aula013.c]
+Type=4
+[mru-list]
+1=aula013.c
+[Units]
+Count=1
+1=aula013 (main)

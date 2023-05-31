@@ -1,0 +1,117 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+015     CCP_1_LOW
+015     CCP_1
+016     CCP_1_HIGH
+01F.6   C1OUT
+01F.7   C2OUT
+020-023 pago
+024-027 z
+028-02B x
+02C-02F y
+030     LCD_comando.comando
+030-033 @PRINTF_L32D_548FPFPF.P1
+030     MAIN.@SCRATCH1
+031     LCD_comando.@SCRATCH1
+031     MAIN.@SCRATCH2
+032     MAIN.@SCRATCH3
+033     MAIN.@SCRATCH4
+034-037 @ADDFF.P1
+034     @PRINTF_L32D_548FPFPF.P2
+035     @PRINTF_L32D_548FPFPF.@SCRATCH1
+036     @PRINTF_L32D_548FPFPF.@SCRATCH2
+037     @PRINTF_L32D_548FPFPF.@SCRATCH3
+038-03B @ADDFF.P1
+038     @PRINTF_L32D_548FPFPF.@SCRATCH4
+039     @PRINTF_L32D_548FPFPF.@SCRATCH5
+03A     @PRINTF_L32D_548FPFPF.@SCRATCH6
+03B     @PRINTF_L32D_548FPFPF.@SCRATCH7
+03C     @ADDFF.@SCRATCH1
+03C     @PRINTF_L32D_548FPFPF.@SCRATCH8
+03D     LCD_texto.texto
+03D-040 @DIV3232.P1
+03D-040 @MULFF.P2
+03D-040 @FTOSD.P3
+03D     @ADDFF.@SCRATCH2
+03E     LCD_texto.@SCRATCH1
+03E     @ADDFF.@SCRATCH3
+03F     LCD_nibble.dado
+03F     @ADDFF.@SCRATCH4
+040     @delay_ms1.P1
+040     @ADDFF.@SCRATCH5
+041-044 @DIV3232.P1
+041-044 @MULFF.P2
+041     @ADDFF.@SCRATCH6
+041     @FTOSD.@SCRATCH1
+042     @ADDFF.@SCRATCH7
+043     @ADDFF.@SCRATCH8
+045     @MULFF.@SCRATCH1
+045     @DIV3232.@SCRATCH1
+046     @MULFF.@SCRATCH2
+046     @DIV3232.@SCRATCH2
+047     @MULFF.@SCRATCH3
+047     @DIV3232.@SCRATCH3
+048     @MULFF.@SCRATCH4
+048     @DIV3232.@SCRATCH4
+049     @MULFF.@SCRATCH5
+049     @DIV3232.@SCRATCH5
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+09B-09C @READ_PROGRAM_MEMORY8.P1
+
+ROM Allocation:
+000004  @const563.call
+000017  @const564.call
+000029  @const565.call
+00003C  @const566.call
+00004D  @const567.call
+00005F  @const572.call
+000072  @const573.call
+000086  @delay_ms1
+00009B  LCD_nibble
+0000AF  toggle_enable
+0000BB  LCD_comando
+0000D2  inicia_lcd
+0000F2  LCD_texto
+000109  characteres
+0001BD  @ADDFF
+0002FE  @DIV3232
+00034D  @PRINTF_L32D_548FPFPF
+000361  @MULFF
+0003E7  @FTOSD
+0004A0  MAIN
+0004A0  @cinit1
+0004B8  @cinit2
+
+Project Directory:
+    C:\Users\ABMS-Telecom\Documents\PIC MP LAB\CODIFICADOS\aula009\
+
+Project Files:
+    aula009.c                                               [29-mai-23 08:14  CRC=346F1E3B]
+    ..\..\..\..\..\..\Program Files (x86)\PICC\devices\16F628A.h [21-jun-13 16:04  CRC=FEBF88CA]
+    configPIC.h                                             [29-mai-23 08:17  CRC=D8102B21]
+    LCDteste.c                                              [28-mai-23 13:09  CRC=978D3F29]
+
+Source signature=3A595078
+
+Units:
+    aula009 (main)
+
+Compiler Settings:
+    Processor:      PIC16F628A
+    Pointer Size:   16
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      aula009.err
+    INHX8:       aula009.hex
+    Symbols:     aula009.sym
+    List:        aula009.lst
+    Debug/COFF:  aula009.cof
+    Project:     aula009.ccspjt
+    Call Tree:   aula009.tre
+    Statistics:  aula009.STA

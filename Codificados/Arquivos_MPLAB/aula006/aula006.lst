@@ -1,0 +1,340 @@
+CCS PCM C Compiler, Version 5.007, 61971               28-mai-23 10:48
+
+               Filename:   C:\Users\ABMS-Telecom\Documents\PIC MP LAB\CODIFICADOS\aula006\aula006.lst
+
+               ROM used:   243 words (12%)
+                           Largest free fragment is 1805
+               RAM used:   6 (3%) at main() level
+                           7 (3%) worst case
+               Stack used: 0 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   097
+0003:  NOP
+.................... #include <16F628A.h> 
+.................... //////// Standard Header file for the PIC16F628A device //////////////// 
+.................... #device PIC16F628A 
+0004:  BCF    0A.0
+0005:  BCF    0A.1
+0006:  BCF    0A.2
+0007:  ADDWF  02,F
+0008:  RETLW  20
+0009:  RETLW  20
+000A:  RETLW  41
+000B:  RETLW  42
+000C:  RETLW  4D
+000D:  RETLW  53
+000E:  RETLW  20
+000F:  RETLW  54
+0010:  RETLW  65
+0011:  RETLW  6C
+0012:  RETLW  65
+0013:  RETLW  63
+0014:  RETLW  6F
+0015:  RETLW  6D
+0016:  RETLW  00
+0017:  BCF    0A.0
+0018:  BCF    0A.1
+0019:  BCF    0A.2
+001A:  ADDWF  02,F
+001B:  RETLW  20
+001C:  RETLW  20
+001D:  RETLW  20
+001E:  RETLW  42
+001F:  RETLW  65
+0020:  RETLW  6D
+0021:  RETLW  20
+0022:  RETLW  76
+0023:  RETLW  69
+0024:  RETLW  6E
+0025:  RETLW  64
+0026:  RETLW  6F
+0027:  RETLW  21
+0028:  RETLW  00
+0029:  BCF    0A.0
+002A:  BCF    0A.1
+002B:  BCF    0A.2
+002C:  ADDWF  02,F
+002D:  RETLW  20
+002E:  RETLW  20
+002F:  RETLW  43
+0030:  RETLW  75
+0031:  RETLW  72
+0032:  RETLW  73
+0033:  RETLW  6F
+0034:  RETLW  20
+0035:  RETLW  64
+0036:  RETLW  65
+0037:  RETLW  20
+0038:  RETLW  50
+0039:  RETLW  49
+003A:  RETLW  43
+003B:  RETLW  00
+003C:  BCF    0A.0
+003D:  BCF    0A.1
+003E:  BCF    0A.2
+003F:  ADDWF  02,F
+0040:  RETLW  20
+0041:  RETLW  20
+0042:  RETLW  20
+0043:  RETLW  4D
+0044:  RETLW  61
+0045:  RETLW  69
+0046:  RETLW  6F
+0047:  RETLW  20
+0048:  RETLW  32
+0049:  RETLW  30
+004A:  RETLW  32
+004B:  RETLW  33
+004C:  RETLW  00
+....................  
+.................... #list 
+....................  
+.................... #fuses XT, NOWDT, NOLVP 
+.................... #use delay(clock=4000000) 
+*
+005B:  MOVLW  22
+005C:  MOVWF  04
+005D:  BCF    03.7
+005E:  MOVF   00,W
+005F:  BTFSC  03.2
+0060:  GOTO   06F
+0061:  MOVLW  01
+0062:  MOVWF  78
+0063:  CLRF   77
+0064:  DECFSZ 77,F
+0065:  GOTO   064
+0066:  DECFSZ 78,F
+0067:  GOTO   063
+0068:  MOVLW  4A
+0069:  MOVWF  77
+006A:  DECFSZ 77,F
+006B:  GOTO   06A
+006C:  GOTO   06D
+006D:  DECFSZ 00,F
+006E:  GOTO   061
+006F:  RETURN
+.................... #use fast_io(b) 
+....................  
+.................... #define rs			pin_a0 
+.................... #define enable		pin_a1 
+.................... #define limpa_LCD	0x01 
+.................... #define Linha_1		0x80 
+.................... #define Linha_2		0xC0 
+....................  
+.................... void inicia_lcd(void); 
+.................... void LCD_texto(char letra); 
+.................... void LCD_comando(int comando); 
+.................... void toggle_enable(void); 
+....................  
+.................... void main(){ 
+*
+0097:  MOVLW  07
+0098:  MOVWF  1F
+0099:  BCF    03.7
+009A:  MOVLW  1F
+009B:  ANDWF  03,F
+.................... 	set_tris_b(0x00); 
+009C:  MOVLW  00
+009D:  BSF    03.5
+009E:  MOVWF  06
+.................... 	inicia_lcd(); 
+009F:  BCF    03.5
+00A0:  GOTO   070
+....................  
+.................... 	while(true){ 
+.................... 		LCD_comando(Linha_1); 
+00A1:  MOVLW  80
+00A2:  MOVWF  21
+00A3:  CALL   087
+.................... 		printf(LCD_texto, "  ABMS Telecom"); 
+00A4:  CLRF   21
+00A5:  MOVF   21,W
+00A6:  CALL   004
+00A7:  INCF   21,F
+00A8:  MOVWF  77
+00A9:  MOVWF  22
+00AA:  CALL   08F
+00AB:  MOVLW  0E
+00AC:  SUBWF  21,W
+00AD:  BTFSS  03.2
+00AE:  GOTO   0A5
+.................... 		LCD_comando(Linha_2); 
+00AF:  MOVLW  C0
+00B0:  MOVWF  21
+00B1:  CALL   087
+.................... 		LCD_texto("   Bem vindo!"); 
+00B2:  CLRF   21
+00B3:  MOVF   21,W
+00B4:  CALL   017
+00B5:  IORLW  00
+00B6:  BTFSC  03.2
+00B7:  GOTO   0BC
+00B8:  INCF   21,F
+00B9:  MOVWF  22
+00BA:  CALL   08F
+00BB:  GOTO   0B3
+.................... 		delay_ms(1500); 
+00BC:  MOVLW  06
+00BD:  MOVWF  21
+00BE:  MOVLW  FA
+00BF:  MOVWF  22
+00C0:  CALL   05B
+00C1:  DECFSZ 21,F
+00C2:  GOTO   0BE
+.................... 		LCD_comando(Limpa_LCD); 
+00C3:  MOVLW  01
+00C4:  MOVWF  21
+00C5:  CALL   087
+.................... 		delay_ms(20); 
+00C6:  MOVLW  14
+00C7:  MOVWF  22
+00C8:  CALL   05B
+....................  
+.................... 		LCD_comando(Linha_1); 
+00C9:  MOVLW  80
+00CA:  MOVWF  21
+00CB:  CALL   087
+.................... 		printf(LCD_texto, "  Curso de PIC"); 
+00CC:  CLRF   21
+00CD:  MOVF   21,W
+00CE:  CALL   029
+00CF:  INCF   21,F
+00D0:  MOVWF  77
+00D1:  MOVWF  22
+00D2:  CALL   08F
+00D3:  MOVLW  0E
+00D4:  SUBWF  21,W
+00D5:  BTFSS  03.2
+00D6:  GOTO   0CD
+.................... 		LCD_comando(Linha_2); 
+00D7:  MOVLW  C0
+00D8:  MOVWF  21
+00D9:  CALL   087
+.................... 		LCD_texto("   Maio 2023"); 
+00DA:  CLRF   21
+00DB:  MOVF   21,W
+00DC:  CALL   03C
+00DD:  IORLW  00
+00DE:  BTFSC  03.2
+00DF:  GOTO   0E4
+00E0:  INCF   21,F
+00E1:  MOVWF  22
+00E2:  CALL   08F
+00E3:  GOTO   0DB
+.................... 		delay_ms(1500); 
+00E4:  MOVLW  06
+00E5:  MOVWF  21
+00E6:  MOVLW  FA
+00E7:  MOVWF  22
+00E8:  CALL   05B
+00E9:  DECFSZ 21,F
+00EA:  GOTO   0E6
+.................... 		LCD_comando(Limpa_LCD); 
+00EB:  MOVLW  01
+00EC:  MOVWF  21
+00ED:  CALL   087
+.................... 		delay_ms(20); 
+00EE:  MOVLW  14
+00EF:  MOVWF  22
+00F0:  CALL   05B
+00F1:  GOTO   0A1
+.................... 	} 
+.................... 	 
+.................... 	 
+.................... } 
+....................  
+00F2:  SLEEP
+.................... void inicia_lcd(void){ 
+.................... 	output_low(rs); 
+*
+0070:  BSF    03.5
+0071:  BCF    05.0
+0072:  BCF    03.5
+0073:  BCF    05.0
+.................... 	output_b(0x38); 
+0074:  MOVLW  38
+0075:  MOVWF  06
+.................... 	toggle_enable(); 
+0076:  CALL   04D
+.................... 	delay_ms(20); 
+0077:  MOVLW  14
+0078:  MOVWF  22
+0079:  CALL   05B
+.................... 	output_b(0x0C); 
+007A:  MOVLW  0C
+007B:  MOVWF  06
+.................... 	toggle_enable(); 
+007C:  CALL   04D
+.................... 	output_b(0x06); 
+007D:  MOVLW  06
+007E:  MOVWF  06
+.................... 	toggle_enable(); 
+007F:  CALL   04D
+.................... 	output_b(limpa_LCD); 
+0080:  MOVLW  01
+0081:  MOVWF  06
+.................... 	toggle_enable(); 
+0082:  CALL   04D
+.................... 	delay_ms(5); 
+0083:  MOVLW  05
+0084:  MOVWF  22
+0085:  CALL   05B
+0086:  GOTO   0A1 (RETURN)
+.................... } 
+....................  
+.................... void LCD_texto(char letra){ 
+.................... 	output_high(rs); 
+*
+008F:  BSF    03.5
+0090:  BCF    05.0
+0091:  BCF    03.5
+0092:  BSF    05.0
+.................... 	output_b(letra); 
+0093:  MOVF   22,W
+0094:  MOVWF  06
+.................... 	toggle_enable(); 
+0095:  CALL   04D
+0096:  RETURN
+.................... } 
+....................  
+.................... void LCD_comando(int comando){ 
+.................... 	output_low(rs); 
+*
+0087:  BSF    03.5
+0088:  BCF    05.0
+0089:  BCF    03.5
+008A:  BCF    05.0
+.................... 	output_b(comando); 
+008B:  MOVF   21,W
+008C:  MOVWF  06
+.................... 	toggle_enable(); 
+008D:  CALL   04D
+008E:  RETURN
+.................... } 
+.................... void toggle_enable(void){ 
+.................... output_high(enable); 
+*
+004D:  BSF    03.5
+004E:  BCF    05.1
+004F:  BCF    03.5
+0050:  BSF    05.1
+.................... delay_us(500); 
+0051:  MOVLW  A6
+0052:  MOVWF  77
+0053:  DECFSZ 77,F
+0054:  GOTO   053
+0055:  NOP
+.................... output_low(enable); 
+0056:  BSF    03.5
+0057:  BCF    05.1
+0058:  BCF    03.5
+0059:  BCF    05.1
+005A:  RETURN
+.................... } 
+
+Configuration Fuses:
+   Word  1: 3F61   NOWDT PUT XT MCLR BROWNOUT NOLVP NOCPD NOPROTECT

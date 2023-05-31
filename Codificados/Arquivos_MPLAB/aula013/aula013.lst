@@ -1,0 +1,82 @@
+CCS PCM C Compiler, Version 5.007, 61971               29-mai-23 08:53
+
+               Filename:   C:\Users\ABMS-Telecom\Documents\PIC MP LAB\CODIFICADOS\aula013\aula013.lst
+
+               ROM used:   34 words (2%)
+                           Largest free fragment is 2014
+               RAM used:   5 (2%) at main() level
+                           6 (3%) worst case
+               Stack used: 0 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   004
+0003:  NOP
+.................... #include <16F628A.h> 
+.................... //////// Standard Header file for the PIC16F628A device //////////////// 
+.................... #device PIC16F628A 
+....................  
+.................... #list 
+....................  
+....................  
+.................... #fuses XT, NOWDT, NOLVP 
+.................... #use delay(clock=4000000) 
+.................... #use fast_io(b) 
+....................  
+.................... #byte intcon = 0x0b		// end do registrador INTCON que contém a flag de estouro do tmr0 
+.................... #bit T0IF = intcon.2	// flag de estouro do tmr0 (T0IF =  bit 2) 
+....................  
+.................... void main(){ 
+0004:  MOVLW  07
+0005:  MOVWF  1F
+0006:  BCF    03.7
+0007:  MOVLW  1F
+0008:  ANDWF  03,F
+.................... 	set_tris_b(0x00); 
+0009:  MOVLW  00
+000A:  BSF    03.5
+000B:  MOVWF  06
+.................... 	output_b(0); 
+000C:  BCF    03.5
+000D:  CLRF   06
+.................... 	 
+.................... 	int cont = 31;		// variável que armazena a quantidade de estouros do tmr0 
+000E:  MOVLW  1F
+000F:  MOVWF  21
+.................... 	setup_timer_0(RTCC_INTERNAL | RTCC_DIV_256); 	// configurando o timer para trabalhar como  
+0010:  BSF    03.5
+0011:  MOVF   01,W
+0012:  ANDLW  C0
+0013:  IORLW  07
+0014:  MOVWF  01
+.................... 													// temporizador e prescaler em 256 
+.................... 	set_timer0(0);						// valor inicial para contagem do timer, neste caso zero 
+0015:  BCF    03.5
+0016:  CLRF   01
+.................... 	while(true){ 
+.................... 		if(T0IF){						// se T0IF = 1, ou seja, se houve um estouro de timer 
+0017:  BTFSS  0B.2
+0018:  GOTO   020
+.................... 			T0IF = 0;					// zera a flag do bit T0IF para poder sinalizar um novo estouro 
+0019:  BCF    0B.2
+.................... 			cont--;						// decrementa a variável cont, que tinha o valor inicial de 31 
+001A:  DECFSZ 21,F
+.................... 			if(cont == 0){				// verifica se o valor da variável cont chegou em zero 
+001B:  GOTO   020
+.................... 				output_toggle(pin_b0);	// caso sim, inverte o nível do pino RB0 
+001C:  MOVLW  01
+001D:  XORWF  06,F
+.................... 				cont = 31;				// coloca 31 em cont para que ela possa retornar 
+001E:  MOVLW  1F
+001F:  MOVWF  21
+.................... 			} 
+.................... 		} 
+0020:  GOTO   017
+.................... 	} 
+.................... } 
+0021:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F61   NOWDT PUT XT MCLR BROWNOUT NOLVP NOCPD NOPROTECT

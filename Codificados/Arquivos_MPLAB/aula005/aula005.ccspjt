@@ -1,0 +1,16 @@
+[PROJECT]
+Target=aula005.hex
+Processor_Text=PIC16F628
+CCSVersion=5.007
+Compiler=PCM
+[Target Data]
+FileList=aula005.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\devices\;C:\Program Files (x86)\PICC\drivers\;C:\Users\ABMS-Telecom\Documents\PIC MP LAB\CODIFICADOS\aula005\
+[aula005.c]
+Type=4
+[mru-list]
+1=aula005.c
+[Units]
+Count=1
+1=aula005 (main)

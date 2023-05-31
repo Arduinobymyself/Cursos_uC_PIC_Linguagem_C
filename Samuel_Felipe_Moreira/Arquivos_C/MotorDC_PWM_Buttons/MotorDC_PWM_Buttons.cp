@@ -1,5 +1,5 @@
-#line 1 "C:/Users/ABMS-Telecom/Documents/PROTEUS/Samuel_Felipe_Moreira/Arquivos_C/MotorDC_PWM_Buttons.c"
-#line 12 "C:/Users/ABMS-Telecom/Documents/PROTEUS/Samuel_Felipe_Moreira/Arquivos_C/MotorDC_PWM_Buttons.c"
+#line 1 "C:/Users/ABMS-Telecom/Documents/PROTEUS/Samuel_Felipe_Moreira/Arquivos_C/MotorDC_PWM_Buttons/MotorDC_PWM_Buttons.c"
+#line 12 "C:/Users/ABMS-Telecom/Documents/PROTEUS/Samuel_Felipe_Moreira/Arquivos_C/MotorDC_PWM_Buttons/MotorDC_PWM_Buttons.c"
 int valorPWM = 0, porcentagem = 0;
 bit flagB0;
 bit flagB1;
@@ -7,6 +7,8 @@ bit flagB1;
 void main() {
  CMCON = 7;
 
+ ADCON0 = 0;
+ ADCON1 = 7;
  TRISB = 0b00000011;
 
 

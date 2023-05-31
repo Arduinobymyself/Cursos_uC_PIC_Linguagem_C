@@ -1,6 +1,7 @@
-#line 1 "C:/Users/ABMS-Telecom/Documents/PROTEUS/Samuel_Felipe_Moreira/Arquivos_C/LCD_Modo_8bits.c"
-#line 13 "C:/Users/ABMS-Telecom/Documents/PROTEUS/Samuel_Felipe_Moreira/Arquivos_C/LCD_Modo_8bits.c"
+#line 1 "C:/Users/ABMS-Telecom/Documents/PROTEUS/Samuel_Felipe_Moreira/Arquivos_C/LCD_Modo_8bits/LCD_Modo_8bits.c"
+#line 13 "C:/Users/ABMS-Telecom/Documents/PROTEUS/Samuel_Felipe_Moreira/Arquivos_C/LCD_Modo_8bits/LCD_Modo_8bits.c"
 void config_mcu(){
+ ADCON0 = 0;
  ADCON1 = 7;
  TRISD = 0;
  TRISE = 0;
@@ -63,7 +64,7 @@ pulse_en();
 void main() {
  config_mcu();
  inicializa_lcd();
-#line 98 "C:/Users/ABMS-Telecom/Documents/PROTEUS/Samuel_Felipe_Moreira/Arquivos_C/LCD_Modo_8bits.c"
+#line 99 "C:/Users/ABMS-Telecom/Documents/PROTEUS/Samuel_Felipe_Moreira/Arquivos_C/LCD_Modo_8bits/LCD_Modo_8bits.c"
  while(1){
 
  lcd_comando( 0x80 );

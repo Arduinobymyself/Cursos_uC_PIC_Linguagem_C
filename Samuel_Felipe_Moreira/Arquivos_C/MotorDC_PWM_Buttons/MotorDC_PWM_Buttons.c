@@ -14,8 +14,10 @@ bit flagB0;
 bit flagB1;
 
 void main() {
-  CMCON = 7;
-  //ADCON1 = 15;
+  CMCON = 7; // comparadores desativados
+  //ADCON1 = 15;  // para PIC16F45XX
+  ADCON0 = 0; // conversor AD desligado
+  ADCON1 = 7; // todas as entradas como digital
   TRISB = 0b00000011; // port B RB0 e RB1 como entrada digital
 
 

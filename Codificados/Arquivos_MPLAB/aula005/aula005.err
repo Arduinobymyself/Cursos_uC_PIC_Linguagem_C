@@ -1,0 +1,7 @@
+>>> Warning 204 "C:\Users\ABMS-Telecom\Documents\PIC MP LAB\CODIFICADOS\aula005\funcao.c" Line 3(1,1): Condition always FALSE
+>>> Warning 202 "C:\Users\ABMS-Telecom\Documents\PIC MP LAB\CODIFICADOS\aula005\variaveis.h" Line 1(4,5): Variable never used:   x
+>>> Warning 202 "C:\Users\ABMS-Telecom\Documents\PIC MP LAB\CODIFICADOS\aula005\variaveis.h" Line 2(6,11): Variable never used:   letra
+>>> Warning 202 "C:\Users\ABMS-Telecom\Documents\PIC MP LAB\CODIFICADOS\aula005\variaveis.h" Line 3(7,12): Variable never used:   money
+      Memory usage:   ROM=1%      RAM=5% - 5%
+      0 Errors,  4 Warnings.
+Build Successful.

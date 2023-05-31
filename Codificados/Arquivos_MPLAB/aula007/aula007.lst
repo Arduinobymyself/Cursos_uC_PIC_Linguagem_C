@@ -1,0 +1,638 @@
+CCS PCM C Compiler, Version 5.007, 61971               28-mai-23 13:01
+
+               Filename:   C:\Users\ABMS-Telecom\Documents\PIC MP LAB\CODIFICADOS\aula007\aula007.lst
+
+               ROM used:   460 words (22%)
+                           Largest free fragment is 1588
+               RAM used:   6 (3%) at main() level
+                           7 (3%) worst case
+               Stack used: 0 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  01
+0001:  MOVWF  0A
+0002:  GOTO   13B
+0003:  NOP
+.................... #include <16F628A.h> 
+.................... //////// Standard Header file for the PIC16F628A device //////////////// 
+.................... #device PIC16F628A 
+0004:  BCF    0A.0
+0005:  BCF    0A.1
+0006:  BCF    0A.2
+0007:  ADDWF  02,F
+0008:  RETLW  20
+0009:  RETLW  20
+000A:  RETLW  41
+000B:  RETLW  42
+000C:  RETLW  4D
+000D:  RETLW  53
+000E:  RETLW  20
+000F:  RETLW  54
+0010:  RETLW  65
+0011:  RETLW  6C
+0012:  RETLW  65
+0013:  RETLW  63
+0014:  RETLW  6F
+0015:  RETLW  6D
+0016:  RETLW  00
+0017:  BCF    0A.0
+0018:  BCF    0A.1
+0019:  BCF    0A.2
+001A:  ADDWF  02,F
+001B:  RETLW  20
+001C:  RETLW  20
+001D:  RETLW  42
+001E:  RETLW  65
+001F:  RETLW  6D
+0020:  RETLW  20
+0021:  RETLW  76
+0022:  RETLW  69
+0023:  RETLW  6E
+0024:  RETLW  64
+0025:  RETLW  6F
+0026:  RETLW  21
+0027:  RETLW  20
+0028:  RETLW  25
+0029:  RETLW  63
+002A:  RETLW  00
+002B:  BCF    0A.0
+002C:  BCF    0A.1
+002D:  BCF    0A.2
+002E:  ADDWF  02,F
+002F:  RETLW  20
+0030:  RETLW  20
+0031:  RETLW  20
+0032:  RETLW  43
+0033:  RETLW  61
+0034:  RETLW  72
+0035:  RETLW  61
+0036:  RETLW  63
+0037:  RETLW  74
+0038:  RETLW  65
+0039:  RETLW  72
+003A:  RETLW  65
+003B:  RETLW  73
+003C:  RETLW  00
+....................  
+.................... #list 
+....................  
+.................... #fuses XT, NOWDT, NOLVP 
+.................... #use delay(clock=4000000) 
+*
+004B:  MOVLW  22
+004C:  MOVWF  04
+004D:  BCF    03.7
+004E:  MOVF   00,W
+004F:  BTFSC  03.2
+0050:  GOTO   05F
+0051:  MOVLW  01
+0052:  MOVWF  78
+0053:  CLRF   77
+0054:  DECFSZ 77,F
+0055:  GOTO   054
+0056:  DECFSZ 78,F
+0057:  GOTO   053
+0058:  MOVLW  4A
+0059:  MOVWF  77
+005A:  DECFSZ 77,F
+005B:  GOTO   05A
+005C:  GOTO   05D
+005D:  DECFSZ 00,F
+005E:  GOTO   051
+005F:  RETURN
+.................... #use fast_io(b) 
+....................  
+.................... #define rs			pin_a0 
+.................... #define enable		pin_a1 
+.................... #define limpa_LCD	0x01 
+.................... #define Linha_1		0x80 
+.................... #define Linha_2		0xC0 
+....................  
+....................  
+.................... void inicia_lcd(void); 
+.................... void LCD_texto(char letra); 
+.................... void LCD_comando(int comando); 
+.................... void toggle_enable(void); 
+.................... void characteres(void); 
+....................  
+.................... void main(){ 
+*
+013B:  MOVLW  07
+013C:  MOVWF  1F
+013D:  BCF    03.7
+013E:  MOVLW  1F
+013F:  ANDWF  03,F
+.................... 	set_tris_b(0x00); 
+0140:  MOVLW  00
+0141:  BSF    03.5
+0142:  MOVWF  06
+.................... 	inicia_lcd(); 
+0143:  BCF    03.5
+0144:  GOTO   060
+.................... 	characteres(); 
+0145:  GOTO   087
+....................  
+.................... 	while(true){ 
+.................... 		LCD_comando(Linha_1); 
+0146:  MOVLW  80
+0147:  MOVWF  21
+0148:  CALL   077
+.................... 		LCD_texto("  ABMS Telecom");	 
+0149:  CLRF   21
+014A:  MOVF   21,W
+014B:  CALL   004
+014C:  IORLW  00
+014D:  BTFSC  03.2
+014E:  GOTO   153
+014F:  INCF   21,F
+0150:  MOVWF  22
+0151:  CALL   07F
+0152:  GOTO   14A
+.................... 		delay_ms(20); 
+0153:  MOVLW  14
+0154:  MOVWF  22
+0155:  CALL   04B
+.................... 		LCD_comando(Linha_2); 
+0156:  MOVLW  C0
+0157:  MOVWF  21
+0158:  CALL   077
+.................... 		printf(LCD_texto, "  Bem vindo! %c", 0x00); 
+0159:  CLRF   21
+015A:  MOVF   21,W
+015B:  CALL   017
+015C:  INCF   21,F
+015D:  MOVWF  77
+015E:  MOVWF  22
+015F:  CALL   07F
+0160:  MOVLW  0D
+0161:  SUBWF  21,W
+0162:  BTFSS  03.2
+0163:  GOTO   15A
+0164:  CLRF   22
+0165:  CALL   07F
+.................... 		delay_ms(2000); 
+0166:  MOVLW  08
+0167:  MOVWF  21
+0168:  MOVLW  FA
+0169:  MOVWF  22
+016A:  CALL   04B
+016B:  DECFSZ 21,F
+016C:  GOTO   168
+.................... 		LCD_comando(limpa_LCD); 
+016D:  MOVLW  01
+016E:  MOVWF  21
+016F:  CALL   077
+.................... 		delay_ms(500); 
+0170:  MOVLW  02
+0171:  MOVWF  21
+0172:  MOVLW  FA
+0173:  MOVWF  22
+0174:  CALL   04B
+0175:  DECFSZ 21,F
+0176:  GOTO   172
+....................  
+.................... 		LCD_comando(Linha_1); 
+0177:  MOVLW  80
+0178:  MOVWF  21
+0179:  CALL   077
+.................... 		LCD_texto("   Caracteres");	 
+017A:  CLRF   21
+017B:  MOVF   21,W
+017C:  CALL   02B
+017D:  IORLW  00
+017E:  BTFSC  03.2
+017F:  GOTO   184
+0180:  INCF   21,F
+0181:  MOVWF  22
+0182:  CALL   07F
+0183:  GOTO   17B
+.................... 		delay_ms(20); 
+0184:  MOVLW  14
+0185:  MOVWF  22
+0186:  CALL   04B
+.................... 		LCD_comando(Linha_2); 
+0187:  MOVLW  C0
+0188:  MOVWF  21
+0189:  CALL   077
+.................... 		printf(LCD_texto, " %c %c %c %c %c %c %c %c", 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07); 
+018A:  MOVLW  20
+018B:  MOVWF  22
+018C:  CALL   07F
+018D:  CLRF   22
+018E:  CALL   07F
+018F:  MOVLW  20
+0190:  MOVWF  22
+0191:  CALL   07F
+0192:  MOVLW  01
+0193:  MOVWF  22
+0194:  CALL   07F
+0195:  MOVLW  20
+0196:  MOVWF  22
+0197:  CALL   07F
+0198:  MOVLW  02
+0199:  MOVWF  22
+019A:  CALL   07F
+019B:  MOVLW  20
+019C:  MOVWF  22
+019D:  CALL   07F
+019E:  MOVLW  03
+019F:  MOVWF  22
+01A0:  CALL   07F
+01A1:  MOVLW  20
+01A2:  MOVWF  22
+01A3:  CALL   07F
+01A4:  MOVLW  04
+01A5:  MOVWF  22
+01A6:  CALL   07F
+01A7:  MOVLW  20
+01A8:  MOVWF  22
+01A9:  CALL   07F
+01AA:  MOVLW  05
+01AB:  MOVWF  22
+01AC:  CALL   07F
+01AD:  MOVLW  20
+01AE:  MOVWF  22
+01AF:  CALL   07F
+01B0:  MOVLW  06
+01B1:  MOVWF  22
+01B2:  CALL   07F
+01B3:  MOVLW  20
+01B4:  MOVWF  22
+01B5:  CALL   07F
+01B6:  MOVLW  07
+01B7:  MOVWF  22
+01B8:  CALL   07F
+.................... 		delay_ms(2000); 
+01B9:  MOVLW  08
+01BA:  MOVWF  21
+01BB:  MOVLW  FA
+01BC:  MOVWF  22
+01BD:  CALL   04B
+01BE:  DECFSZ 21,F
+01BF:  GOTO   1BB
+.................... 		LCD_comando(limpa_LCD); 
+01C0:  MOVLW  01
+01C1:  MOVWF  21
+01C2:  CALL   077
+.................... 		delay_ms(500); 
+01C3:  MOVLW  02
+01C4:  MOVWF  21
+01C5:  MOVLW  FA
+01C6:  MOVWF  22
+01C7:  CALL   04B
+01C8:  DECFSZ 21,F
+01C9:  GOTO   1C5
+01CA:  GOTO   146
+.................... 	} 
+.................... } 
+....................  
+01CB:  SLEEP
+.................... void inicia_lcd(void){ 
+.................... 	output_low(rs); 
+*
+0060:  BSF    03.5
+0061:  BCF    05.0
+0062:  BCF    03.5
+0063:  BCF    05.0
+.................... 	output_b(0x38); 
+0064:  MOVLW  38
+0065:  MOVWF  06
+.................... 	toggle_enable(); 
+0066:  CALL   03D
+.................... 	delay_ms(20); 
+0067:  MOVLW  14
+0068:  MOVWF  22
+0069:  CALL   04B
+.................... 	output_b(0x0C); 
+006A:  MOVLW  0C
+006B:  MOVWF  06
+.................... 	toggle_enable(); 
+006C:  CALL   03D
+.................... 	output_b(0x06); 
+006D:  MOVLW  06
+006E:  MOVWF  06
+.................... 	toggle_enable(); 
+006F:  CALL   03D
+.................... 	output_b(limpa_LCD); 
+0070:  MOVLW  01
+0071:  MOVWF  06
+.................... 	toggle_enable(); 
+0072:  CALL   03D
+.................... 	delay_ms(5); 
+0073:  MOVLW  05
+0074:  MOVWF  22
+0075:  CALL   04B
+0076:  GOTO   145 (RETURN)
+.................... } 
+....................  
+.................... void LCD_texto(char letra){ 
+.................... 	output_high(rs); 
+*
+007F:  BSF    03.5
+0080:  BCF    05.0
+0081:  BCF    03.5
+0082:  BSF    05.0
+.................... 	output_b(letra); 
+0083:  MOVF   22,W
+0084:  MOVWF  06
+.................... 	toggle_enable(); 
+0085:  CALL   03D
+0086:  RETURN
+.................... } 
+....................  
+.................... void LCD_comando(int comando){ 
+.................... 	output_low(rs); 
+*
+0077:  BSF    03.5
+0078:  BCF    05.0
+0079:  BCF    03.5
+007A:  BCF    05.0
+.................... 	output_b(comando); 
+007B:  MOVF   21,W
+007C:  MOVWF  06
+.................... 	toggle_enable(); 
+007D:  CALL   03D
+007E:  RETURN
+.................... } 
+....................  
+.................... void toggle_enable(void){ 
+.................... 	output_high(enable); 
+*
+003D:  BSF    03.5
+003E:  BCF    05.1
+003F:  BCF    03.5
+0040:  BSF    05.1
+.................... 	delay_us(500); 
+0041:  MOVLW  A6
+0042:  MOVWF  77
+0043:  DECFSZ 77,F
+0044:  GOTO   043
+0045:  NOP
+.................... 	output_low(enable); 
+0046:  BSF    03.5
+0047:  BCF    05.1
+0048:  BCF    03.5
+0049:  BCF    05.1
+004A:  RETURN
+.................... } 
+....................  
+.................... void characteres(void){ 
+.................... 	LCD_comando(0b01000000); 
+*
+0087:  MOVLW  40
+0088:  MOVWF  21
+0089:  CALL   077
+.................... 	LCD_texto(0b00000000); 
+008A:  CLRF   22
+008B:  CALL   07F
+.................... 	LCD_texto(0b00001010); 
+008C:  MOVLW  0A
+008D:  MOVWF  22
+008E:  CALL   07F
+.................... 	LCD_texto(0b00001010); 
+008F:  MOVLW  0A
+0090:  MOVWF  22
+0091:  CALL   07F
+.................... 	LCD_texto(0b00000000); 
+0092:  CLRF   22
+0093:  CALL   07F
+.................... 	LCD_texto(0b00010001); 
+0094:  MOVLW  11
+0095:  MOVWF  22
+0096:  CALL   07F
+.................... 	LCD_texto(0b00001110); 
+0097:  MOVLW  0E
+0098:  MOVWF  22
+0099:  CALL   07F
+.................... 	LCD_texto(0b00000000); 
+009A:  CLRF   22
+009B:  CALL   07F
+.................... 	LCD_texto(0b00000000); 
+009C:  CLRF   22
+009D:  CALL   07F
+....................  
+.................... 	LCD_texto(0b00000000); 
+009E:  CLRF   22
+009F:  CALL   07F
+.................... 	LCD_texto(0b00001010); 
+00A0:  MOVLW  0A
+00A1:  MOVWF  22
+00A2:  CALL   07F
+.................... 	LCD_texto(0b00001010); 
+00A3:  MOVLW  0A
+00A4:  MOVWF  22
+00A5:  CALL   07F
+.................... 	LCD_texto(0b00000000); 
+00A6:  CLRF   22
+00A7:  CALL   07F
+.................... 	LCD_texto(0b00001110); 
+00A8:  MOVLW  0E
+00A9:  MOVWF  22
+00AA:  CALL   07F
+.................... 	LCD_texto(0b00010001); 
+00AB:  MOVLW  11
+00AC:  MOVWF  22
+00AD:  CALL   07F
+.................... 	LCD_texto(0b00000000); 
+00AE:  CLRF   22
+00AF:  CALL   07F
+.................... 	LCD_texto(0b00000000); 
+00B0:  CLRF   22
+00B1:  CALL   07F
+....................  
+.................... 	LCD_texto(0b00000000); 
+00B2:  CLRF   22
+00B3:  CALL   07F
+.................... 	LCD_texto(0b00000000); 
+00B4:  CLRF   22
+00B5:  CALL   07F
+.................... 	LCD_texto(0b00001010); 
+00B6:  MOVLW  0A
+00B7:  MOVWF  22
+00B8:  CALL   07F
+.................... 	LCD_texto(0b00010101); 
+00B9:  MOVLW  15
+00BA:  MOVWF  22
+00BB:  CALL   07F
+.................... 	LCD_texto(0b00010001); 
+00BC:  MOVLW  11
+00BD:  MOVWF  22
+00BE:  CALL   07F
+.................... 	LCD_texto(0b00001010); 
+00BF:  MOVLW  0A
+00C0:  MOVWF  22
+00C1:  CALL   07F
+.................... 	LCD_texto(0b00000100); 
+00C2:  MOVLW  04
+00C3:  MOVWF  22
+00C4:  CALL   07F
+.................... 	LCD_texto(0b00000000); 
+00C5:  CLRF   22
+00C6:  CALL   07F
+....................  
+.................... 	LCD_texto(0b00001110); 
+00C7:  MOVLW  0E
+00C8:  MOVWF  22
+00C9:  CALL   07F
+.................... 	LCD_texto(0b00010001); 
+00CA:  MOVLW  11
+00CB:  MOVWF  22
+00CC:  CALL   07F
+.................... 	LCD_texto(0b00010001); 
+00CD:  MOVLW  11
+00CE:  MOVWF  22
+00CF:  CALL   07F
+.................... 	LCD_texto(0b00010001); 
+00D0:  MOVLW  11
+00D1:  MOVWF  22
+00D2:  CALL   07F
+.................... 	LCD_texto(0b00010001); 
+00D3:  MOVLW  11
+00D4:  MOVWF  22
+00D5:  CALL   07F
+.................... 	LCD_texto(0b00010001); 
+00D6:  MOVLW  11
+00D7:  MOVWF  22
+00D8:  CALL   07F
+.................... 	LCD_texto(0b00011111); 
+00D9:  MOVLW  1F
+00DA:  MOVWF  22
+00DB:  CALL   07F
+.................... 	LCD_texto(0b00000000); 
+00DC:  CLRF   22
+00DD:  CALL   07F
+....................  
+.................... 	LCD_texto(0b00001110); 
+00DE:  MOVLW  0E
+00DF:  MOVWF  22
+00E0:  CALL   07F
+.................... 	LCD_texto(0b00010001); 
+00E1:  MOVLW  11
+00E2:  MOVWF  22
+00E3:  CALL   07F
+.................... 	LCD_texto(0b00010001); 
+00E4:  MOVLW  11
+00E5:  MOVWF  22
+00E6:  CALL   07F
+.................... 	LCD_texto(0b00010001); 
+00E7:  MOVLW  11
+00E8:  MOVWF  22
+00E9:  CALL   07F
+.................... 	LCD_texto(0b00011111); 
+00EA:  MOVLW  1F
+00EB:  MOVWF  22
+00EC:  CALL   07F
+.................... 	LCD_texto(0b00011111); 
+00ED:  MOVLW  1F
+00EE:  MOVWF  22
+00EF:  CALL   07F
+.................... 	LCD_texto(0b00011111); 
+00F0:  MOVLW  1F
+00F1:  MOVWF  22
+00F2:  CALL   07F
+.................... 	LCD_texto(0b00000000); 
+00F3:  CLRF   22
+00F4:  CALL   07F
+....................  
+.................... 	LCD_texto(0b00001110); 
+00F5:  MOVLW  0E
+00F6:  MOVWF  22
+00F7:  CALL   07F
+.................... 	LCD_texto(0b00011111); 
+00F8:  MOVLW  1F
+00F9:  MOVWF  22
+00FA:  CALL   07F
+.................... 	LCD_texto(0b00011111); 
+00FB:  MOVLW  1F
+00FC:  MOVWF  22
+00FD:  CALL   07F
+.................... 	LCD_texto(0b00011111); 
+00FE:  MOVLW  1F
+00FF:  MOVWF  22
+0100:  CALL   07F
+.................... 	LCD_texto(0b00011111); 
+0101:  MOVLW  1F
+0102:  MOVWF  22
+0103:  CALL   07F
+.................... 	LCD_texto(0b00011111); 
+0104:  MOVLW  1F
+0105:  MOVWF  22
+0106:  CALL   07F
+.................... 	LCD_texto(0b00011111); 
+0107:  MOVLW  1F
+0108:  MOVWF  22
+0109:  CALL   07F
+.................... 	LCD_texto(0b00000000); 
+010A:  CLRF   22
+010B:  CALL   07F
+....................  
+.................... 	LCD_texto(0b00001110); 
+010C:  MOVLW  0E
+010D:  MOVWF  22
+010E:  CALL   07F
+.................... 	LCD_texto(0b00010001); 
+010F:  MOVLW  11
+0110:  MOVWF  22
+0111:  CALL   07F
+.................... 	LCD_texto(0b00010001); 
+0112:  MOVLW  11
+0113:  MOVWF  22
+0114:  CALL   07F
+.................... 	LCD_texto(0b00011111); 
+0115:  MOVLW  1F
+0116:  MOVWF  22
+0117:  CALL   07F
+.................... 	LCD_texto(0b00011011); 
+0118:  MOVLW  1B
+0119:  MOVWF  22
+011A:  CALL   07F
+.................... 	LCD_texto(0b00011011); 
+011B:  MOVLW  1B
+011C:  MOVWF  22
+011D:  CALL   07F
+.................... 	LCD_texto(0b00011111); 
+011E:  MOVLW  1F
+011F:  MOVWF  22
+0120:  CALL   07F
+.................... 	LCD_texto(0b00000000); 
+0121:  CLRF   22
+0122:  CALL   07F
+....................  
+.................... 	LCD_texto(0b00000001); 
+0123:  MOVLW  01
+0124:  MOVWF  22
+0125:  CALL   07F
+.................... 	LCD_texto(0b00000011); 
+0126:  MOVLW  03
+0127:  MOVWF  22
+0128:  CALL   07F
+.................... 	LCD_texto(0b00001101); 
+0129:  MOVLW  0D
+012A:  MOVWF  22
+012B:  CALL   07F
+.................... 	LCD_texto(0b00011101); 
+012C:  MOVLW  1D
+012D:  MOVWF  22
+012E:  CALL   07F
+.................... 	LCD_texto(0b00001101); 
+012F:  MOVLW  0D
+0130:  MOVWF  22
+0131:  CALL   07F
+.................... 	LCD_texto(0b00000011); 
+0132:  MOVLW  03
+0133:  MOVWF  22
+0134:  CALL   07F
+.................... 	LCD_texto(0b00000001); 
+0135:  MOVLW  01
+0136:  MOVWF  22
+0137:  CALL   07F
+.................... 	LCD_texto(0b00000000); 
+0138:  CLRF   22
+0139:  CALL   07F
+013A:  GOTO   146 (RETURN)
+....................  
+.................... } 
+
+Configuration Fuses:
+   Word  1: 3F61   NOWDT PUT XT MCLR BROWNOUT NOLVP NOCPD NOPROTECT
