@@ -1,0 +1,13 @@
+#include <ComunicacaoSerial.h>
+
+void main()
+{
+
+   while(TRUE)
+   {
+      //TODO: User Code
+      printf("Hello World");
+      delay_ms(1000);
+   }
+
+}

@@ -1,0 +1,115 @@
+004-005 @WRITE_PROGRAM_MEMORY8.P1
+004-005 @READ_PROGRAM_MEMORY8.P2
+006     lcdlat
+006     lcd
+008     kbd
+008     PSP_DATA
+015     CCP_1_LOW
+015     CCP_1
+016     CCP_1_HIGH
+01B     CCP_2_LOW
+01B     CCP_2
+01C     CCP_2_HIGH
+020     kbd_getc.kbd_call_count
+021.0   kbd_getc.kbd_down
+022     kbd_getc.last_key
+023     kbd_getc.col
+024     c
+025     kbd_getc.kchar
+025     lcd_init.i
+025     @PSTRINGCN7_663.P1
+025     @PSTRINGC7_663.@SCRATCH1
+026     kbd_getc.row
+026     lcd_init.@SCRATCH1
+026     @PSTRINGC7_663.@SCRATCH2
+026     @PSTRINGCN7_663.@SCRATCH1
+027     @MUL88.P1
+027     kbd_getc.@SCRATCH1
+027     @PSTRINGC7_663.@SCRATCH3
+027     @PSTRINGCN7_663.@SCRATCH2
+028     @MUL88.P1
+028     @PSTRINGC7_663.@SCRATCH4
+028     @PSTRINGCN7_663.@SCRATCH3
+029     @PSTRINGCN7_663.@SCRATCH4
+02A     lcd_putc.c
+02B     @delay_ms1.P1
+02B     lcd_gotoxy.x
+02C     lcd_gotoxy.y
+02D     lcd_gotoxy.address
+02E     lcd_gotoxy.@SCRATCH1
+02F     lcd_send_byte.address
+030     lcd_send_byte.n
+031     lcd_read_byte.low
+031     lcd_send_byte.@SCRATCH1
+032     lcd_read_byte.high
+032     lcd_send_nibble.n
+033     lcd_read_byte.@SCRATCH1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+086     lcdtris
+09C.6   C1OUT
+09C.7   C2OUT
+10D-10E @READ_PROGRAM_MEMORY8.P1
+10D-10E @WRITE_PROGRAM_MEMORY8.P2
+
+ROM Allocation:
+000004  KEYS.call
+000008  KEYS.data
+000014  LCD_INIT_STRING.call
+000018  LCD_INIT_STRING.data
+00001C  @const680.call
+000021  @const682.call
+000029  kbd_init
+00002C  @delay_ms1
+000040  lcd_send_nibble
+000051  lcd_read_nibble
+000057  lcd_send_byte
+00005D  lcd_read_byte
+000099  lcd_init
+0000CC  lcd_gotoxy
+0000DE  lcd_putc
+00010A  @PSTRINGC7_663
+000157  kbd_getc
+0001A7  @MUL88
+0001E1  @PSTRINGCN7_663
+000237  MAIN
+000237  @cinit1
+00023E  @cinit2
+
+Project Directory:
+    C:\Users\ABMS-Telecom\Documents\CCS C Projects\TecladoMatricial_LCD\
+
+Project Files:
+    TelcadoMatricial_LCD.c                                  [31-mai-23 09:58  CRC=499017B8]
+    TelcadoMatricial_LCD.h                                  [31-mai-23 09:20  CRC=CF12E969]
+    ..\..\..\..\..\Program Files (x86)\PICC\Devices\16F877A.h [21-jun-13 16:04  CRC=4E65664C]
+    ..\..\..\..\..\Program Files (x86)\PICC\Drivers\KBD.C   [23-set-10 09:09  CRC=8814BCFC]
+    ..\..\..\..\..\Program Files (x86)\PICC\Drivers\lcd.c   [23-ago-12 09:01  CRC=D28E8746]
+
+Source signature=943A32F5
+
+Units:
+    TelcadoMatricial_LCD (main)
+
+Compiler Settings:
+    Processor:      PIC16F877A
+    Pointer Size:   16
+    ADC Range:      0-65535
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   TelcadoMatricial_LCD.xsym
+    Errors:      TelcadoMatricial_LCD.err
+    Ext Symbols: TelcadoMatricial_LCD.esym
+    INHX8:       TelcadoMatricial_LCD.hex
+    Symbols:     TelcadoMatricial_LCD.sym
+    List:        TelcadoMatricial_LCD.lst
+    Debug/COFF:  TelcadoMatricial_LCD.cof
+    Project:     TelcadoMatricial_LCD.ccspjt
+    Call Tree:   TelcadoMatricial_LCD.tre
+    Statistics:  TelcadoMatricial_LCD.STA

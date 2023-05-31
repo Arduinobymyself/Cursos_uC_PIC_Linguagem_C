@@ -1,0 +1,95 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+004-005 @WRITE_PROGRAM_MEMORY8.P2
+015     CCP_1
+015     CCP_1_LOW
+016     CCP_1_HIGH
+020-027 heart
+028     lcd_set_cgram_char.which
+028     lcd_init.i
+028     MAIN.@SCRATCH1
+028     @PSTRINGC7_616.@SCRATCH1
+029-02A lcd_set_cgram_char.ptr
+029     lcd_init.@SCRATCH1
+029     @PSTRINGC7_616.@SCRATCH2
+02A     @PSTRINGC7_616.@SCRATCH3
+02B     lcd_set_cgram_char.i
+02B     @PSTRINGC7_616.@SCRATCH4
+02C     lcd_putc.c
+02C     lcd_set_cgram_char.@SCRATCH1
+02D     @delay_ms1.P1
+02D     lcd_gotoxy.x
+02E     lcd_gotoxy.y
+02F     lcd_gotoxy.address
+030     lcd_gotoxy.@SCRATCH1
+031     lcd_send_byte.address
+032     lcd_send_byte.n
+033     lcd_read_byte.low
+033     lcd_send_byte.@SCRATCH1
+034     lcd_send_nibble.n
+034     lcd_read_byte.high
+035     lcd_read_nibble.n
+035     lcd_read_byte.@SCRATCH1
+036     lcd_read_nibble.@SCRATCH1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+09C.6   C1OUT
+09C.7   C2OUT
+10D-10E @WRITE_PROGRAM_MEMORY8.P1
+10D-10E @READ_PROGRAM_MEMORY8.P2
+
+ROM Allocation:
+000004  LCD_INIT_STRING.call
+000008  LCD_INIT_STRING.data
+00000C  @const633.call
+000015  @const636.call
+00001E  @const638.call
+000022  @delay_ms1
+000037  lcd_send_nibble
+000062  lcd_read_nibble
+000093  lcd_send_byte
+00009B  lcd_read_byte
+0000EF  lcd_init
+00012B  lcd_set_cgram_char
+000153  lcd_gotoxy
+000165  lcd_putc
+000191  @PSTRINGC7_616
+0001DC  MAIN
+0001DC  @cinit1
+0001E7  @cinit2
+
+Project Directory:
+    C:\Users\ABMS-Telecom\Documents\CCS C Projects\LCD\
+
+Project Files:
+    LCD.c                                                   [31-mai-23 08:24  CRC=FDADF708]
+    LCD.h                                                   [31-mai-23 07:27  CRC=0DDA9E8E]
+    ..\..\..\..\..\Program Files (x86)\PICC\Devices\16F88.h [21-jun-13 16:04  CRC=E99925E9]
+    ..\..\..\..\..\Program Files (x86)\PICC\Drivers\lcd.c   [23-ago-12 09:01  CRC=D28E8746]
+
+Source signature=9A3ECA0B
+
+Units:
+    LCD (main)
+
+Compiler Settings:
+    Processor:      PIC16F88
+    Pointer Size:   16
+    ADC Range:      0-65535
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   LCD.xsym
+    Errors:      LCD.err
+    Ext Symbols: LCD.esym
+    INHX8:       LCD.hex
+    Symbols:     LCD.sym
+    List:        LCD.lst
+    Debug/COFF:  LCD.cof
+    Project:     LCD.ccspjt
+    Call Tree:   LCD.tre
+    Statistics:  LCD.STA

@@ -1,0 +1,52 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+019.6   C1OUT
+020     @SCRATCH
+021     @SCRATCH
+021     _RETURN_
+022     @SCRATCH
+023     @SCRATCH
+024.0   pisca
+025     pisca_led.@SCRATCH1
+025     MAIN.@SCRATCH1
+026     @delay_ms1.P1
+09B-09C @READ_PROGRAM_MEMORY8.P1
+
+ROM Allocation:
+00000A  pisca_led
+000020  @delay_ms1
+000034  MAIN
+000034  @cinit1
+00003E  @cinit2
+
+Project Directory:
+    C:\Users\ABMS-Telecom\Documents\CCS C Projects\PiscaLed\
+
+Project Files:
+    PiscaLed.c                                              [30-mai-23 08:04  CRC=F9EF1A5D]
+    PiscaLed.h                                              [30-mai-23 07:58  CRC=64D0046D]
+    ..\..\..\..\..\Program Files (x86)\PICC\Devices\12F675.h [21-jun-13 16:04  CRC=0A49C2E3]
+
+Source signature=7352A490
+
+Units:
+    PiscaLed (main)
+
+Compiler Settings:
+    Processor:      PIC12F675
+    Pointer Size:   8
+    ADC Range:      0-65535
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   PiscaLed.xsym
+    Errors:      PiscaLed.err
+    Ext Symbols: PiscaLed.esym
+    INHX8:       PiscaLed.hex
+    Symbols:     PiscaLed.sym
+    List:        PiscaLed.lst
+    Debug/COFF:  PiscaLed.cof
+    Project:     PiscaLed.ccspjt
+    Call Tree:   PiscaLed.tre
+    Statistics:  PiscaLed.STA

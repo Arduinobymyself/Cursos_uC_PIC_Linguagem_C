@@ -1,0 +1,22 @@
+#include <PiscaLed.h>
+int pisca = 0;
+
+void pisca_led(void)
+{
+   if(pisca == true){
+         output_low(LED_1);
+         output_high(LED_2);
+         pisca = false;
+   } else {
+      output_high(LED_1);
+      output_low(LED_2);
+      pisca = true;
+   }
+
+}
+
+void main(){
+   while(true){
+      
+   }
+}

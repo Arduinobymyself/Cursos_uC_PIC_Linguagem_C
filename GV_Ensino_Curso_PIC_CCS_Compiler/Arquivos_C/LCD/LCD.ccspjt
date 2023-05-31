@@ -1,0 +1,22 @@
+[PROJECT]
+Target=LCD.hex
+Processor_Text=PIC16F88
+CCSVerions=5.007
+Compiler=PCM
+CCSVersion=5.007
+[Target Data]
+FileList=LCD.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\;C:\Users\ABMS-Telecom\Documents\CCS C Projects\LCD\
+[C:\Users\ABMS-Telecom\Documents\CCS C Projects\LCD\LCD]
+Type=4
+[mru-list]
+1=LCD.c
+[Opened Files]
+1=LCD.c
+2=
+[LCD.c]
+Type=4
+[Units]
+Count=1
+1=LCD (main)

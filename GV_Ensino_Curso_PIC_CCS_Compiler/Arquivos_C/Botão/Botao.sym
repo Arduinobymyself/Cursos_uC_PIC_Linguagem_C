@@ -1,0 +1,55 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+004-005 @WRITE_PROGRAM_MEMORY8.P2
+015     CCP_1
+015     CCP_1_LOW
+016     CCP_1_HIGH
+021     main.@SCRATCH1
+022     @delay_ms1.P1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+09C.6   C1OUT
+09C.7   C2OUT
+10D-10E @WRITE_PROGRAM_MEMORY8.P1
+10D-10E @READ_PROGRAM_MEMORY8.P2
+
+ROM Allocation:
+000004  @delay_ms1
+00001A  @cinit1
+00001A  main
+000025  @cinit2
+
+Project Directory:
+    C:\Users\ABMS-Telecom\Documents\CCS C Projects\Botão\
+
+Project Files:
+    Botao.c                                                 [30-mai-23 18:07  CRC=D872A938]
+    Botao.h                                                 [30-mai-23 13:06  CRC=0DDA9E8E]
+    ..\..\..\..\..\Program Files (x86)\PICC\Devices\16F88.h [21-jun-13 16:04  CRC=E99925E9]
+
+Source signature=B97F9398
+
+Units:
+    Botao (main)
+
+Compiler Settings:
+    Processor:      PIC16F88
+    Pointer Size:   16
+    ADC Range:      0-65535
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   Botao.xsym
+    Errors:      Botao.err
+    Ext Symbols: Botao.esym
+    INHX8:       Botao.hex
+    Symbols:     Botao.sym
+    List:        Botao.lst
+    Debug/COFF:  Botao.cof
+    Project:     Botao.ccspjt
+    Call Tree:   Botao.tre
+    Statistics:  Botao.STA

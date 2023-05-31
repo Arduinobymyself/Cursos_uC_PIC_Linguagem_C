@@ -1,0 +1,22 @@
+[PROJECT]
+Target=ComunicacaoSerial.hex
+Processor_Text=PIC16F628A
+CCSVerions=5.007
+Compiler=PCM
+CCSVersion=5.007
+[Target Data]
+FileList=ComunicacaoSerial.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\;C:\Users\ABMS-Telecom\Documents\CCS C Projects\ComunicacaoSerial\
+[C:\Users\ABMS-Telecom\Documents\CCS C Projects\ComunicacaoSerial\ComunicacaoSerial]
+Type=4
+[mru-list]
+1=ComunicacaoSerial.c
+[Opened Files]
+1=ComunicacaoSerial.c
+2=
+[ComunicacaoSerial.c]
+Type=4
+[Units]
+Count=1
+1=ComunicacaoSerial (main)

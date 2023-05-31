@@ -1,0 +1,23 @@
+[PROJECT]
+Target=PiscaLed.hex
+Processor_Text=PIC12F675
+CCSVerions=5.007
+Compiler=PCM
+CCSVersion=5.007
+[Target Data]
+FileList=PiscaLed.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\;C:\Users\ABMS-Telecom\Documents\CCS C Projects\PiscaLed\
+[C:\Users\ABMS-Telecom\Documents\CCS C Projects\PiscaLed\PiscaLed]
+Type=4
+[mru-list]
+1=PiscaLed.c
+[Opened Files]
+1=PiscaLed.c
+2=PiscaLed.h
+3=
+[PiscaLed.c]
+Type=4
+[Units]
+Count=1
+1=PiscaLed (main)

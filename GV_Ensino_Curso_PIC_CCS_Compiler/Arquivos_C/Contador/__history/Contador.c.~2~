@@ -1,0 +1,42 @@
+#include <Contador.h>
+
+void main()
+{
+
+   while(TRUE)
+   {
+      //TODO: User Code
+            
+      output_b(0b0011111); // 0
+      delay_ms(1000);
+      
+      output_b(0b00000110); // 1
+      delay_ms(1000);
+      
+      output_b(0b00000110); // 2
+      delay_ms(1000);
+      
+      output_b(0b00000110); // 3
+      delay_ms(1000);
+      
+      output_b(0b00000110); // 4
+      delay_ms(1000);
+      
+      output_b(0b00000110); // 5
+      delay_ms(1000);
+      
+      output_b(0b00000110); // 6
+      delay_ms(1000);
+      
+      output_b(0b00000110); // 7
+      delay_ms(1000);
+      
+      output_b(0b00000110); // 8
+      delay_ms(1000);
+      
+      output_b(0b00000110); // 9
+      delay_ms(1000);
+
+   }
+
+}

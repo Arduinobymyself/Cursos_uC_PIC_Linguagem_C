@@ -1,0 +1,23 @@
+[PROJECT]
+Target=TelcadoMatricial_LCD.hex
+Processor_Text=PIC16F877A
+CCSVerions=5.007
+Compiler=PCM
+CCSVersion=5.007
+[Target Data]
+FileList=TelcadoMatricial_LCD.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\;C:\Users\ABMS-Telecom\Documents\CCS C Projects\;C:\Users\ABMS-Telecom\Documents\CCS C Projects\TecladoMatricial_LCD\
+[C:\Users\ABMS-Telecom\Documents\CCS C Projects\TelcadoMatricial_LCD]
+Type=4
+[mru-list]
+1=TelcadoMatricial_LCD.c
+[Opened Files]
+1=TelcadoMatricial_LCD.c
+2=
+3=
+[TelcadoMatricial_LCD.c]
+Type=4
+[Units]
+Count=1
+1=TelcadoMatricial_LCD (main)

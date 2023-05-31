@@ -1,0 +1,22 @@
+[PROJECT]
+Target=Contador.hex
+Processor_Text=PIC16F88
+CCSVerions=5.007
+Compiler=PCM
+CCSVersion=5.007
+[Target Data]
+FileList=Contador.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\;C:\Users\ABMS-Telecom\Documents\CCS C Projects\Contador\
+[C:\Users\ABMS-Telecom\Documents\CCS C Projects\Contador\Contador]
+Type=4
+[mru-list]
+1=Contador.c
+[Opened Files]
+1=Contador.c
+2=
+[Contador.c]
+Type=4
+[Units]
+Count=1
+1=Contador (main)

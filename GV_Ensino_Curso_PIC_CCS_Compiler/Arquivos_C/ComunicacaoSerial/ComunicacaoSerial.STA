@@ -1,0 +1,46 @@
+
+ROM used:   82/2048 (4%)
+            82/2048 (4%) including unused fragments
+
+            0.1 Average locations per line
+            5.9 Average locations per statement
+
+RAM used:   6/224 (3%) at main() level
+            7/224 (3%) worst case
+
+Stack used: 0 worst case (0 in main + 0 for interrupts)
+Stack size: 8
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   34    14 100  ComunicacaoSerial.c
+   11     0   0  ComunicacaoSerial.h
+  508     0   0  ..\..\..\..\..\Program Files (x86)\PICC\Devices\16F628A.h
+----- -----
+  553    14 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     37  45    1    82  2.3  @GETCH_1_
+0     41  50    0   214  3.1  main
+ Inline         0   219  1.8  @cinit1
+
+Program metrics:
+    Functions               3
+    Statements              14
+    Comments                98
+    Volume (V)              685
+    Difficulty (D)          7.5
+    Effort to implement (E) 5127
+    Time to implement (T)   5 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   5
+    Maintainability (MI)    144
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-007FF    78  1966  
+
+
+

@@ -1,0 +1,52 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+015     CCP_1_LOW
+015     CCP_1
+016     CCP_1_HIGH
+01F.6   C1OUT
+01F.7   C2OUT
+020     letra
+021     @GETCH_1_.@SCRATCH1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+09B-09C @READ_PROGRAM_MEMORY8.P1
+
+ROM Allocation:
+000004  @GETCH_1_
+000029  main
+000029  @cinit1
+000030  @cinit2
+
+Project Directory:
+    C:\Users\ABMS-Telecom\Documents\CCS C Projects\ComunicacaoSerial\
+
+Project Files:
+    ComunicacaoSerial.c                                     [30-mai-23 20:30  CRC=679F3F9D]
+    ComunicacaoSerial.h                                     [30-mai-23 20:14  CRC=F31CECD1]
+    ..\..\..\..\..\Program Files (x86)\PICC\Devices\16F628A.h [21-jun-13 16:04  CRC=FEBF88CA]
+
+Source signature=583B3E02
+
+Units:
+    ComunicacaoSerial (main)
+
+Compiler Settings:
+    Processor:      PIC16F628A
+    Pointer Size:   16
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   ComunicacaoSerial.xsym
+    Errors:      ComunicacaoSerial.err
+    Ext Symbols: ComunicacaoSerial.esym
+    INHX8:       ComunicacaoSerial.hex
+    Symbols:     ComunicacaoSerial.sym
+    List:        ComunicacaoSerial.lst
+    Debug/COFF:  ComunicacaoSerial.cof
+    Project:     ComunicacaoSerial.ccspjt
+    Call Tree:   ComunicacaoSerial.tre
+    Statistics:  ComunicacaoSerial.STA
