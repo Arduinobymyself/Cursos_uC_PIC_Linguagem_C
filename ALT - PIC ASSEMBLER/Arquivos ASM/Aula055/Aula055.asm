@@ -1,0 +1,79 @@
+	TITLE		"AULA55- TIMER 0"
+	PROCESSOR	16F84A
+	#INCLUDE	<P16F84A.INC>
+	__CONFIG 	_XT_OSC & _CP_OFF & _WDT_OFF & _PWRTE_ON
+
+;++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+	;REGISTRADORES BANCO 0
+	#DEFINE		FLAG		INTCON, T0IF			; BIT 3, FLAG DA INTERRUPÇÃO POR TMR0
+	
+	;REGISTRADORES BANCO 1
+	#DEFINE		INC_TIMER0	OPTION_REG, T0CS		; BIT 5, TMR0 POR CICLO DE MÁQUINA
+	#DEFINE		PRESCALER	OPTION_REG, PSA			; BIT 3, PRESCALER PARA O TMR0 
+	#DEFINE		BIT_PS2		OPTION_REG, PS2			; BIT 2, <2:0>, TAXA DO PRESCALER
+	#DEFINE		BIT_PS1		OPTION_REG, PS1			; BIT 1
+	#DEFINE		BIT_PS0		OPTION_REG, PS0			; BIT 0
+	
+	;GERAL
+	#DEFINE		BANCO0		BCF		STATUS, RP0		;BIT 5
+	#DEFINE		BANCO1		BSF		STATUS, RP0		;BIT 5
+	
+;++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+	TEMPO1		EQU			0X0C
+
+;++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+	ORG			0X00
+	GOTO 		INICIO
+	
+	ORG			0X04
+	RETFIE
+	
+;++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+INICIO:
+	
+	BANCO1									;PODERIA USAR: BANKSEL TRISB
+	CLRF		TRISB						;PORT B COMO SAÍDA
+	CLRF		INTCON						;INICIA/LIMPA TODAS AS INTERRUPÇÕES E FLAGS
+	
+	BCF			INC_TIMER0					;INCREMENTO DO TIMER 0 VIA OSCILADOR (T0CS<5>)
+	BCF			PRESCALER					;PRESCALER PARA TIMER 0 (PSA<3>)
+	BSF			BIT_PS2						;PS<2:0> PRESCALER 1:256
+	BSF			BIT_PS1
+	BSF			BIT_PS0
+	
+	BANCO0									;PODERIA USAR: BANKSEL PORTB
+	CLRF		PORTB
+	CLRF 		TMR0						;ZERA O TMR0
+	MOVLW		D'0'
+
+LOOP:
+	COMF		PORTB						;INVERTE O PORT B
+	CALL		DELAY						
+	ADDWF		PORTB						;PORTB = PORTB + W
+	CALL		DELAY
+	SWAPF		PORTB						;INVERTE MSB COM LSB NO PORT B
+	CALL		DELAY
+	GOTO		LOOP
+	
+DELAY:
+	MOVLW		D'8'
+	MOVWF		TEMPO1
+M2
+	BCF			FLAG
+	MOVLW		D'12'
+	MOVWF		TMR0
+M1:
+	BTFSS		FLAG
+	GOTO		M1
+	DECFSZ		TEMPO1
+	GOTO		M2		
+
+	RETURN
+		
+	END
+	
+;++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

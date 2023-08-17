@@ -1,0 +1,240 @@
+CCS PCM C Compiler, Version 5.007, 61971               21-jul-23 07:32
+
+               Filename:   C:\Users\ABMS-Telecom\Documents\GitHub\Cursos_uC_PIC_Linguagem_C\SergioACastanoGiraldo\aula006\aula006.lst
+
+               ROM used:   108 words (1%)
+                           Largest free fragment is 2048
+               RAM used:   7 (2%) at main() level
+                           8 (2%) worst case
+               Stack used: 0 locations
+               Stack size: 7
+
+*
+0000:  NOP
+0001:  MOVLW  00
+0002:  MOVWF  0A
+0003:  GOTO   029
+.................... // CONTROLANDO MOTORES DE PASSO 
+....................  
+.................... #INCLUDE <16f887.h> 
+.................... //////// Standard Header file for the PIC16F887 device //////////////// 
+.................... #device PIC16F887 
+0004:  BCF    0A.0
+0005:  BCF    0A.1
+0006:  BCF    0A.2
+0007:  ADDWF  02,F
+0008:  RETLW  0C
+0009:  RETLW  06
+000A:  RETLW  03
+000B:  RETLW  09
+000C:  BCF    0A.0
+000D:  BCF    0A.1
+000E:  BCF    0A.2
+000F:  ADDWF  02,F
+0010:  RETLW  09
+0011:  RETLW  03
+0012:  RETLW  06
+0013:  RETLW  0C
+....................  
+.................... #list 
+....................  
+.................... #fuses XT,NOPROTECT,NOWDT,NOBROWNOUT,PUT,NOLVP 
+.................... #use delay(clock=4000000,crystal)//Crystal Externo 4MHz 
+0014:  MOVLW  22
+0015:  MOVWF  04
+0016:  BCF    03.7
+0017:  MOVF   00,W
+0018:  BTFSC  03.2
+0019:  GOTO   028
+001A:  MOVLW  01
+001B:  MOVWF  78
+001C:  CLRF   77
+001D:  DECFSZ 77,F
+001E:  GOTO   01D
+001F:  DECFSZ 78,F
+0020:  GOTO   01C
+0021:  MOVLW  4A
+0022:  MOVWF  77
+0023:  DECFSZ 77,F
+0024:  GOTO   023
+0025:  GOTO   026
+0026:  DECFSZ 00,F
+0027:  GOTO   01A
+0028:  RETURN
+.................... #byte PORTB=6 
+.................... #byte PORTC=7 
+.................... #define SW PORTC,0 
+....................  
+.................... INT CONT; 
+.................... byte const HORARIO[4] = {  0b1100, 
+....................                            0b0110, 
+....................                            0b0011, 
+....................                            0b1001}; 
+....................                             
+.................... byte const ANTIH[4] ={     0b1001, 
+....................                            0b0011, 
+....................                            0b0110, 
+....................                            0b1100}; 
+....................                             
+.................... void main() 
+0029:  MOVLW  FF
+002A:  MOVWF  21
+002B:  BSF    03.5
+002C:  BSF    03.6
+002D:  MOVF   09,W
+002E:  ANDLW  C0
+002F:  MOVWF  09
+0030:  BCF    03.6
+0031:  BCF    1F.4
+0032:  BCF    1F.5
+0033:  MOVLW  00
+0034:  BSF    03.6
+0035:  MOVWF  08
+0036:  BCF    03.5
+0037:  CLRF   07
+0038:  CLRF   08
+0039:  CLRF   09
+003A:  BCF    03.7
+003B:  MOVLW  1F
+003C:  ANDWF  03,F
+.................... { 
+....................    SET_TRIS_C(0B11111111);                //Configura el puerto C 
+003D:  MOVLW  FF
+003E:  BSF    03.5
+003F:  BCF    03.6
+0040:  MOVWF  07
+0041:  BCF    03.5
+0042:  MOVWF  21
+....................    SET_TRIS_B(0B00000000);                //Configura el puerto B 
+0043:  MOVLW  00
+0044:  BSF    03.5
+0045:  MOVWF  06
+....................    WHILE(TRUE) 
+....................    { 
+....................       IF(BIT_TEST(SW))                    // Pregunta si SW esta encendido 
+0046:  BCF    03.5
+0047:  BTFSS  07.0
+0048:  GOTO   05A
+....................       { 
+....................          CONT=0;                          //Se pone Cont en cero 
+0049:  CLRF   20
+....................          WHILE((CONT<4)&&(BIT_TEST(SW)))  //Mientras que cont sea menor a 4  
+004A:  MOVF   20,W
+004B:  SUBLW  03
+004C:  BTFSS  03.0
+004D:  GOTO   059
+004E:  BTFSS  07.0
+004F:  GOTO   059
+....................                                           //y SW=1(encendido) 
+....................          { 
+....................             PORTB=(HORARIO[CONT]);        //Envíe al puerto B la información //de 
+0050:  MOVF   20,W
+0051:  CALL   004
+0052:  MOVWF  78
+0053:  MOVWF  06
+....................                                           //la tabla de horario 
+....................             DELAY_MS(100);                //Retardo de 100 milisegundos 
+0054:  MOVLW  64
+0055:  MOVWF  22
+0056:  CALL   014
+....................             CONT++;                       //Incremente la variable cont 
+0057:  INCF   20,F
+0058:  GOTO   04A
+....................          } 
+....................       } 
+0059:  GOTO   06A
+....................       ELSE                                //de lo contrario 
+....................       { 
+....................          CONT=0;                          // la variable cont =0 
+005A:  CLRF   20
+....................          WHILE((CONT<4)&&(!BIT_TEST(SW))) //Mientras que cont sea menor a 4  
+005B:  MOVF   20,W
+005C:  SUBLW  03
+005D:  BTFSS  03.0
+005E:  GOTO   06A
+005F:  BTFSC  07.0
+0060:  GOTO   06A
+....................                                           //y SW=0(apagado) 
+....................          { 
+....................             PORTB=(ANTIH[CONT]);          //Envíe al puerto B la información de 
+0061:  MOVF   20,W
+0062:  CALL   00C
+0063:  MOVWF  78
+0064:  MOVWF  06
+....................                                           //la tabla de antihorario 
+....................             DELAY_MS(100);                //Retardo de 100 milisegundos 
+0065:  MOVLW  64
+0066:  MOVWF  22
+0067:  CALL   014
+....................             CONT++;                       //Incremente la variable cont 
+0068:  INCF   20,F
+0069:  GOTO   05B
+....................          } 
+....................       } 
+006A:  GOTO   047
+....................    } 
+.................... } 
+....................  
+006B:  GOTO   06B
+....................  
+.................... /* 
+.................... SEQUENCIA A UM PASSO 
+.................... byte const HORARIO[4] = {  0b1000, 
+....................                            0b0100, 
+....................                            0b0010, 
+....................                            0b0001}; 
+....................                             
+.................... byte const ANTIH[4] ={     0b0001, 
+....................                            0b0010, 
+....................                            0b0100, 
+....................                            0b1000}; 
+....................                             
+....................                             
+.................... SEQUENCIA A DOIS PASSOS 
+.................... byte const HORARIO[4] = {  0b1100, 
+....................                            0b0110, 
+....................                            0b0011, 
+....................                            0b1001}; 
+....................                             
+.................... byte const ANTIH[4] ={     0b1001, 
+....................                            0b0011, 
+....................                            0b0110, 
+....................                            0b1100}; 
+....................  
+.................... SEUQNEICA A MEIO PASSO 
+.................... byte const HORARIO[8] = { 0b1000, 
+....................                           0b1100, 
+....................                           0b0100, 
+....................                           0b0110, 
+....................                           0b0010, 
+....................                           0b0011, 
+....................                           0b0001, 
+....................                           0b1001}; 
+....................                             
+.................... byte const ANTIH[8] ={     0b1001, 
+....................                            0b0001, 
+....................                            0b0011, 
+....................                            0b0010, 
+....................                            0b0110, 
+....................                            0b0100, 
+....................                            0b1100, 
+....................                            0b1000}; 
+.................... */                            
+....................  
+....................                            
+....................                            
+....................  
+....................  
+....................  
+....................  
+....................  
+....................  
+....................  
+....................  
+....................  
+
+Configuration Fuses:
+   Word  1: 0CF1   XT NOWDT NOPUT MCLR NOPROTECT NOCPD NOBROWNOUT IESO FCMEN NOLVP DEBUG
+   Word  2: 3FFF   BORV40 NOWRT
+
+   Some fuses have been forced to be compatible with the ICD debugger.

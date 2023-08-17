@@ -1,0 +1,249 @@
+MPASM  5.51                       AULA039.ASM   6-11-2023  13:56:34         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001         TITLE           "AULA039 - ENTRADA DE DADOS - DOIS BOTÕES LIGA E DESLIGA - RESISTORES DE PULL-UP
+                            N"
+                      00002         PROCESSOR       16F84A
+                      00003         #INCLUDE        <P16F84A.INC>
+                      00001         LIST
+                      00002 
+                      00003 ;==========================================================================
+                      00004 ;  MPASM PIC16F84A processor include
+                      00005 ; 
+                      00006 ;  (c) Copyright 1999-2013 Microchip Technology, All rights reserved
+                      00007 ;==========================================================================
+                      00008 
+                      00208         LIST
+2007   3FF1           00004         __CONFIG        _XT_OSC & _CP_OFF & _WDT_OFF & _PWRTE_ON
+                      00005 
+                      00006 ;++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                      00007 
+                      00008         #DEFINE         BOTAO1          PORTB, RB0
+                      00009         #DEFINE         BOTAO2          PORTB, RB1
+                      00010         #DEFINE         LED                     PORTB, RB7
+                      00011         #DEFINE         PULL_UP         OPTION_REG, 7
+Warning[207]: Found label after column 1. (TEMPO1)
+  0000000C            00012         TEMPO1          EQU                     0X0C
+Warning[207]: Found label after column 1. (TEMPO2)
+  0000000D            00013         TEMPO2          EQU                     0X0D
+                      00014 
+                      00015 ;++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                      00016 
+0000                  00017         ORG                     0X00
+0000   2805           00018         GOTO            INICIO
+                      00019         
+0004                  00020         ORG                     0X04
+0004   0009           00021         RETFIE
+                      00022         
+                      00023 ;++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                      00024 
+0005                  00025 INICIO:
+                      00026         
+0005   1683           00027         BANKSEL         TRISB
+0006   307F           00028         MOVLW           B'01111111'                                     ;APENAS RB7 COMO SAÍDA, RESTANTE
+                             COMO ENTRADA
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0007   0086           00029         MOVWF           TRISB
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0008   1381           00030         BCF             PULL_UP                                         ;ATIVA PULL-UP PARA OS BOTÕES
+                      00031         
+0009   1283           00032         BANKSEL         PORTB
+000A   0186           00033         CLRF            PORTB
+                      00034 
+000B                  00035 VERIFICA_TUDO:
+                      00036 
+000B                  00037 VERIFICA_BOTAO1:
+000B   1806           00038         BTFSC           BOTAO1                                          ;BOTAO ACIONADO (0) PARA RESISTO
+MPASM  5.51                       AULA039.ASM   6-11-2023  13:56:34         PAGE  2
+AULA039 - ENTRADA DE DADOS - DOIS BOTÕES LIGA E DESLIGA - RESISTORES DE PULL-UPN
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                            RES DE PULL-UP
+000C   280F           00039         GOTO            VERIFICA_BOTAO2                         ;NÃO, MANTÉM CONDIÇÃO ATUAL, VOLTA A TES
+                            TAR
+000D   1786           00040         BSF                     LED
+000E   2813           00041         GOTO            DEBOUCE                                         ;SIM, ALTERNA ESTADO DO LED
+                      00042 
+000F                  00043 VERIFICA_BOTAO2:
+000F   1886           00044         BTFSC           BOTAO2                                          ;BOTAO ACIONADO (0) PARA RESISTO
+                            RES DE PULL-UP
+0010   280B           00045         GOTO            VERIFICA_BOTAO1                         ;NÃO, MANTÉM CONDIÇÃO ATUAL, VOLTA A TES
+                            TAR
+0011   1386           00046         BCF                     LED
+0012   2813           00047         GOTO            DEBOUCE                                         ;SIM, ALTERNA ESTADO DO LED
+                      00048         
+                      00049 
+                      00050         
+0013                  00051 DEBOUCE:                                                                        ;GERA UM TEMPO PARA O DE
+                            BOUCE DO BOTÃO
+0013   30FF           00052         MOVLW           D'255'
+0014   008C           00053         MOVWF           TEMPO1
+0015                  00054 M1:
+0015   30FF           00055         MOVLW           D'255'
+0016   008D           00056         MOVWF           TEMPO2
+0017                  00057 M2:
+0017   0000           00058         NOP
+Message[305]: Using default destination of 1 (file).
+0018   0B8D           00059         DECFSZ          TEMPO2
+0019   2817           00060         GOTO            M2
+                      00061         
+Message[305]: Using default destination of 1 (file).
+001A   0B8C           00062         DECFSZ          TEMPO1
+001B   2815           00063         GOTO            M1
+                      00064         
+001C   280B           00065         GOTO            VERIFICA_TUDO
+                      00066         
+                      00067         END
+MPASM  5.51                       AULA039.ASM   6-11-2023  13:56:34         PAGE  3
+AULA039 - ENTRADA DE DADOS - DOIS BOTÕES LIGA E DESLIGA - RESISTORES DE PULL-UPN
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+BOTAO1                            PORTB, RB0
+BOTAO2                            PORTB, RB1
+C                                 00000000
+DC                                00000001
+DEBOUCE                           00000013
+EEADR                             00000009
+EECON1                            00000088
+EECON2                            00000089
+EEDATA                            00000008
+EEIE                              00000006
+EEIF                              00000004
+F                                 00000001
+FSR                               00000004
+GIE                               00000007
+INDF                              00000000
+INICIO                            00000005
+INTCON                            0000000B
+INTE                              00000004
+INTEDG                            00000006
+INTF                              00000001
+IRP                               00000007
+LED                               PORTB, RB7
+M1                                00000015
+M2                                00000017
+NOT_PD                            00000003
+NOT_RBPU                          00000007
+NOT_TO                            00000004
+OPTION_REG                        00000081
+PCL                               00000002
+PCLATH                            0000000A
+PORTA                             00000005
+PORTB                             00000006
+PS0                               00000000
+PS1                               00000001
+PS2                               00000002
+PSA                               00000003
+PULL_UP                           OPTION_REG, 7
+RA0                               00000000
+RA1                               00000001
+RA2                               00000002
+RA3                               00000003
+RA4                               00000004
+RB0                               00000000
+RB1                               00000001
+RB2                               00000002
+RB3                               00000003
+RB4                               00000004
+RB5                               00000005
+RB6                               00000006
+RB7                               00000007
+RBIE                              00000003
+RBIF                              00000000
+RD                                00000000
+MPASM  5.51                       AULA039.ASM   6-11-2023  13:56:34         PAGE  4
+AULA039 - ENTRADA DE DADOS - DOIS BOTÕES LIGA E DESLIGA - RESISTORES DE PULL-UPN
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+RP0                               00000005
+RP1                               00000006
+STATUS                            00000003
+T0CS                              00000005
+T0IE                              00000005
+T0IF                              00000002
+T0SE                              00000004
+TEMPO1                            0000000C
+TEMPO2                            0000000D
+TMR0                              00000001
+TMR0IE                            00000005
+TMR0IF                            00000002
+TRISA                             00000085
+TRISA0                            00000000
+TRISA1                            00000001
+TRISA2                            00000002
+TRISA3                            00000003
+TRISA4                            00000004
+TRISB                             00000086
+TRISB0                            00000000
+TRISB1                            00000001
+TRISB2                            00000002
+TRISB3                            00000003
+TRISB4                            00000004
+TRISB5                            00000005
+TRISB6                            00000006
+TRISB7                            00000007
+VERIFICA_BOTAO1                   0000000B
+VERIFICA_BOTAO2                   0000000F
+VERIFICA_TUDO                     0000000B
+W                                 00000000
+WR                                00000001
+WREN                              00000002
+WRERR                             00000003
+Z                                 00000002
+_CONFIG                           00002007
+_CP_OFF                           00003FFF
+_CP_ON                            0000000F
+_DEVID1                           00002006
+_FOSC_EXTRC                       00003FFF
+_FOSC_HS                          00003FFE
+_FOSC_LP                          00003FFC
+_FOSC_XT                          00003FFD
+_HS_OSC                           00003FFE
+_IDLOC0                           00002000
+_IDLOC1                           00002001
+_IDLOC2                           00002002
+_IDLOC3                           00002003
+_LP_OSC                           00003FFC
+_PWRTE_OFF                        00003FFF
+_PWRTE_ON                         00003FF7
+_RC_OSC                           00003FFF
+_WDTE_OFF                         00003FFB
+MPASM  5.51                       AULA039.ASM   6-11-2023  13:56:34         PAGE  5
+AULA039 - ENTRADA DE DADOS - DOIS BOTÕES LIGA E DESLIGA - RESISTORES DE PULL-UPN
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_WDTE_ON                          00003FFF
+_WDT_OFF                          00003FFB
+_WDT_ON                           00003FFF
+_XT_OSC                           00003FFD
+__16F84A                          00000001
+__DEBUG                           1
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+0000 : X---XXXXXXXXXXXX XXXXXXXXXXXXX--- ---------------- ----------------
+2000 : -------X-------- ---------------- ---------------- ----------------
+
+All other memory blocks unused.
+
+Program Memory Words Used:    26
+Program Memory Words Free:   998
+
+
+Errors   :     0
+Warnings :     2 reported,     0 suppressed
+Messages :     4 reported,     0 suppressed
+
+

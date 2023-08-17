@@ -1,0 +1,44 @@
+MPLINK 4.49, Linker
+Linker Map File - Created Wed Jun 07 09:35:13 2023
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x000000
+                   .org_1       code   0x000000    program   0x000002
+                   .org_2       code   0x000004    program   0x00003c
+   .config_2007_AULA026.O       code   0x002007    program   0x000002
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x000000      
+                            0x000004    0x000021      
+                            0x002007    0x002007      
+            32 out of 2182 program addresses used, program memory utilization is 1%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                       M1   0x000016    program     static C:\Users\ABMS-Telecom\Documents\GitHub\Cursos_uC_PIC_Linguagem_C\WR_Kits_Curso_PIC\Arquivos ASM\Aula026\Aula026.asm
+                       M2   0x000018    program     static C:\Users\ABMS-Telecom\Documents\GitHub\Cursos_uC_PIC_Linguagem_C\WR_Kits_Curso_PIC\Arquivos ASM\Aula026\Aula026.asm
+              delay_500ms   0x000014    program     static C:\Users\ABMS-Telecom\Documents\GitHub\Cursos_uC_PIC_Linguagem_C\WR_Kits_Curso_PIC\Arquivos ASM\Aula026\Aula026.asm
+                   inicio   0x000005    program     static C:\Users\ABMS-Telecom\Documents\GitHub\Cursos_uC_PIC_Linguagem_C\WR_Kits_Curso_PIC\Arquivos ASM\Aula026\Aula026.asm
+                     loop   0x00000d    program     static C:\Users\ABMS-Telecom\Documents\GitHub\Cursos_uC_PIC_Linguagem_C\WR_Kits_Curso_PIC\Arquivos ASM\Aula026\Aula026.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                   inicio   0x000005    program     static C:\Users\ABMS-Telecom\Documents\GitHub\Cursos_uC_PIC_Linguagem_C\WR_Kits_Curso_PIC\Arquivos ASM\Aula026\Aula026.asm
+                     loop   0x00000d    program     static C:\Users\ABMS-Telecom\Documents\GitHub\Cursos_uC_PIC_Linguagem_C\WR_Kits_Curso_PIC\Arquivos ASM\Aula026\Aula026.asm
+              delay_500ms   0x000014    program     static C:\Users\ABMS-Telecom\Documents\GitHub\Cursos_uC_PIC_Linguagem_C\WR_Kits_Curso_PIC\Arquivos ASM\Aula026\Aula026.asm
+                       M1   0x000016    program     static C:\Users\ABMS-Telecom\Documents\GitHub\Cursos_uC_PIC_Linguagem_C\WR_Kits_Curso_PIC\Arquivos ASM\Aula026\Aula026.asm
+                       M2   0x000018    program     static C:\Users\ABMS-Telecom\Documents\GitHub\Cursos_uC_PIC_Linguagem_C\WR_Kits_Curso_PIC\Arquivos ASM\Aula026\Aula026.asm
+
+

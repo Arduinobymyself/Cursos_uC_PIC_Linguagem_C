@@ -1,0 +1,63 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+004-005 @WRITE_PROGRAM_MEMORY8.P2
+006     PORTB
+007     PORTC
+015     CCP_1_LOW
+015     CCP_1
+016     CCP_1_HIGH
+01B     CCP_2_LOW
+01B     CCP_2
+01C     CCP_2_HIGH
+020     CONTADOR
+021     @TRIS_C
+022     MAIN.@SCRATCH1
+023     @delay_ms1.P1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+107.6   C1OUT
+108.6   C2OUT
+10D-10E @WRITE_PROGRAM_MEMORY8.P1
+10D-10E @READ_PROGRAM_MEMORY8.P2
+
+ROM Allocation:
+000004  DISPLAY.call
+000008  DISPLAY.data
+000012  @delay_ms1
+000027  MAIN
+000027  @cinit1
+000038  @cinit2
+
+Project Directory:
+    C:\Users\ABMS-Telecom\Documents\GitHub\Cursos_uC_PIC_Linguagem_C\SergioACastanoGiraldo\aula007\
+
+Project Files:
+    aula007.c                                               [21-jul-23 07:36  CRC=69348FB1]
+    ..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F887.H [21-jun-13 16:04  CRC=9FD133B5]
+
+Source signature=A8D6F71B
+
+Units:
+    aula007 (main)
+
+Compiler Settings:
+    Processor:      PIC16F887
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   aula007.xsym
+    Errors:      aula007.err
+    Ext Symbols: aula007.esym
+    INHX8:       aula007.hex
+    Symbols:     aula007.sym
+    List:        aula007.lst
+    Debug/COFF:  aula007.cof
+    Project:     aula007.ccspjt
+    Call Tree:   aula007.tre
+    Statistics:  aula007.STA

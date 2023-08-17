@@ -1,0 +1,48 @@
+Listagem das aulas do curso ASSEMBLY para uC PIC (WR KITS)
+
+001 - Vantagens do Assembly, Introdução ao MPLAB
+002 - Arquivos INC e Fuse Bits
+003 - Termos do Set de Instrução e Banco de Memórias
+004 - Entradas e Saídas, Vetor de Reset e Interrupção
+005 - Criando Novo Projeto eSimulando no MPLAB
+006 - Botão com LED
+007 - Como Gravar um PIC usando MPLAB
+008 - Sub-Rotinas
+009 - Pilha, Memórias de Programa e Dados
+010 - Cálculo de Delay e o Ciclo de Máquina
+011 - Registradores de Uso Geral
+012 - Instruções Aritméticas
+013 - Instruções Lógicas
+014 - Desvios Condicionais
+015 - Set de Instruções
+016 - Microcontrolador PIC 16F628A
+017 - Pinos do PIC 16F628A
+018 - Fuse Bits do PIC 16F628A
+019 - Bancos de Memórias
+020 - Inicialização dos Registradores
+021 - Entradas e Saídas
+022 - Prática Entradas e Saídas
+023 - Anti-Bouncing para Botões
+024 - Instruções Especiais
+025 - Multiplicação com PIC16
+026 - Inversão de Saídas ou Bits
+027 - Divisão com PIC16
+028 - O que são Interrupções
+029 - Como Entrar e Sair de Interrupção
+030 - Simulando Entrada e Saída de Interrupção
+031 - 
+032 - 
+033 - 
+034 - 
+035 - 
+036 - 
+037 - 
+038 - 
+039 - 
+040 - 
+
+
+
+
+
+

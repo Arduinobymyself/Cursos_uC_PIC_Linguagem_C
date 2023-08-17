@@ -1,0 +1,23 @@
+[PROJECT]
+Target=aula054.hex
+Processor_Text=PIC16F628A
+CCSVerions=5.007
+Compiler=PCM
+CCSVersion=5.007
+[Target Data]
+FileList=aula054.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\;C:\Users\ABMS-Telecom\Documents\GitHub\Cursos_uC_PIC_Linguagem_C\WR_Kits_Curso_PIC\Arquivos C\aula054\CCS\
+[C:\Users\ABMS-Telecom\Documents\GitHub\Cursos_uC_PIC_Linguagem_C\WR_Kits_Curso_PIC\Arquivos C\aula054\CCS\aula054]
+Type=4
+[mru-list]
+1=aula054.c
+[Opened Files]
+1=aula054.c
+2=..\..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F628A.h
+3=
+[aula054.c]
+Type=4
+[Units]
+Count=1
+1=aula054 (main)

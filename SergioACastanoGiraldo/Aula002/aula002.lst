@@ -1,0 +1,80 @@
+CCS PCM C Compiler, Version 5.007, 61971               20-jul-23 21:39
+
+               Filename:   C:\Users\ABMS-Telecom\Documents\GitHub\Cursos_uC_PIC_Linguagem_C\SergioACastanoGiraldo\Aula002\aula002.lst
+
+               ROM used:   36 words (0%)
+                           Largest free fragment is 2048
+               RAM used:   5 (1%) at main() level
+                           5 (1%) worst case
+               Stack used: 0 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   004
+0003:  NOP
+.................... #INCLUDE<16f887.h> 
+.................... //////// Standard Header file for the PIC16F887 device //////////////// 
+.................... #device PIC16F887 
+....................  
+.................... #list 
+....................  
+.................... #USE DELAY(CLOCK=4000000) 
+.................... #FUSES XT,PROTECT,NOWDT,NOBROWNOUT,PUT,NOLVP 
+.................... #DEFINE SW PORTA,1 
+.................... #DEFINE LED PORTB,0 
+.................... #BYTE PORTA= 5 
+.................... #BYTE PORTB= 6 
+.................... MAIN() 
+0004:  BSF    03.5
+0005:  BSF    03.6
+0006:  MOVF   09,W
+0007:  ANDLW  C0
+0008:  MOVWF  09
+0009:  BCF    03.6
+000A:  BCF    1F.4
+000B:  BCF    1F.5
+000C:  MOVLW  00
+000D:  BSF    03.6
+000E:  MOVWF  08
+000F:  BCF    03.5
+0010:  CLRF   07
+0011:  CLRF   08
+0012:  CLRF   09
+0013:  BCF    03.7
+0014:  MOVLW  1F
+0015:  ANDWF  03,F
+.................... { 
+....................    SET_TRIS_A(0B10);          //Configura el puerto A 
+0016:  MOVLW  02
+0017:  BSF    03.5
+0018:  BCF    03.6
+0019:  MOVWF  05
+....................    SET_TRIS_B(0B11111110);    //Configura el puerto B 
+001A:  MOVLW  FE
+001B:  MOVWF  06
+....................    WHILE(TRUE)                // Haga por siempre 
+....................    { 
+....................       IF(BIT_TEST(SW))        // Si SW esta activado 
+001C:  BCF    03.5
+001D:  BTFSS  05.1
+001E:  GOTO   021
+....................       { 
+....................          BIT_SET(LED);        // Active el led 
+001F:  BSF    06.0
+....................       } 
+0020:  GOTO   022
+....................       ELSE                    // Sino, es decir si SW esta desactivado 
+....................       { 
+....................          BIT_CLEAR(LED);      // Apagar led 
+0021:  BCF    06.0
+....................       } 
+0022:  GOTO   01D
+....................    } 
+.................... } 
+0023:  SLEEP
+
+Configuration Fuses:
+   Word  1: 2CA1   XT NOWDT PUT MCLR PROTECT NOCPD NOBROWNOUT IESO FCMEN NOLVP NODEBUG
+   Word  2: 3FFF   BORV40 NOWRT

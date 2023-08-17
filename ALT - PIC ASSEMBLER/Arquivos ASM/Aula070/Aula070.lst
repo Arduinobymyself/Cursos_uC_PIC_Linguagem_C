@@ -1,0 +1,313 @@
+MPASM  5.51                       AULA070.ASM   6-21-2023  20:00:40         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001         TITLE           "AULA70 - LEITURA/ESCRITA NA MEMÓRIA EEPROM POR INTERRUPÇÃO"
+                      00002         
+                      00003         PROCESSOR       16F84A
+                      00004         #INCLUDE        <P16F84A.INC>
+                      00001         LIST
+                      00002 
+                      00003 ;==========================================================================
+                      00004 ;  MPASM PIC16F84A processor include
+                      00005 ; 
+                      00006 ;  (c) Copyright 1999-2013 Microchip Technology, All rights reserved
+                      00007 ;==========================================================================
+                      00008 
+                      00208         LIST
+2007   3FF1           00005         __CONFIG        _XT_OSC & _CP_OFF & _WDT_OFF & _PWRTE_ON
+                      00006 
+                      00007 ;++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                      00008 
+                      00009         ;REGISTRADORES BANCO 0
+                      00010         #DEFINE         BOTAO                   PORTA, RA0                      ;BOTÃO DE INTERRUPÇÃO
+                      00011         #DEFINE         LED                             PORTA, RA1                      ;LED DA INTERRUP
+                            ÇÃO
+                      00012         
+                      00013         ;REGISTRADORES BANCO 1
+                      00014         #DEFINE         INT_GLOBAL              INTCON, GIE                     ;CHAVE GERAL DAS INTERRU
+                            PÇÕES
+                      00015         #DEFINE         INT_EEPROM              INTCON, EEIE            ;CHAVE DA INTERRUPÇÃO DA EEPROM
+                      00016         #DEFINE         FLAG                    EECON1, EEIF            ;FLAG DA INTERRUPÇÃO DA EEPROM
+                      00017         
+                      00018         ;REGISTRADORES DE USO GERAL
+                      00019         #DEFINE         BANCO0          BCF             STATUS, RP0             ;BIT 5, (0) = BANCO 0
+                      00020         #DEFINE         BANCO1          BSF             STATUS, RP0             ;BIT 5, (1) = BANCO 1
+                      00021         
+                      00022 ;++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                      00023         CBLOCK          0X0C
+  0000000C            00024         ENDERECO        
+  0000000D            00025         VALOR
+  0000000E            00026         TEMPO1
+  0000000F            00027         TEMPO2
+  00000010            00028         TEMPO3
+                      00029         ENDC            
+                      00030         
+                      00031 ;++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                      00032 
+0000                  00033         ORG                     0X00
+0000   2811           00034         GOTO            INICIO
+                      00035         
+0004                  00036         ORG                     0X04
+                      00037         
+0004   1485           00038         BSF                     LED
+0005   2031           00039         CALL            DELAY_500MS
+0006   1085           00040         BCF                     LED
+0007   080C           00041         MOVF            ENDERECO, W
+0008   0089           00042         MOVWF           EEADR
+MPASM  5.51                       AULA070.ASM   6-21-2023  20:00:40         PAGE  2
+AULA70 - LEITURA/ESCRITA NA MEMÓRIA EEPROM POR INTERRUPÇÃO
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00043         
+0009   1683           00044         BANCO1
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+000A   1208           00045         BCF                     FLAG
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+000B   1108           00046         BCF                     EECON1, WREN                            ;DESABILITA A ESCRITA
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+000C   1408           00047         BSF                     EECON1, RD                                      ;HABILITA A LEITURA
+000D   1283           00048         BANCO0
+000E   0808           00049         MOVF            EEDATA, W
+000F   0086           00050         MOVWF           PORTB
+                      00051         
+0010   0009           00052         RETFIE
+                      00053         
+                      00054 ;++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                      00055 
+0011                  00056 INICIO:
+0011   1683           00057         BANCO1
+0012   30FD           00058         MOVLW           B'11111101'
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0013   0085           00059         MOVWF           TRISA                                           ;APENAS RA1 COMO SAÍDA
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0014   0186           00060         CLRF            TRISB
+0015   1283           00061         BANCO0
+0016   0186           00062         CLRF            PORTB
+0017   170B           00063         BSF                     INT_EEPROM
+0018   018C           00064         CLRF            ENDERECO
+0019   300A           00065         MOVLW           D'10'
+001A   008D           00066         MOVWF           VALOR
+                      00067         
+001B                  00068 LOOP:
+001B   1283           00069         BANCO0
+001C   1805           00070         BTFSC           BOTAO
+001D   281C           00071         GOTO            $ -1
+001E   2031           00072         CALL            DELAY_500MS
+                      00073         
+001F   080C           00074         MOVF            ENDERECO, W
+0020   0089           00075         MOVWF           EEADR
+0021   080D           00076         MOVF            VALOR, W
+0022   0088           00077         MOVWF           EEDATA
+                      00078         
+0023   1683           00079         BANCO1
+0024   138B           00080         BCF                     INT_GLOBAL
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0025   1508           00081         BSF                     EECON1, WREN                            ;HABILITA ESCRITA
+0026   3055           00082         MOVLW           0X55
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0027   0089           00083         MOVWF           EECON2
+0028   30AA           00084         MOVLW           0XAA
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0029   0089           00085         MOVWF           EECON2
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+002A   1488           00086         BSF                     EECON1, WR
+MPASM  5.51                       AULA070.ASM   6-21-2023  20:00:40         PAGE  3
+AULA70 - LEITURA/ESCRITA NA MEMÓRIA EEPROM POR INTERRUPÇÃO
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+002B   2031           00087         CALL            DELAY_500MS
+002C   1283           00088         BANCO0
+002D   178B           00089         BSF                     INT_GLOBAL
+                      00090         
+Message[305]: Using default destination of 1 (file).
+002E   0A8C           00091         INCF            ENDERECO
+Message[305]: Using default destination of 1 (file).
+002F   0A8D           00092         INCF            VALOR
+0030   281B           00093         GOTO            LOOP
+                      00094         
+                      00095                         
+                      00096         
+                      00097         
+0031                  00098 DELAY_500MS:                                                                    ;APROXIMADAMENTE 500MS
+0031   30F9           00099         MOVLW           D'249'
+0032   008E           00100         MOVWF           TEMPO1
+0033                  00101 M2:
+0033   30FA           00102         MOVLW           D'250'
+0034   008F           00103         MOVWF           TEMPO2
+0035                  00104 M1:     
+0035   0000           00105         NOP
+0036   0000           00106         NOP
+0037   0000           00107         NOP
+0038   0000           00108         NOP
+0039   0000           00109         NOP
+                      00110         
+Message[305]: Using default destination of 1 (file).
+003A   0B8F           00111         DECFSZ          TEMPO2
+003B   2835           00112         GOTO            M1
+                      00113         
+Message[305]: Using default destination of 1 (file).
+003C   0B8E           00114         DECFSZ          TEMPO1
+003D   2833           00115         GOTO            M2
+                      00116         
+003E   0008           00117         RETURN
+                      00118                 
+                      00119         END
+MPASM  5.51                       AULA070.ASM   6-21-2023  20:00:40         PAGE  4
+AULA70 - LEITURA/ESCRITA NA MEMÓRIA EEPROM POR INTERRUPÇÃO
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+BANCO0                            BCF             STATUS, RP0
+BANCO1                            BSF             STATUS, RP0
+BOTAO                             PORTA, RA0
+C                                 00000000
+DC                                00000001
+DELAY_500MS                       00000031
+EEADR                             00000009
+EECON1                            00000088
+EECON2                            00000089
+EEDATA                            00000008
+EEIE                              00000006
+EEIF                              00000004
+ENDERECO                          0000000C
+F                                 00000001
+FLAG                              EECON1, EEIF
+FSR                               00000004
+GIE                               00000007
+INDF                              00000000
+INICIO                            00000011
+INTCON                            0000000B
+INTE                              00000004
+INTEDG                            00000006
+INTF                              00000001
+INT_EEPROM                        INTCON, EEIE
+INT_GLOBAL                        INTCON, GIE
+IRP                               00000007
+LED                               PORTA, RA1
+LOOP                              0000001B
+M1                                00000035
+M2                                00000033
+NOT_PD                            00000003
+NOT_RBPU                          00000007
+NOT_TO                            00000004
+OPTION_REG                        00000081
+PCL                               00000002
+PCLATH                            0000000A
+PORTA                             00000005
+PORTB                             00000006
+PS0                               00000000
+PS1                               00000001
+PS2                               00000002
+PSA                               00000003
+RA0                               00000000
+RA1                               00000001
+RA2                               00000002
+RA3                               00000003
+RA4                               00000004
+RB0                               00000000
+RB1                               00000001
+RB2                               00000002
+RB3                               00000003
+RB4                               00000004
+RB5                               00000005
+MPASM  5.51                       AULA070.ASM   6-21-2023  20:00:40         PAGE  5
+AULA70 - LEITURA/ESCRITA NA MEMÓRIA EEPROM POR INTERRUPÇÃO
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+RB6                               00000006
+RB7                               00000007
+RBIE                              00000003
+RBIF                              00000000
+RD                                00000000
+RP0                               00000005
+RP1                               00000006
+STATUS                            00000003
+T0CS                              00000005
+T0IE                              00000005
+T0IF                              00000002
+T0SE                              00000004
+TEMPO1                            0000000E
+TEMPO2                            0000000F
+TEMPO3                            00000010
+TMR0                              00000001
+TMR0IE                            00000005
+TMR0IF                            00000002
+TRISA                             00000085
+TRISA0                            00000000
+TRISA1                            00000001
+TRISA2                            00000002
+TRISA3                            00000003
+TRISA4                            00000004
+TRISB                             00000086
+TRISB0                            00000000
+TRISB1                            00000001
+TRISB2                            00000002
+TRISB3                            00000003
+TRISB4                            00000004
+TRISB5                            00000005
+TRISB6                            00000006
+TRISB7                            00000007
+VALOR                             0000000D
+W                                 00000000
+WR                                00000001
+WREN                              00000002
+WRERR                             00000003
+Z                                 00000002
+_CONFIG                           00002007
+_CP_OFF                           00003FFF
+_CP_ON                            0000000F
+_DEVID1                           00002006
+_FOSC_EXTRC                       00003FFF
+_FOSC_HS                          00003FFE
+_FOSC_LP                          00003FFC
+_FOSC_XT                          00003FFD
+_HS_OSC                           00003FFE
+_IDLOC0                           00002000
+_IDLOC1                           00002001
+_IDLOC2                           00002002
+_IDLOC3                           00002003
+_LP_OSC                           00003FFC
+MPASM  5.51                       AULA070.ASM   6-21-2023  20:00:40         PAGE  6
+AULA70 - LEITURA/ESCRITA NA MEMÓRIA EEPROM POR INTERRUPÇÃO
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_PWRTE_OFF                        00003FFF
+_PWRTE_ON                         00003FF7
+_RC_OSC                           00003FFF
+_WDTE_OFF                         00003FFB
+_WDTE_ON                          00003FFF
+_WDT_OFF                          00003FFB
+_WDT_ON                           00003FFF
+_XT_OSC                           00003FFD
+__16F84A                          00000001
+__DEBUG                           1
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+0000 : X---XXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXX-
+2000 : -------X-------- ---------------- ---------------- ----------------
+
+All other memory blocks unused.
+
+Program Memory Words Used:    60
+Program Memory Words Free:   964
+
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :    13 reported,     0 suppressed
+
+

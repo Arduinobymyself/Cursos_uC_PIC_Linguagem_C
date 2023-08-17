@@ -1,0 +1,237 @@
+CCS PCM C Compiler, Version 5.007, 61971               21-jul-23 07:38
+
+               Filename:   C:\Users\ABMS-Telecom\Documents\GitHub\Cursos_uC_PIC_Linguagem_C\SergioACastanoGiraldo\aula008\aula008.lst
+
+               ROM used:   148 words (2%)
+                           Largest free fragment is 2048
+               RAM used:   9 (2%) at main() level
+                           14 (4%) worst case
+               Stack used: 0 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   06E
+0003:  NOP
+.................... // DISPLAY 7 SEGMENTOS - MULTIPLEXAÇÃO 
+....................  
+.................... #INCLUDE <16F887.h> 
+.................... //////// Standard Header file for the PIC16F887 device //////////////// 
+.................... #device PIC16F887 
+0004:  BCF    0A.0
+0005:  BCF    0A.1
+0006:  BCF    0A.2
+0007:  ADDWF  02,F
+0008:  RETLW  3F
+0009:  RETLW  06
+000A:  RETLW  5B
+000B:  RETLW  4F
+000C:  RETLW  66
+000D:  RETLW  6D
+000E:  RETLW  7D
+000F:  RETLW  07
+0010:  RETLW  7F
+0011:  RETLW  67
+0012:  MOVF   27,W
+0013:  CLRF   78
+0014:  SUBWF  26,W
+0015:  BTFSC  03.0
+0016:  GOTO   01A
+0017:  MOVF   26,W
+0018:  MOVWF  77
+0019:  GOTO   026
+001A:  CLRF   77
+001B:  MOVLW  08
+001C:  MOVWF  28
+001D:  RLF    26,F
+001E:  RLF    77,F
+001F:  MOVF   27,W
+0020:  SUBWF  77,W
+0021:  BTFSC  03.0
+0022:  MOVWF  77
+0023:  RLF    78,F
+0024:  DECFSZ 28,F
+0025:  GOTO   01D
+0026:  RETURN
+....................  
+.................... #list 
+....................  
+.................... //#USE DELAY(CLOCK=4000000) //Reloj interno 4MHz 
+.................... #use delay(clock=4000000,crystal)//Crystal Externo 4MHz 
+0027:  MOVLW  26
+0028:  MOVWF  04
+0029:  BCF    03.7
+002A:  MOVF   00,W
+002B:  BTFSC  03.2
+002C:  GOTO   03B
+002D:  MOVLW  01
+002E:  MOVWF  78
+002F:  CLRF   77
+0030:  DECFSZ 77,F
+0031:  GOTO   030
+0032:  DECFSZ 78,F
+0033:  GOTO   02F
+0034:  MOVLW  4A
+0035:  MOVWF  77
+0036:  DECFSZ 77,F
+0037:  GOTO   036
+0038:  GOTO   039
+0039:  DECFSZ 00,F
+003A:  GOTO   02D
+003B:  RETURN
+.................... #FUSES XT,NOPROTECT,NOWDT,NOBROWNOUT,PUT,NOLVP 
+.................... Byte CONST display[10]= {0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x67}; 
+.................... #BYTE PORTB= 6 
+.................... #BYTE PORTC= 7 
+.................... #DEFINE TUNI PORTC,0 //Definición de variables 
+.................... #DEFINE TDEC PORTC,1 //Definición de variables 
+....................  
+.................... INT CONT;   //Declarar la variable CONT como 
+....................             //un entero, es decir de 8 bits 
+.................... LONG CONTRET;  //Declarar la variable CONTRET 
+....................                //como long, es decir de 16 bits 
+....................                 
+....................                 
+.................... VOID MOSTRAR( ) //Rutina mostrar 
+.................... { 
+....................    INT UNI,DEC;   //Declarar las variables UNI, DEC 
+....................                   //como un entero, es decir de 8bits 
+....................    DEC=CONT/10; 
+*
+0046:  MOVF   20,W
+0047:  MOVWF  26
+0048:  MOVLW  0A
+0049:  MOVWF  27
+004A:  CALL   012
+004B:  MOVF   78,W
+004C:  MOVWF  25
+....................    UNI=CONT%10; 
+004D:  MOVF   20,W
+004E:  MOVWF  26
+004F:  MOVLW  0A
+0050:  MOVWF  27
+0051:  CALL   012
+0052:  MOVF   77,W
+0053:  MOVWF  24
+....................    PORTB=(DISPLAY[UNI]);   //Muestra lo que hay en unidades 
+0054:  MOVF   24,W
+0055:  CALL   004
+0056:  MOVWF  78
+0057:  MOVWF  06
+....................                            //en el display 
+....................    BIT_SET (TUNI);         //Enciende el display de unidades 
+0058:  BSF    07.0
+....................    DELAY_MS(1);            //Retardo de 1 milisegundos 
+0059:  MOVLW  01
+005A:  MOVWF  26
+005B:  CALL   027
+....................    BIT_CLEAR(TUNI);        //Apaga el display de unidades 
+005C:  BCF    07.0
+....................    PORTB=(DISPLAY[DEC]);   //Muestra lo que hay en unidades 
+005D:  MOVF   25,W
+005E:  CALL   004
+005F:  MOVWF  78
+0060:  MOVWF  06
+....................                            //en el display 
+....................    BIT_SET (TDEC);         //Enciende el display de decenas 
+0061:  BSF    07.1
+....................    DELAY_MS(1);            //Retardo de 1 milisegundos 
+0062:  MOVLW  01
+0063:  MOVWF  26
+0064:  CALL   027
+....................    BIT_CLEAR(TDEC);        //Apaga el display de decenas 
+0065:  BCF    07.1
+....................     
+.................... } 
+....................  
+....................  
+.................... VOID RET1SEG() //Rutina RET1SEG 
+.................... { 
+....................    CONTRET=500; //Cargue con 500 la variable CONTRET 
+*
+003C:  MOVLW  01
+003D:  MOVWF  22
+003E:  MOVLW  F4
+003F:  MOVWF  21
+....................    WHILE (CONTRET>0) //Mientras que la variable CONTRET sea mayor que cero 
+0040:  MOVF   21,F
+0041:  BTFSS  03.2
+0042:  GOTO   046
+0043:  MOVF   22,F
+0044:  BTFSC  03.2
+0045:  GOTO   06B
+....................    { 
+....................       MOSTRAR();        //Llamar la rutina MOSTRAR 
+....................       CONTRET--;        // Decremente la variable CONTRET 
+*
+0066:  MOVF   21,W
+0067:  BTFSC  03.2
+0068:  DECF   22,F
+0069:  DECF   21,F
+006A:  GOTO   040
+....................    } 
+006B:  BCF    0A.3
+006C:  BCF    0A.4
+006D:  GOTO   090 (RETURN)
+.................... } 
+....................  
+.................... void MAIN() 
+006E:  MOVLW  FF
+006F:  MOVWF  23
+0070:  BSF    03.5
+0071:  BSF    03.6
+0072:  MOVF   09,W
+0073:  ANDLW  C0
+0074:  MOVWF  09
+0075:  BCF    03.6
+0076:  BCF    1F.4
+0077:  BCF    1F.5
+0078:  MOVLW  00
+0079:  BSF    03.6
+007A:  MOVWF  08
+007B:  BCF    03.5
+007C:  CLRF   07
+007D:  CLRF   08
+007E:  CLRF   09
+007F:  BCF    03.7
+0080:  MOVLW  1F
+0081:  ANDWF  03,F
+.................... { 
+....................    SET_TRIS_B(0); //El puerto B esta configurado como salida 
+0082:  MOVLW  00
+0083:  BSF    03.5
+0084:  BCF    03.6
+0085:  MOVWF  06
+....................    SET_TRIS_C(0); // El puerto C esta configurado como salida 
+0086:  MOVWF  07
+0087:  BCF    03.5
+0088:  MOVWF  23
+....................    CONT=0;  //la variable CONT se inicializa con cero 
+0089:  CLRF   20
+....................  
+....................    WHILE(TRUE) //Haga por siempre 
+....................    { 
+....................       CONT=0; 
+008A:  CLRF   20
+....................       WHILE(CONT<100) //mientras la variable CONT es menor que 100 
+008B:  MOVF   20,W
+008C:  SUBLW  63
+008D:  BTFSS  03.0
+008E:  GOTO   092
+....................       { 
+....................          RET1SEG( ); //Llama la rutina RET1SEG 
+008F:  GOTO   03C
+....................          CONT++; //Incrementa la variable CONT 
+0090:  INCF   20,F
+0091:  GOTO   08B
+....................       } 
+0092:  GOTO   08A
+....................        
+....................    } 
+.................... } 
+0093:  SLEEP
+
+Configuration Fuses:
+   Word  1: 2CE1   XT NOWDT PUT MCLR NOPROTECT NOCPD NOBROWNOUT IESO FCMEN NOLVP NODEBUG
+   Word  2: 3FFF   BORV40 NOWRT

@@ -17,6 +17,8 @@
 // --- inclusão de bibliotecas --- //
 
 // --- definições de parâmetros do sistema ---//
+
+
 #define L1 RA3_bit
 #define L2 RA2_bit
 #define S1 RA1_bit

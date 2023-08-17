@@ -1,0 +1,294 @@
+MPASM  5.51                       AULA060.ASM   6-20-2023  12:58:51         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001         TITLE           "AULA60 - WWHATCH DOG TIMER WDT"
+                      00002         ;OS LEDS EM RB7 E RB6 PISCAM ALTERNADAMENTE A CADA 500MS
+                      00003         PROCESSOR       16F84A
+                      00004         #INCLUDE        <P16F84A.INC>
+                      00001         LIST
+                      00002 
+                      00003 ;==========================================================================
+                      00004 ;  MPASM PIC16F84A processor include
+                      00005 ; 
+                      00006 ;  (c) Copyright 1999-2013 Microchip Technology, All rights reserved
+                      00007 ;==========================================================================
+                      00008 
+                      00208         LIST
+2007   3FF5           00005         __CONFIG        _XT_OSC & _CP_OFF & _WDT_ON & _PWRTE_ON
+                      00006 
+                      00007 ;++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                      00008 
+                      00009         ;REGISTRADORES BANCO 0
+                      00010         ;#DEFINE                FLAG            INTCON, T0IF                    ; BIT 2, FLAG OVERFLOW (
+                            1) DA INTERRUPÇÃO POR TIMER 0
+                      00011         ;#DEFINE                INT_GLOBAL      INTCON, GIE                             ; BIT 7, (1) HAB
+                            ILITA INTERRUPÇÃO GLOBAL
+                      00012         ;#DEFINE                INT_TMR0        INTCON, T0IE                    ; BIT 5, (1) HABILITA IN
+                            TERRUPÇÃO POR TIMER 0
+                      00013         
+                      00014         ;REGISTRADORES BANCO 1
+                      00015         ;#DEFINE                INC_TIMER0      OPTION_REG, T0CS                ; BIT 5, TMR0 POR CICLO 
+                            DE MÁQUINA (0) OU RA4 (1)
+                      00016         ;#DEFINE                BORDA           OPTION_REG, T0SE                ; BIT 4, BORDA DESCIDA (
+                            1) OU BORDA SUBIDA (0)
+                      00017         #DEFINE         PRESCALER       OPTION_REG, PSA                 ; BIT 3, PRESCALER PARA O TMR0 (
+                            0) OU WDT (1)
+                      00018         #DEFINE         BIT_PS2         OPTION_REG, PS2                 ; BIT 2, <2:0>, TAXA DO PRESCALE
+                            R
+                      00019         #DEFINE         BIT_PS1         OPTION_REG, PS1                 ; BIT 1
+                      00020         #DEFINE         BIT_PS0         OPTION_REG, PS0                 ; BIT 0
+                      00021         
+                      00022         ;GERAL
+                      00023         #DEFINE         BANCO0          BCF             STATUS, RP0             ;BIT 5, (0) = BANCO 0
+                      00024         #DEFINE         BANCO1          BSF             STATUS, RP0             ;BIT 5, (1) = BANCO 1
+                      00025         
+                      00026 ;++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                      00027 
+Warning[207]: Found label after column 1. (TEMPO1)
+  0000000C            00028         TEMPO1          EQU                     0X0C
+Warning[207]: Found label after column 1. (TEMPO2)
+  0000000D            00029         TEMPO2          EQU                     0X0D
+                      00030         
+                      00031 ;++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                      00032 
+0000                  00033         ORG                     0X00
+0000   2805           00034         GOTO            INICIO
+                      00035         
+MPASM  5.51                       AULA060.ASM   6-20-2023  12:58:51         PAGE  2
+AULA60 - WWHATCH DOG TIMER WDT
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0004                  00036         ORG                     0X04
+0004   0009           00037         RETFIE
+                      00038         
+                      00039 ;++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                      00040 
+0005                  00041 INICIO:
+                      00042         
+0005   1683           00043         BANCO1                                                                  ;PODERIA USAR: BANKSEL T
+                            RISB
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0006   0186           00044         CLRF            TRISB                                           ;PORT B COMO SAÍDA
+                      00045         
+                      00046         ;BCF                    INC_TIMER0                                      ;INCREMENTO DO TIMER 0 V
+                            IA OSCILADOR (T0CS<5>)
+                      00047         ;BSF                    BORDA                                           ;BORDA DE DESCIDA HIGH-T
+                            O-LOW
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0007   1581           00048         BSF                     PRESCALER                                       ;PRESCALER PARA WDT (PSA
+                            <3>)
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0008   1501           00049         BSF                     BIT_PS2                                         ;PS<2:0> PRESCALER 1:32 
+                            (32 * 18MS = 576MS)
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0009   1081           00050         BCF                     BIT_PS1                                         
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+000A   1401           00051         BSF                     BIT_PS0                                         
+                      00052         
+000B   1283           00053         BANCO0                                                                  ;PODERIA USAR: BANKSEL P
+                            ORTB
+000C   0186           00054         CLRF            PORTB
+                      00055 
+                      00056 
+                      00057 
+000D                  00058 LED1:
+000D   1786           00059         BSF                     PORTB, RB7
+000E   1306           00060         BCF                     PORTB, RB6
+000F   2017           00061         CALL            DELAY_500
+0010   0064           00062         CLRWDT                                                                  ;PARA EFEITO DE TESTES, 
+                            COMENTE ESTA LINHA E VEJA O uC RESETANDO A CADA 576MS                                           
+0011   2812           00063         GOTO            LED2                                    
+                      00064         
+0012                  00065 LED2:
+0012   1706           00066         BSF                     PORTB, RB6
+0013   1386           00067         BCF                     PORTB, RB7
+0014   2017           00068         CALL            DELAY_500
+0015   0064           00069         CLRWDT
+0016   280D           00070         GOTO            LED1    
+                      00071 
+                      00072 
+                      00073         
+0017                  00074 DELAY_500:                                                                      ;APROXIMADAMENTE 500MS
+0017   30F9           00075         MOVLW           D'249'
+0018   008C           00076         MOVWF           TEMPO1
+MPASM  5.51                       AULA060.ASM   6-20-2023  12:58:51         PAGE  3
+AULA60 - WWHATCH DOG TIMER WDT
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0019                  00077 M2
+0019   30FA           00078         MOVLW           D'250'
+001A   008D           00079         MOVWF           TEMPO2
+001B                  00080 M1      
+001B   0000           00081         NOP
+001C   0000           00082         NOP
+001D   0000           00083         NOP
+001E   0000           00084         NOP
+001F   0000           00085         NOP
+                      00086         
+Message[305]: Using default destination of 1 (file).
+0020   0B8D           00087         DECFSZ          TEMPO2
+0021   281B           00088         GOTO            M1
+                      00089         
+Message[305]: Using default destination of 1 (file).
+0022   0B8C           00090         DECFSZ          TEMPO1
+0023   2819           00091         GOTO            M2
+                      00092         
+0024   0008           00093         RETURN
+                      00094                 
+                      00095         END
+MPASM  5.51                       AULA060.ASM   6-20-2023  12:58:51         PAGE  4
+AULA60 - WWHATCH DOG TIMER WDT
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+BANCO0                            BCF             STATUS, RP0
+BANCO1                            BSF             STATUS, RP0
+BIT_PS0                           OPTION_REG, PS0
+BIT_PS1                           OPTION_REG, PS1
+BIT_PS2                           OPTION_REG, PS2
+C                                 00000000
+DC                                00000001
+DELAY_500                         00000017
+EEADR                             00000009
+EECON1                            00000088
+EECON2                            00000089
+EEDATA                            00000008
+EEIE                              00000006
+EEIF                              00000004
+F                                 00000001
+FSR                               00000004
+GIE                               00000007
+INDF                              00000000
+INICIO                            00000005
+INTCON                            0000000B
+INTE                              00000004
+INTEDG                            00000006
+INTF                              00000001
+IRP                               00000007
+LED1                              0000000D
+LED2                              00000012
+M1                                0000001B
+M2                                00000019
+NOT_PD                            00000003
+NOT_RBPU                          00000007
+NOT_TO                            00000004
+OPTION_REG                        00000081
+PCL                               00000002
+PCLATH                            0000000A
+PORTA                             00000005
+PORTB                             00000006
+PRESCALER                         OPTION_REG, PSA
+PS0                               00000000
+PS1                               00000001
+PS2                               00000002
+PSA                               00000003
+RA0                               00000000
+RA1                               00000001
+RA2                               00000002
+RA3                               00000003
+RA4                               00000004
+RB0                               00000000
+RB1                               00000001
+RB2                               00000002
+RB3                               00000003
+RB4                               00000004
+RB5                               00000005
+RB6                               00000006
+MPASM  5.51                       AULA060.ASM   6-20-2023  12:58:51         PAGE  5
+AULA60 - WWHATCH DOG TIMER WDT
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+RB7                               00000007
+RBIE                              00000003
+RBIF                              00000000
+RD                                00000000
+RP0                               00000005
+RP1                               00000006
+STATUS                            00000003
+T0CS                              00000005
+T0IE                              00000005
+T0IF                              00000002
+T0SE                              00000004
+TEMPO1                            0000000C
+TEMPO2                            0000000D
+TMR0                              00000001
+TMR0IE                            00000005
+TMR0IF                            00000002
+TRISA                             00000085
+TRISA0                            00000000
+TRISA1                            00000001
+TRISA2                            00000002
+TRISA3                            00000003
+TRISA4                            00000004
+TRISB                             00000086
+TRISB0                            00000000
+TRISB1                            00000001
+TRISB2                            00000002
+TRISB3                            00000003
+TRISB4                            00000004
+TRISB5                            00000005
+TRISB6                            00000006
+TRISB7                            00000007
+W                                 00000000
+WR                                00000001
+WREN                              00000002
+WRERR                             00000003
+Z                                 00000002
+_CONFIG                           00002007
+_CP_OFF                           00003FFF
+_CP_ON                            0000000F
+_DEVID1                           00002006
+_FOSC_EXTRC                       00003FFF
+_FOSC_HS                          00003FFE
+_FOSC_LP                          00003FFC
+_FOSC_XT                          00003FFD
+_HS_OSC                           00003FFE
+_IDLOC0                           00002000
+_IDLOC1                           00002001
+_IDLOC2                           00002002
+_IDLOC3                           00002003
+_LP_OSC                           00003FFC
+_PWRTE_OFF                        00003FFF
+_PWRTE_ON                         00003FF7
+_RC_OSC                           00003FFF
+MPASM  5.51                       AULA060.ASM   6-20-2023  12:58:51         PAGE  6
+AULA60 - WWHATCH DOG TIMER WDT
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_WDTE_OFF                         00003FFB
+_WDTE_ON                          00003FFF
+_WDT_OFF                          00003FFB
+_WDT_ON                           00003FFF
+_XT_OSC                           00003FFD
+__16F84A                          00000001
+__DEBUG                           1
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+0000 : X---XXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXX----------- ----------------
+2000 : -------X-------- ---------------- ---------------- ----------------
+
+All other memory blocks unused.
+
+Program Memory Words Used:    34
+Program Memory Words Free:   990
+
+
+Errors   :     0
+Warnings :     2 reported,     0 suppressed
+Messages :     7 reported,     0 suppressed
+
+

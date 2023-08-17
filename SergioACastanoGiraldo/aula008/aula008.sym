@@ -1,0 +1,71 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+004-005 @WRITE_PROGRAM_MEMORY8.P2
+006     PORTB
+007     PORTC
+015     CCP_1_LOW
+015     CCP_1
+016     CCP_1_HIGH
+01B     CCP_2_LOW
+01B     CCP_2
+01C     CCP_2_HIGH
+020     CONT
+021-022 CONTRET
+023     @TRIS_C
+024     MOSTRAR.UNI
+025     MOSTRAR.DEC
+026     @delay_ms1.P1
+026     @DIV88.P2
+027     @DIV88.P1
+028     @DIV88.@SCRATCH1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+107.6   C1OUT
+108.6   C2OUT
+10D-10E @READ_PROGRAM_MEMORY8.P1
+10D-10E @WRITE_PROGRAM_MEMORY8.P2
+
+ROM Allocation:
+000004  display.call
+000008  display.data
+000012  @DIV88
+000027  @delay_ms1
+00003C  RET1SEG
+000046  MOSTRAR
+00006E  MAIN
+00006E  @cinit1
+00007F  @cinit2
+
+Project Directory:
+    C:\Users\ABMS-Telecom\Documents\GitHub\Cursos_uC_PIC_Linguagem_C\SergioACastanoGiraldo\aula008\
+
+Project Files:
+    aula008.c                                               [21-jul-23 07:38  CRC=BA8CF929]
+    ..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F887.h [21-jun-13 16:04  CRC=9FD133B5]
+
+Source signature=FA2F6093
+
+Units:
+    aula008 (main)
+
+Compiler Settings:
+    Processor:      PIC16F887
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   aula008.xsym
+    Errors:      aula008.err
+    Ext Symbols: aula008.esym
+    INHX8:       aula008.hex
+    Symbols:     aula008.sym
+    List:        aula008.lst
+    Debug/COFF:  aula008.cof
+    Project:     aula008.ccspjt
+    Call Tree:   aula008.tre
+    Statistics:  aula008.STA

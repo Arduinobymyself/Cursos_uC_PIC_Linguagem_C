@@ -1,0 +1,46 @@
+MPLINK 4.49, Linker
+Linker Map File - Created Sun Jun 04 14:24:50 2023
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x000000
+                   .org_1       code   0x000000    program   0x000002
+                   .org_2       code   0x000004    program   0x000030
+.config_2007_ROTINATEMPO3LOOP.O       code   0x002007    program   0x000002
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x000000      
+                            0x000004    0x00001b      
+                            0x002007    0x002007      
+            26 out of 1094 program addresses used, program memory utilization is 2%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                    DELAY   0x00000a    program     static C:\Users\ABMS-Telecom\Documents\GitHub\Cursos_uC_PIC_Linguagem_C\ALT - PIC ASSEMBLER\Arquivos ASM\RotinaTempo3Loop\RotinaTempo3Loop.asm
+                   DENOVO   0x000008    program     static C:\Users\ABMS-Telecom\Documents\GitHub\Cursos_uC_PIC_Linguagem_C\ALT - PIC ASSEMBLER\Arquivos ASM\RotinaTempo3Loop\RotinaTempo3Loop.asm
+                   INICIO   0x000005    program     static C:\Users\ABMS-Telecom\Documents\GitHub\Cursos_uC_PIC_Linguagem_C\ALT - PIC ASSEMBLER\Arquivos ASM\RotinaTempo3Loop\RotinaTempo3Loop.asm
+                       M1   0x000010    program     static C:\Users\ABMS-Telecom\Documents\GitHub\Cursos_uC_PIC_Linguagem_C\ALT - PIC ASSEMBLER\Arquivos ASM\RotinaTempo3Loop\RotinaTempo3Loop.asm
+                       M2   0x00000e    program     static C:\Users\ABMS-Telecom\Documents\GitHub\Cursos_uC_PIC_Linguagem_C\ALT - PIC ASSEMBLER\Arquivos ASM\RotinaTempo3Loop\RotinaTempo3Loop.asm
+                       M3   0x00000c    program     static C:\Users\ABMS-Telecom\Documents\GitHub\Cursos_uC_PIC_Linguagem_C\ALT - PIC ASSEMBLER\Arquivos ASM\RotinaTempo3Loop\RotinaTempo3Loop.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                   INICIO   0x000005    program     static C:\Users\ABMS-Telecom\Documents\GitHub\Cursos_uC_PIC_Linguagem_C\ALT - PIC ASSEMBLER\Arquivos ASM\RotinaTempo3Loop\RotinaTempo3Loop.asm
+                   DENOVO   0x000008    program     static C:\Users\ABMS-Telecom\Documents\GitHub\Cursos_uC_PIC_Linguagem_C\ALT - PIC ASSEMBLER\Arquivos ASM\RotinaTempo3Loop\RotinaTempo3Loop.asm
+                    DELAY   0x00000a    program     static C:\Users\ABMS-Telecom\Documents\GitHub\Cursos_uC_PIC_Linguagem_C\ALT - PIC ASSEMBLER\Arquivos ASM\RotinaTempo3Loop\RotinaTempo3Loop.asm
+                       M3   0x00000c    program     static C:\Users\ABMS-Telecom\Documents\GitHub\Cursos_uC_PIC_Linguagem_C\ALT - PIC ASSEMBLER\Arquivos ASM\RotinaTempo3Loop\RotinaTempo3Loop.asm
+                       M2   0x00000e    program     static C:\Users\ABMS-Telecom\Documents\GitHub\Cursos_uC_PIC_Linguagem_C\ALT - PIC ASSEMBLER\Arquivos ASM\RotinaTempo3Loop\RotinaTempo3Loop.asm
+                       M1   0x000010    program     static C:\Users\ABMS-Telecom\Documents\GitHub\Cursos_uC_PIC_Linguagem_C\ALT - PIC ASSEMBLER\Arquivos ASM\RotinaTempo3Loop\RotinaTempo3Loop.asm
+
+

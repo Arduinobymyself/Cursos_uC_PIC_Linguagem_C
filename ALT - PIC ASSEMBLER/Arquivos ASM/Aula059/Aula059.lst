@@ -1,0 +1,283 @@
+MPASM  5.51                       AULA059.ASM   6-20-2023  12:19:32         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001         TITLE           "AULA59- INCREMENTO POR TIMER 0"
+                      00002         ;INVERTE O PORT B A CADA 500MS
+                      00003         PROCESSOR       16F84A
+                      00004         #INCLUDE        <P16F84A.INC>
+                      00001         LIST
+                      00002 
+                      00003 ;==========================================================================
+                      00004 ;  MPASM PIC16F84A processor include
+                      00005 ; 
+                      00006 ;  (c) Copyright 1999-2013 Microchip Technology, All rights reserved
+                      00007 ;==========================================================================
+                      00008 
+                      00208         LIST
+2007   3FF1           00005         __CONFIG        _XT_OSC & _CP_OFF & _WDT_OFF & _PWRTE_ON
+                      00006 
+                      00007 ;++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                      00008 
+                      00009         ;REGISTRADORES BANCO 0
+                      00010         #DEFINE         FLAG            INTCON, T0IF                    ; BIT 2, FLAG OVERFLOW (1) DA IN
+                            TERRUPÇÃO POR TIMER 0
+                      00011         #DEFINE         INT_GLOBAL      INTCON, GIE                             ; BIT 7, (1) HABILITA IN
+                            TERRUPÇÃO GLOBAL
+                      00012         #DEFINE         INT_TMR0        INTCON, T0IE                    ; BIT 5, (1) HABILITA INTERRUPÇÃ
+                            O POR TIMER 0
+                      00013         
+                      00014         ;REGISTRADORES BANCO 1
+                      00015         #DEFINE         INC_TIMER0      OPTION_REG, T0CS                ; BIT 5, TMR0 POR CICLO DE MÁQUI
+                            NA (0) OU RA4 (1)
+                      00016         #DEFINE         BORDA           OPTION_REG, T0SE                ; BIT 4, BORDA DESCIDA (1) OU BO
+                            RDA SUBIDA (0)
+                      00017         #DEFINE         PRESCALER       OPTION_REG, PSA                 ; BIT 3, PRESCALER PARA O TMR0 (
+                            0) OU WDT (1)
+                      00018         #DEFINE         BIT_PS2         OPTION_REG, PS2                 ; BIT 2, <2:0>, TAXA DO PRESCALE
+                            R
+                      00019         #DEFINE         BIT_PS1         OPTION_REG, PS1                 ; BIT 1
+                      00020         #DEFINE         BIT_PS0         OPTION_REG, PS0                 ; BIT 0
+                      00021         
+                      00022         ;GERAL
+                      00023         #DEFINE         BANCO0          BCF             STATUS, RP0             ;BIT 5, (0) = BANCO 0
+                      00024         #DEFINE         BANCO1          BSF             STATUS, RP0             ;BIT 5, (1) = BANCO 1
+                      00025         
+                      00026 ;++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                      00027 
+Warning[207]: Found label after column 1. (TEMPO)
+  0000000C            00028         TEMPO           EQU                     0X0C
+                      00029 
+                      00030 ;++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                      00031 
+0000                  00032         ORG                     0X00
+0000   280F           00033         GOTO            INICIO
+                      00034         
+0004                  00035         ORG                     0X04
+                      00036         
+MPASM  5.51                       AULA059.ASM   6-20-2023  12:19:32         PAGE  2
+AULA59- INCREMENTO POR TIMER 0
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0004   3008           00037         MOVLW           D'8'                                            
+0005   008C           00038         MOVWF           TEMPO                                           ;CARREGA REGISTRADOR AUXILIAR DE
+                             TEMPORIZAÇÃO
+0006                  00039 M2:
+0006   110B           00040         BCF                     FLAG                                            ;LIMPA FLAG T0IF
+0007   300C           00041         MOVLW           D'12'
+0008   0081           00042         MOVWF           TMR0                                            ;INICIA REGISTRADOR TMR0
+0009                  00043 M1:
+0009   1D0B           00044         BTFSS           FLAG                                            ;TESTA FLAG SE HOUVE ESTOURO DO 
+                            TIMER 0
+000A   2809           00045         GOTO            M1                                                      ;NÃO, VOLTA A TESTAR A F
+                            LAG
+Message[305]: Using default destination of 1 (file).
+000B   0B8C           00046         DECFSZ          TEMPO                                           ;SIM, DECREMENTA REGISTRADOR AUX
+                            ILIAR DE TEMPORIZAÇÃO E TESTA SE CHEGOU A ZERO
+000C   2806           00047         GOTO            M2                                                      ;NÃO, VAOLTA A CONTAR   
+Message[305]: Using default destination of 1 (file).
+000D   0986           00048         COMF            PORTB                                           ;SIM, INVERTE O PORT B
+                      00049         
+000E   0009           00050         RETFIE
+                      00051         
+                      00052 ;++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                      00053 
+000F                  00054 INICIO:
+                      00055         
+000F   1683           00056         BANCO1                                                                  ;PODERIA USAR: BANKSEL T
+                            RISB
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0010   0186           00057         CLRF            TRISB                                           ;PORT B COMO SAÍDA
+                      00058         
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0011   1281           00059         BCF                     INC_TIMER0                                      ;INCREMENTO DO TIMER 0 V
+                            IA OSCILADOR (T0CS<5>)
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0012   1601           00060         BSF                     BORDA                                           ;BORDA DE DESCIDA HIGH-T
+                            O-LOW
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0013   1181           00061         BCF                     PRESCALER                                       ;PRESCALER PARA TMR0 (PS
+                            A<3>)
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0014   1501           00062         BSF                     BIT_PS2                                         ;PS<2:0> PRESCALER 1:256
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0015   1481           00063         BSF                     BIT_PS1                                         
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0016   1401           00064         BSF                     BIT_PS0                                         
+                      00065         
+0017   1283           00066         BANCO0                                                                  ;PODERIA USAR: BANKSEL P
+                            ORTB
+0018   0186           00067         CLRF            PORTB
+0019   178B           00068         BSF                     INT_GLOBAL                                      ;HABILITA INTERRUPÇÃO GL
+                            OBAL
+001A   168B           00069         BSF                     INT_TMR0                                        ;HABILITA INTERRUPÇÃO PO
+                            R TMR0
+MPASM  5.51                       AULA059.ASM   6-20-2023  12:19:32         PAGE  3
+AULA59- INCREMENTO POR TIMER 0
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+001B   0181           00070         CLRF            TMR0
+                      00071 
+                      00072 
+001C                  00073 LOOP:
+001C   281C           00074         GOTO            LOOP                                            ;EXECUTA NOVAMENTE EM LOOOP
+                      00075 
+                      00076                 
+                      00077         END
+MPASM  5.51                       AULA059.ASM   6-20-2023  12:19:32         PAGE  4
+AULA59- INCREMENTO POR TIMER 0
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+BANCO0                            BCF             STATUS, RP0
+BANCO1                            BSF             STATUS, RP0
+BIT_PS0                           OPTION_REG, PS0
+BIT_PS1                           OPTION_REG, PS1
+BIT_PS2                           OPTION_REG, PS2
+BORDA                             OPTION_REG, T0SE
+C                                 00000000
+DC                                00000001
+EEADR                             00000009
+EECON1                            00000088
+EECON2                            00000089
+EEDATA                            00000008
+EEIE                              00000006
+EEIF                              00000004
+F                                 00000001
+FLAG                              INTCON, T0IF
+FSR                               00000004
+GIE                               00000007
+INC_TIMER0                        OPTION_REG, T0CS
+INDF                              00000000
+INICIO                            0000000F
+INTCON                            0000000B
+INTE                              00000004
+INTEDG                            00000006
+INTF                              00000001
+INT_GLOBAL                        INTCON, GIE
+INT_TMR0                          INTCON, T0IE
+IRP                               00000007
+LOOP                              0000001C
+M1                                00000009
+M2                                00000006
+NOT_PD                            00000003
+NOT_RBPU                          00000007
+NOT_TO                            00000004
+OPTION_REG                        00000081
+PCL                               00000002
+PCLATH                            0000000A
+PORTA                             00000005
+PORTB                             00000006
+PRESCALER                         OPTION_REG, PSA
+PS0                               00000000
+PS1                               00000001
+PS2                               00000002
+PSA                               00000003
+RA0                               00000000
+RA1                               00000001
+RA2                               00000002
+RA3                               00000003
+RA4                               00000004
+RB0                               00000000
+RB1                               00000001
+RB2                               00000002
+RB3                               00000003
+MPASM  5.51                       AULA059.ASM   6-20-2023  12:19:32         PAGE  5
+AULA59- INCREMENTO POR TIMER 0
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+RB4                               00000004
+RB5                               00000005
+RB6                               00000006
+RB7                               00000007
+RBIE                              00000003
+RBIF                              00000000
+RD                                00000000
+RP0                               00000005
+RP1                               00000006
+STATUS                            00000003
+T0CS                              00000005
+T0IE                              00000005
+T0IF                              00000002
+T0SE                              00000004
+TEMPO                             0000000C
+TMR0                              00000001
+TMR0IE                            00000005
+TMR0IF                            00000002
+TRISA                             00000085
+TRISA0                            00000000
+TRISA1                            00000001
+TRISA2                            00000002
+TRISA3                            00000003
+TRISA4                            00000004
+TRISB                             00000086
+TRISB0                            00000000
+TRISB1                            00000001
+TRISB2                            00000002
+TRISB3                            00000003
+TRISB4                            00000004
+TRISB5                            00000005
+TRISB6                            00000006
+TRISB7                            00000007
+W                                 00000000
+WR                                00000001
+WREN                              00000002
+WRERR                             00000003
+Z                                 00000002
+_CONFIG                           00002007
+_CP_OFF                           00003FFF
+_CP_ON                            0000000F
+_DEVID1                           00002006
+_FOSC_EXTRC                       00003FFF
+_FOSC_HS                          00003FFE
+_FOSC_LP                          00003FFC
+_FOSC_XT                          00003FFD
+_HS_OSC                           00003FFE
+_IDLOC0                           00002000
+_IDLOC1                           00002001
+_IDLOC2                           00002002
+_IDLOC3                           00002003
+_LP_OSC                           00003FFC
+_PWRTE_OFF                        00003FFF
+MPASM  5.51                       AULA059.ASM   6-20-2023  12:19:32         PAGE  6
+AULA59- INCREMENTO POR TIMER 0
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_PWRTE_ON                         00003FF7
+_RC_OSC                           00003FFF
+_WDTE_OFF                         00003FFB
+_WDTE_ON                          00003FFF
+_WDT_OFF                          00003FFB
+_WDT_ON                           00003FFF
+_XT_OSC                           00003FFD
+__16F84A                          00000001
+__DEBUG                           1
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+0000 : X---XXXXXXXXXXXX XXXXXXXXXXXXX--- ---------------- ----------------
+2000 : -------X-------- ---------------- ---------------- ----------------
+
+All other memory blocks unused.
+
+Program Memory Words Used:    26
+Program Memory Words Free:   998
+
+
+Errors   :     0
+Warnings :     1 reported,     0 suppressed
+Messages :     9 reported,     0 suppressed
+
+

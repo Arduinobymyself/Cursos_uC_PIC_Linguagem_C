@@ -1,0 +1,288 @@
+MPASM  5.51                       AULA066.ASM   6-21-2023  9:25:45         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001         TITLE           "AULA66 - ESCRITA NA MEMÓRIA EEPROM"
+                      00002         
+                      00003         PROCESSOR       16F84A
+                      00004         #INCLUDE        <P16F84A.INC>
+                      00001         LIST
+                      00002 
+                      00003 ;==========================================================================
+                      00004 ;  MPASM PIC16F84A processor include
+                      00005 ; 
+                      00006 ;  (c) Copyright 1999-2013 Microchip Technology, All rights reserved
+                      00007 ;==========================================================================
+                      00008 
+                      00208         LIST
+2007   3FF1           00005         __CONFIG        _XT_OSC & _CP_OFF & _WDT_OFF & _PWRTE_ON
+                      00006 
+                      00007 ;++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                      00008 
+                      00009         ;REGISTRADORES BANCO 0
+                      00010         ;#DEFINE                FLAG            INTCON, T0IF                    ; BIT 2, FLAG OVERFLOW (
+                            1) DA INTERRUPÇÃO POR TIMER 0
+                      00011         #DEFINE                 INT_GLOBAL      INTCON, GIE                             ; BIT 7, (1) HAB
+                            ILITA INTERRUPÇÃO GLOBAL
+                      00012         ;#DEFINE                INT_TMR0        INTCON, T0IE                    ; BIT 5, (1) HABILITA IN
+                            TERRUPÇÃO POR TIMER 0
+                      00013         
+                      00014         ;REGISTRADORES BANCO 1
+                      00015         ;#DEFINE                INC_TIMER0      OPTION_REG, T0CS                ; BIT 5, TMR0 POR CICLO 
+                            DE MÁQUINA (0) OU RA4 (1)
+                      00016         ;#DEFINE                BORDA           OPTION_REG, T0SE                ; BIT 4, BORDA DESCIDA (
+                            1) OU BORDA SUBIDA (0)
+                      00017         ;#DEFINE                PRESCALER       OPTION_REG, PSA                 ; BIT 3, PRESCALER PARA 
+                            O TMR0 (0) OU WDT (1)
+                      00018         ;#DEFINE                BIT_PS2         OPTION_REG, PS2                 ; BIT 2, <2:0>, TAXA DO 
+                            PRESCALER
+                      00019         ;#DEFINE                BIT_PS1         OPTION_REG, PS1                 ; BIT 1
+                      00020         ;#DEFINE                BIT_PS0         OPTION_REG, PS0                 ; BIT 0
+                      00021         
+                      00022         ;GERAL
+                      00023         #DEFINE         BANCO0          BCF             STATUS, RP0             ;BIT 5, (0) = BANCO 0
+                      00024         #DEFINE         BANCO1          BSF             STATUS, RP0             ;BIT 5, (1) = BANCO 1
+                      00025         
+                      00026 ;++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                      00027         CBLOCK          0X0C
+  0000000C            00028         ENDERECO        
+  0000000D            00029         TEMPO1          
+  0000000E            00030         TEMPO2
+  0000000F            00031         TEMPO3
+                      00032         ENDC            
+                      00033         
+                      00034 ;++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                      00035 
+0000                  00036         ORG                     0X00
+0000   2805           00037         GOTO            INICIO
+MPASM  5.51                       AULA066.ASM   6-21-2023  9:25:45         PAGE  2
+AULA66 - ESCRITA NA MEMÓRIA EEPROM
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00038         
+0004                  00039         ORG                     0X04
+0004   0009           00040         RETFIE
+                      00041         
+                      00042 ;++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                      00043 
+0005                  00044 INICIO:
+                      00045         
+0005   1283           00046         BANCO0
+0006   018C           00047         CLRF            ENDERECO                                        ;ENDERECO = 0X00
+                      00048         
+0007                  00049 LOOP:
+0007   080C           00050         MOVF            ENDERECO, W                                     ;W = ENDERECO
+0008   0089           00051         MOVWF           EEADR                                           ;EEADR = W (ENDERECO)
+0009   30A0           00052         MOVLW           0XA0                                            ;W = 0XAB
+000A   0088           00053         MOVWF           EEDATA                                          ;EEDATA = W (0XAB)
+                      00054         
+000B   1683           00055         BANCO1
+000C   138B           00056         BCF                     INT_GLOBAL                                      ;DESLIGA CHAVE GERAL DE 
+                            INTERRUPÇÕES DURANTE A ESCRITA
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+000D   1508           00057         BSF                     EECON1, WREN                            ;LIGA A CHAVE DE ESCRITA NA EEPR
+                            OM
+000E   3055           00058         MOVLW           0X55                                            ;W = 0X55
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+000F   0089           00059         MOVWF           EECON2                                          ;EECON2 = 0X55
+0010   30AA           00060         MOVLW           0XAA                                            ;W = 0XAA
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0011   0089           00061         MOVWF           EECON2                                          ;EECON2 = 0XAA
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0012   1488           00062         BSF                     EECON1, WR                                      ;INICIA A ESCRITA NA EEP
+                            ROM
+0013   178B           00063         BSF                     INT_GLOBAL                                      ;LIGA A CHAVE GERAL DE I
+                            NTERRUPÇÕES
+0014   2018           00064         CALL            DELAY_5MS
+                      00065         
+                      00066         
+                      00067         
+Message[305]: Using default destination of 1 (file).
+0015   0A8C           00068         INCF            ENDERECO                                        ;INCREMENTA ENDERECO
+0016   1283           00069         BANCO0
+0017   2807           00070         GOTO            LOOP                                            ;NOVA ESCRITA NO NOVO ENDERECO
+                      00071 
+                      00072 
+                      00073         
+0018                  00074 DELAY_5MS:                                                                      ;APROXIMADAMENTE 500MS
+0018   3005           00075         MOVLW           D'5'
+0019   008D           00076         MOVWF           TEMPO1
+001A                  00077 M3:
+001A   30FA           00078         MOVLW           D'250'
+001B   008E           00079         MOVWF           TEMPO2
+001C                  00080 M2:
+001C   008F           00081         MOVWF           TEMPO3
+MPASM  5.51                       AULA066.ASM   6-21-2023  9:25:45         PAGE  3
+AULA66 - ESCRITA NA MEMÓRIA EEPROM
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+001D                  00082 M1:     
+Message[305]: Using default destination of 1 (file).
+001D   0B8F           00083         DECFSZ          TEMPO3  
+001E   281D           00084         GOTO            M1
+                      00085         
+Message[305]: Using default destination of 1 (file).
+001F   0B8E           00086         DECFSZ          TEMPO2
+0020   281C           00087         GOTO            M2
+                      00088         
+Message[305]: Using default destination of 1 (file).
+0021   0B8D           00089         DECFSZ          TEMPO1
+0022   281A           00090         GOTO            M3
+                      00091         
+0023   0008           00092         RETURN
+                      00093                 
+                      00094         END
+MPASM  5.51                       AULA066.ASM   6-21-2023  9:25:45         PAGE  4
+AULA66 - ESCRITA NA MEMÓRIA EEPROM
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+BANCO0                            BCF             STATUS, RP0
+BANCO1                            BSF             STATUS, RP0
+C                                 00000000
+DC                                00000001
+DELAY_5MS                         00000018
+EEADR                             00000009
+EECON1                            00000088
+EECON2                            00000089
+EEDATA                            00000008
+EEIE                              00000006
+EEIF                              00000004
+ENDERECO                          0000000C
+F                                 00000001
+FSR                               00000004
+GIE                               00000007
+INDF                              00000000
+INICIO                            00000005
+INTCON                            0000000B
+INTE                              00000004
+INTEDG                            00000006
+INTF                              00000001
+INT_GLOBAL                        INTCON, GIE
+IRP                               00000007
+LOOP                              00000007
+M1                                0000001D
+M2                                0000001C
+M3                                0000001A
+NOT_PD                            00000003
+NOT_RBPU                          00000007
+NOT_TO                            00000004
+OPTION_REG                        00000081
+PCL                               00000002
+PCLATH                            0000000A
+PORTA                             00000005
+PORTB                             00000006
+PS0                               00000000
+PS1                               00000001
+PS2                               00000002
+PSA                               00000003
+RA0                               00000000
+RA1                               00000001
+RA2                               00000002
+RA3                               00000003
+RA4                               00000004
+RB0                               00000000
+RB1                               00000001
+RB2                               00000002
+RB3                               00000003
+RB4                               00000004
+RB5                               00000005
+RB6                               00000006
+RB7                               00000007
+RBIE                              00000003
+MPASM  5.51                       AULA066.ASM   6-21-2023  9:25:45         PAGE  5
+AULA66 - ESCRITA NA MEMÓRIA EEPROM
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+RBIF                              00000000
+RD                                00000000
+RP0                               00000005
+RP1                               00000006
+STATUS                            00000003
+T0CS                              00000005
+T0IE                              00000005
+T0IF                              00000002
+T0SE                              00000004
+TEMPO1                            0000000D
+TEMPO2                            0000000E
+TEMPO3                            0000000F
+TMR0                              00000001
+TMR0IE                            00000005
+TMR0IF                            00000002
+TRISA                             00000085
+TRISA0                            00000000
+TRISA1                            00000001
+TRISA2                            00000002
+TRISA3                            00000003
+TRISA4                            00000004
+TRISB                             00000086
+TRISB0                            00000000
+TRISB1                            00000001
+TRISB2                            00000002
+TRISB3                            00000003
+TRISB4                            00000004
+TRISB5                            00000005
+TRISB6                            00000006
+TRISB7                            00000007
+W                                 00000000
+WR                                00000001
+WREN                              00000002
+WRERR                             00000003
+Z                                 00000002
+_CONFIG                           00002007
+_CP_OFF                           00003FFF
+_CP_ON                            0000000F
+_DEVID1                           00002006
+_FOSC_EXTRC                       00003FFF
+_FOSC_HS                          00003FFE
+_FOSC_LP                          00003FFC
+_FOSC_XT                          00003FFD
+_HS_OSC                           00003FFE
+_IDLOC0                           00002000
+_IDLOC1                           00002001
+_IDLOC2                           00002002
+_IDLOC3                           00002003
+_LP_OSC                           00003FFC
+_PWRTE_OFF                        00003FFF
+_PWRTE_ON                         00003FF7
+_RC_OSC                           00003FFF
+_WDTE_OFF                         00003FFB
+MPASM  5.51                       AULA066.ASM   6-21-2023  9:25:45         PAGE  6
+AULA66 - ESCRITA NA MEMÓRIA EEPROM
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_WDTE_ON                          00003FFF
+_WDT_OFF                          00003FFB
+_WDT_ON                           00003FFF
+_XT_OSC                           00003FFD
+__16F84A                          00000001
+__DEBUG                           1
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+0000 : X---XXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXX------------ ----------------
+2000 : -------X-------- ---------------- ---------------- ----------------
+
+All other memory blocks unused.
+
+Program Memory Words Used:    33
+Program Memory Words Free:   991
+
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :     8 reported,     0 suppressed
+
+

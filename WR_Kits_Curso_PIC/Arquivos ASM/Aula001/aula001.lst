@@ -1,0 +1,221 @@
+MPASM  5.51                       AULA001.ASM   6-4-2023  16:34:57         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 ;+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                      00002 ; Curso: Assembly para Microcontroladores PIC 
+                      00003 ; Conteúdo: Aula 001, Aula002, Aula003, Aula004, Aula005
+                      00004 ;
+                      00005 ; MCU: PIC16F84A clock: 4MHz
+                      00006 ;
+                      00007 ; Autor: Marcelo Moraes
+                      00008 ; Data: Junho 2023
+                      00009 ;+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                      00010 
+                      00011 
+                      00012 ;+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                      00013                         list p=16f84a                   ;uC utilizado
+                      00014                         
+                      00015                         
+                      00016 ;+++++ inclusão de arquivos +++++
+                      00017                         #include <p16f84a.inc>          ;incluindo o arquivo do uC
+                      00001         LIST
+                      00002 
+                      00003 ;==========================================================================
+                      00004 ;  MPASM PIC16F84A processor include
+                      00005 ; 
+                      00006 ;  (c) Copyright 1999-2013 Microchip Technology, All rights reserved
+                      00007 ;==========================================================================
+                      00008 
+                      00208         LIST
+                      00018                         
+                      00019 ;+++++ fuse bits +++++
+                      00020                         ;clock 4MHz, watch dog disabled, power up timer disabled, code protection disabl
+                            ed
+2007   3FF1           00021                         __config _XT_OSC & _WDT_OFF & _PWRTE_ON & _CP_OFF
+                      00022                         
+                      00023 ;+++++ paginação de memória +++++
+                      00024                         #define bank0 bcf STATUS, RP0   ;cria mnemônico para o banco 0 de memória
+                      00025                         #define bank1 bsf STATUS, RP0   ;cria mnemônico para o banco 1 de memória
+                      00026                         
+                      00027 ;+++++ entradas e saídas +++++
+                      00028                         #define button1 PORTB, RB0              ;botão 1 ligado em RB0
+                      00029                         #define LED1 PORTB, RB7                 ;LED 1 ligado em RB7
+                      00030                         
+                      00031 ;+++++ vetor de reset +++++
+0000                  00032                         org H'0000'                                             ;origem do programa
+0000   2805           00033                         goto inicio                                             ;desvia da interrupção
+                      00034 
+                      00035 ;+++++ vetor de interrupção +++++
+0004                  00036                         org H'0004'                                             ;todas as interrupções a
+                            pontam para este endereço
+0004   0009           00037                         retfie                                                  ;retorna da interrupção
+                      00038 
+                      00039 ;+++++ programa principal +++++
+0005                  00040 inicio:
+0005   1683           00041                         bank1                                                   ;seleciona banco 1 de me
+                            mória
+MPASM  5.51                       AULA001.ASM   6-4-2023  16:34:57         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0006   301F           00042                         movlw H'1F'                                             ;W = B'00011111'
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0007   0085           00043                         movwf TRISA                                             ;todos os bits do PORT A
+                             como entrada
+0008   307F           00044                         movlw H'7F'                                             ;W = B'0111111'
+                      00045                         ;como padrão deixamos os pinos não utilizados configurados como entrada
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0009   0086           00046                         movwf TRISB                                             ;trisb recebe W (apenas 
+                            RB7 do PORT B como saída)
+000A   1283           00047                         bank0                                                   ;seleciona banco 0 de me
+                            ória
+000B   3080           00048                         movlw H'80'                                             ;W = B'10000000'
+000C   0086           00049                         movwf PORTB                                             ;RB7 inicia em nível alt
+                            o (high)
+                      00050                         
+000D   280D           00051                         goto $                                                  ;loop infinito
+                      00052                         
+                      00053                         
+                      00054                         end                                                             ;fim do programa
+                             principal 
+MPASM  5.51                       AULA001.ASM   6-4-2023  16:34:57         PAGE  3
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+C                                 00000000
+DC                                00000001
+EEADR                             00000009
+EECON1                            00000088
+EECON2                            00000089
+EEDATA                            00000008
+EEIE                              00000006
+EEIF                              00000004
+F                                 00000001
+FSR                               00000004
+GIE                               00000007
+INDF                              00000000
+INTCON                            0000000B
+INTE                              00000004
+INTEDG                            00000006
+INTF                              00000001
+IRP                               00000007
+LED1                              PORTB, RB7
+NOT_PD                            00000003
+NOT_RBPU                          00000007
+NOT_TO                            00000004
+OPTION_REG                        00000081
+PCL                               00000002
+PCLATH                            0000000A
+PORTA                             00000005
+PORTB                             00000006
+PS0                               00000000
+PS1                               00000001
+PS2                               00000002
+PSA                               00000003
+RA0                               00000000
+RA1                               00000001
+RA2                               00000002
+RA3                               00000003
+RA4                               00000004
+RB0                               00000000
+RB1                               00000001
+RB2                               00000002
+RB3                               00000003
+RB4                               00000004
+RB5                               00000005
+RB6                               00000006
+RB7                               00000007
+RBIE                              00000003
+RBIF                              00000000
+RD                                00000000
+RP0                               00000005
+RP1                               00000006
+STATUS                            00000003
+T0CS                              00000005
+T0IE                              00000005
+T0IF                              00000002
+T0SE                              00000004
+MPASM  5.51                       AULA001.ASM   6-4-2023  16:34:57         PAGE  4
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+TMR0                              00000001
+TMR0IE                            00000005
+TMR0IF                            00000002
+TRISA                             00000085
+TRISA0                            00000000
+TRISA1                            00000001
+TRISA2                            00000002
+TRISA3                            00000003
+TRISA4                            00000004
+TRISB                             00000086
+TRISB0                            00000000
+TRISB1                            00000001
+TRISB2                            00000002
+TRISB3                            00000003
+TRISB4                            00000004
+TRISB5                            00000005
+TRISB6                            00000006
+TRISB7                            00000007
+W                                 00000000
+WR                                00000001
+WREN                              00000002
+WRERR                             00000003
+Z                                 00000002
+_CONFIG                           00002007
+_CP_OFF                           00003FFF
+_CP_ON                            0000000F
+_DEVID1                           00002006
+_FOSC_EXTRC                       00003FFF
+_FOSC_HS                          00003FFE
+_FOSC_LP                          00003FFC
+_FOSC_XT                          00003FFD
+_HS_OSC                           00003FFE
+_IDLOC0                           00002000
+_IDLOC1                           00002001
+_IDLOC2                           00002002
+_IDLOC3                           00002003
+_LP_OSC                           00003FFC
+_PWRTE_OFF                        00003FFF
+_PWRTE_ON                         00003FF7
+_RC_OSC                           00003FFF
+_WDTE_OFF                         00003FFB
+_WDTE_ON                          00003FFF
+_WDT_OFF                          00003FFB
+_WDT_ON                           00003FFF
+_XT_OSC                           00003FFD
+__16F84A                          00000001
+__DEBUG                           1
+bank0                             bcf STATUS, RP0
+bank1                             bsf STATUS, RP0
+button1                           PORTB, RB0
+inicio                            00000005
+MPASM  5.51                       AULA001.ASM   6-4-2023  16:34:57         PAGE  5
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+
+0000 : X---XXXXXXXXXX-- ---------------- ---------------- ----------------
+2000 : -------X-------- ---------------- ---------------- ----------------
+
+All other memory blocks unused.
+
+Program Memory Words Used:    11
+Program Memory Words Free:  1013
+
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :     2 reported,     0 suppressed
+
+

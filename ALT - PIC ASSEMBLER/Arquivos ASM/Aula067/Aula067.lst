@@ -1,0 +1,292 @@
+MPASM  5.51                       AULA067.ASM   6-21-2023  14:38:50         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001         TITLE           "AULA67 - LEITURA DA MEMÓRIA EEPROM"
+                      00002         
+                      00003         PROCESSOR       16F84A
+                      00004         #INCLUDE        <P16F84A.INC>
+                      00001         LIST
+                      00002 
+                      00003 ;==========================================================================
+                      00004 ;  MPASM PIC16F84A processor include
+                      00005 ; 
+                      00006 ;  (c) Copyright 1999-2013 Microchip Technology, All rights reserved
+                      00007 ;==========================================================================
+                      00008 
+                      00208         LIST
+2007   3FF1           00005         __CONFIG        _XT_OSC & _CP_OFF & _WDT_OFF & _PWRTE_ON
+                      00006 
+                      00007 ;++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                      00008 
+                      00009         ;REGISTRADORES BANCO 0
+                      00010         
+                      00011         ;REGISTRADORES BANCO 1
+                      00012         
+                      00013         ;REGISTRADORES DE USO GERAL
+                      00014         #DEFINE         BANCO0          BCF             STATUS, RP0             ;BIT 5, (0) = BANCO 0
+                      00015         #DEFINE         BANCO1          BSF             STATUS, RP0             ;BIT 5, (1) = BANCO 1
+                      00016         
+                      00017 ;++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                      00018         CBLOCK          0X0C
+  0000000C            00019         ENDERECO        
+  0000000D            00020         VALOR
+  0000000E            00021         TEMPO1
+  0000000F            00022         TEMPO2
+  00000010            00023         TEMPO3
+                      00024         ENDC            
+                      00025         
+                      00026 ;++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                      00027 
+0000                  00028         ORG                     0X00
+0000   2805           00029         GOTO            INICIO
+                      00030         
+0004                  00031         ORG                     0X04
+0004   0009           00032         RETFIE
+                      00033         
+                      00034 ;++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                      00035 
+0005                  00036 INICIO:
+                      00037         
+0005   1283           00038         BANCO0
+0006   018C           00039         CLRF            ENDERECO                                        ;ENDERECO = 0X00
+0007   3001           00040         MOVLW           D'1'
+0008   008D           00041         MOVWF           VALOR
+                      00042         
+0009                  00043 LOOP:
+                      00044         ;+++++++++ ESCRITA +++++++++ 
+MPASM  5.51                       AULA067.ASM   6-21-2023  14:38:50         PAGE  2
+AULA67 - LEITURA DA MEMÓRIA EEPROM
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0009   080C           00045         MOVF            ENDERECO, W                                     ;W = ENDERECO (0X00)
+000A   0089           00046         MOVWF           EEADR                                           ;EEADR = W (ENDERECO)
+000B   080D           00047         MOVF            VALOR, W                                        ;W = VALOR (D'1')
+000C   0088           00048         MOVWF           EEDATA                                          ;EEDATA = W (0XAB)
+                      00049         
+000D   1683           00050         BANCO1
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+000E   0186           00051         CLRF            TRISB   
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+000F   1508           00052         BSF                     EECON1, WREN                            ;LIGA A CHAVE DE ESCRITA NA EEPR
+                            OM
+0010   3055           00053         MOVLW           0X55                                            ;W = 0X55
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0011   0089           00054         MOVWF           EECON2                                          ;EECON2 = 0X55
+0012   30AA           00055         MOVLW           0XAA                                            ;W = 0XAA
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0013   0089           00056         MOVWF           EECON2                                          ;EECON2 = 0XAA
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0014   1488           00057         BSF                     EECON1, WR                                      ;INICIA A ESCRITA NA EEP
+                            ROM
+                      00058         ;CALL           DELAY_5MS                                       ;ESPERA TEMPO MÍNIMO PARA GRAVAÇ
+                            ÃO NA EEPROM
+0015   0000           00059         NOP
+0016   0000           00060         NOP
+                      00061         
+                      00062         
+                      00063         ;+++++++++ LEITURA +++++++++ 
+                      00064         
+0017   1283           00065         BANCO0
+0018   080C           00066         MOVF            ENDERECO, W                                     ;W = ENDERECO (0X00)
+0019   0089           00067         MOVWF           EEADR                                           ;EEADR = W (ENDERECO)
+001A   1683           00068         BANCO1
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+001B   0188           00069         CLRF            EECON1                                          ;LIMPA REGISTRADOR EECON1
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+001C   1408           00070         BSF                     EECON1, RD                                      ;SETA BIT PARA LEITURA N
+                            A EEPROM
+001D   1283           00071         BANCO0
+001E   0808           00072         MOVF            EEDATA, W                                       ;W = EEDATA (VALOR)
+001F   0086           00073         MOVWF           PORTB                                           ;PORTB = VALOR (D'1')
+Message[305]: Using default destination of 1 (file).
+0020   0A8C           00074         INCF            ENDERECO                                        ;PRÓXIMO ENDEREÇO/DADO
+Message[305]: Using default destination of 1 (file).
+0021   0A8D           00075         INCF            VALOR                                           ;INCREMENTA O VALOR
+0022   2809           00076         GOTO            LOOP                                            ;VOLTA A ESCREVER/LER UM NOVO VA
+                            LOR NUM NOVO ENDEREÇO
+                      00077         
+                      00078 
+                      00079 
+                      00080         
+0023                  00081 DELAY_5MS:                                                                      ;APROXIMADAMENTE 500MS
+0023   3005           00082         MOVLW           D'5'
+0024   008E           00083         MOVWF           TEMPO1
+MPASM  5.51                       AULA067.ASM   6-21-2023  14:38:50         PAGE  3
+AULA67 - LEITURA DA MEMÓRIA EEPROM
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0025                  00084 M2:
+0025   30F9           00085         MOVLW           D'249'
+0026   008F           00086         MOVWF           TEMPO2
+0027                  00087 M1:     
+0027   0000           00088         NOP
+0028   0000           00089         NOP
+0029   0000           00090         NOP
+002A   0000           00091         NOP
+002B   0000           00092         NOP
+                      00093         
+Message[305]: Using default destination of 1 (file).
+002C   0B8F           00094         DECFSZ          TEMPO2
+002D   2827           00095         GOTO            M1
+                      00096         
+Message[305]: Using default destination of 1 (file).
+002E   0B8E           00097         DECFSZ          TEMPO1
+002F   2825           00098         GOTO            M2
+                      00099         
+0030   0008           00100         RETURN
+                      00101                 
+                      00102         END
+MPASM  5.51                       AULA067.ASM   6-21-2023  14:38:50         PAGE  4
+AULA67 - LEITURA DA MEMÓRIA EEPROM
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+BANCO0                            BCF             STATUS, RP0
+BANCO1                            BSF             STATUS, RP0
+C                                 00000000
+DC                                00000001
+DELAY_5MS                         00000023
+EEADR                             00000009
+EECON1                            00000088
+EECON2                            00000089
+EEDATA                            00000008
+EEIE                              00000006
+EEIF                              00000004
+ENDERECO                          0000000C
+F                                 00000001
+FSR                               00000004
+GIE                               00000007
+INDF                              00000000
+INICIO                            00000005
+INTCON                            0000000B
+INTE                              00000004
+INTEDG                            00000006
+INTF                              00000001
+IRP                               00000007
+LOOP                              00000009
+M1                                00000027
+M2                                00000025
+NOT_PD                            00000003
+NOT_RBPU                          00000007
+NOT_TO                            00000004
+OPTION_REG                        00000081
+PCL                               00000002
+PCLATH                            0000000A
+PORTA                             00000005
+PORTB                             00000006
+PS0                               00000000
+PS1                               00000001
+PS2                               00000002
+PSA                               00000003
+RA0                               00000000
+RA1                               00000001
+RA2                               00000002
+RA3                               00000003
+RA4                               00000004
+RB0                               00000000
+RB1                               00000001
+RB2                               00000002
+RB3                               00000003
+RB4                               00000004
+RB5                               00000005
+RB6                               00000006
+RB7                               00000007
+RBIE                              00000003
+RBIF                              00000000
+RD                                00000000
+MPASM  5.51                       AULA067.ASM   6-21-2023  14:38:50         PAGE  5
+AULA67 - LEITURA DA MEMÓRIA EEPROM
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+RP0                               00000005
+RP1                               00000006
+STATUS                            00000003
+T0CS                              00000005
+T0IE                              00000005
+T0IF                              00000002
+T0SE                              00000004
+TEMPO1                            0000000E
+TEMPO2                            0000000F
+TEMPO3                            00000010
+TMR0                              00000001
+TMR0IE                            00000005
+TMR0IF                            00000002
+TRISA                             00000085
+TRISA0                            00000000
+TRISA1                            00000001
+TRISA2                            00000002
+TRISA3                            00000003
+TRISA4                            00000004
+TRISB                             00000086
+TRISB0                            00000000
+TRISB1                            00000001
+TRISB2                            00000002
+TRISB3                            00000003
+TRISB4                            00000004
+TRISB5                            00000005
+TRISB6                            00000006
+TRISB7                            00000007
+VALOR                             0000000D
+W                                 00000000
+WR                                00000001
+WREN                              00000002
+WRERR                             00000003
+Z                                 00000002
+_CONFIG                           00002007
+_CP_OFF                           00003FFF
+_CP_ON                            0000000F
+_DEVID1                           00002006
+_FOSC_EXTRC                       00003FFF
+_FOSC_HS                          00003FFE
+_FOSC_LP                          00003FFC
+_FOSC_XT                          00003FFD
+_HS_OSC                           00003FFE
+_IDLOC0                           00002000
+_IDLOC1                           00002001
+_IDLOC2                           00002002
+_IDLOC3                           00002003
+_LP_OSC                           00003FFC
+_PWRTE_OFF                        00003FFF
+_PWRTE_ON                         00003FF7
+_RC_OSC                           00003FFF
+_WDTE_OFF                         00003FFB
+_WDTE_ON                          00003FFF
+MPASM  5.51                       AULA067.ASM   6-21-2023  14:38:50         PAGE  6
+AULA67 - LEITURA DA MEMÓRIA EEPROM
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_WDT_OFF                          00003FFB
+_WDT_ON                           00003FFF
+_XT_OSC                           00003FFD
+__16F84A                          00000001
+__DEBUG                           1
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+0000 : X---XXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX X---------------
+2000 : -------X-------- ---------------- ---------------- ----------------
+
+All other memory blocks unused.
+
+Program Memory Words Used:    46
+Program Memory Words Free:   978
+
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :    11 reported,     0 suppressed
+
+

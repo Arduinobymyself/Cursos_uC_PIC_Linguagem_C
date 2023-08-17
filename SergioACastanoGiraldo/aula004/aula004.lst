@@ -1,0 +1,131 @@
+CCS PCM C Compiler, Version 5.007, 61971               20-jul-23 21:48
+
+               Filename:   C:\Users\ABMS-Telecom\Documents\GitHub\Cursos_uC_PIC_Linguagem_C\SergioACastanoGiraldo\aula004\aula004.lst
+
+               ROM used:   23 words (0%)
+                           Largest free fragment is 2048
+               RAM used:   5 (1%) at main() level
+                           5 (1%) worst case
+               Stack used: 0 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   004
+0003:  NOP
+....................  
+.................... /* 
+.................... EXEMPLOS DE CONFIGURAÇÃO DE OSCILADOR 
+.................... 1. SETUP OSCILADOR 
+.................... #fuses INTRC_IO 
+.................... #use delay(clock=500000)  
+.................... void main() 
+.................... { 
+....................    setup_oscillator(OSC_500KHZ|OSC_INTRC); //Cristal interno de 500KHz 
+.................... } 
+....................  
+.................... 2. 
+.................... // Configurar el tiempo a 32KHz, se usa los fuses 
+.................... // en delay_us() y en delay_ms() 
+.................... #use delay (clock=32000, RESTART_WDT) 
+.................... //4 Ejemplos que muestran la configuración del tiempo: 
+.................... //Para usar un reloj de 20Mhz, donde la fuente es un cristal de cuarzo 
+.................... #use delay (crystal=20000000) 
+.................... #use delay (xtal=20,000,000) 
+.................... #use delay(crystal=20Mhz) 
+.................... #use delay(clock=20M, crystal) 
+.................... //Para configurar un reloj  a 10Mhz con un oscillator,  
+.................... //pero usando el multiplicador PLL por 4 para aumentar la velocidad 
+.................... //a 40MHz. El compilador configurará los bits si se usa: 
+.................... #use delay(oscillator=10Mhz, clock=40Mhz) 
+.................... //Para utilizar un Reloj Interno a 8MHz usamos la siguiente directiva 
+.................... //donde el compilador configurará los bits para habilitar 
+.................... //el oscilador a 8MHz. 
+.................... #use delay(internal=8Mhz) 
+.................... // si se desea ver la salida del reloj interno por el pin CLKO 
+.................... #use delay(internal=8Mhz,clock_out) 
+....................  
+.................... 3. 
+.................... #INCLUDE <16f887.h> 
+.................... #fuses RC, NOWDT, PUT, NOMCLR,BROWNOUT,NOLVP 
+.................... #use delay(clock=4MHz) 
+....................  
+.................... 4. OSCILADOR VIA 555 
+.................... #INCLUDE <16f887.h> 
+.................... #fuses EC, NOWDT, PUT, NOMCLR,BROWNOUT,NOLVP 
+.................... #use delay(clock=101700) 
+....................  
+.................... 5. OSCILADOR INTERNO 
+.................... #INCLUDE <16f887.h> 
+.................... #fuses XT, NOWDT, PUT, NOMCLR,BROWNOUT,NOLVP 
+.................... #use delay(internal=4000000) 
+....................  
+.................... OU 
+....................  
+.................... #INCLUDE <16f887.h> 
+.................... #fuses INTRC_IO, NOWDT, PUT, NOMCLR,BROWNOUT,NOLVP 
+.................... #use delay(clock=4MHZ)  
+.................... void main(){ 
+....................    setup_oscillator(OSC_4MHZ|OSC_INTRC); //Cristal interno de 4MHz 
+.................... } 
+....................  
+.................... 6.CRISTAL DE QUARTZO */ 
+....................  
+.................... #include <16f887.h> 
+.................... //////// Standard Header file for the PIC16F887 device //////////////// 
+.................... #device PIC16F887 
+....................  
+.................... #list 
+....................  
+.................... #fuses XT, NOWDT, PUT, NOMCLR,BROWNOUT,NOLVP 
+.................... #use delay(clock=4000000,crystal) 
+....................  
+.................... void main(){ 
+0004:  BSF    03.5
+0005:  BSF    03.6
+0006:  MOVF   09,W
+0007:  ANDLW  C0
+0008:  MOVWF  09
+0009:  BCF    03.6
+000A:  BCF    1F.4
+000B:  BCF    1F.5
+000C:  MOVLW  00
+000D:  BSF    03.6
+000E:  MOVWF  08
+000F:  BCF    03.5
+0010:  CLRF   07
+0011:  CLRF   08
+0012:  CLRF   09
+0013:  BCF    03.7
+0014:  MOVLW  1F
+0015:  ANDWF  03,F
+....................  
+.................... } 
+....................  
+0016:  SLEEP
+....................  
+....................  
+....................  
+....................  
+....................  
+....................  
+....................  
+....................  
+....................  
+....................  
+....................  
+....................  
+....................  
+....................  
+....................  
+....................  
+....................  
+....................  
+....................  
+....................  
+....................  
+
+Configuration Fuses:
+   Word  1: 2FC1   XT NOWDT PUT NOMCLR NOPROTECT NOCPD BROWNOUT IESO FCMEN NOLVP NODEBUG
+   Word  2: 3FFF   BORV40 NOWRT
